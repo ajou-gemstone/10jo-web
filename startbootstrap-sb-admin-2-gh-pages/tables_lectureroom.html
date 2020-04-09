@@ -63,7 +63,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        관리자 모드
       </div>
 
 <!-- Nav Item - Pages Collapse Menu -->
@@ -93,14 +93,14 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="tables_cafe.html">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>카페등록</span></a>
+          <span>카페관리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="tables_study.html">
           <i class="fas fa-fw fa-table"></i>
           <span>스터디관리</span></a>
       </li>
@@ -308,222 +308,94 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">강의실</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-
+          <h1 class="h3 mb-2 text-gray-800">강의실 관리</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout= "fixed">
                   <thead>
                     <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
                       <th>건물명</th>
                       <th>호수</th>
                       <th>수용인원</th>
-                      <th>학번</th>
-                      <th>진행중인 스터디</th>
-                      <th>Salary</th>
+                      <th colspan="2">07</th>
+                      <th colspan="2">08</th>
+                      <th colspan="2">09</th>
+                      <th colspan="2">10</th>
+                      <th colspan="2">11</th>
+                      <th colspan="2">12</th>
+                      <th colspan="2">13</th>
+                      <th colspan="2">14</th>
+                      <th colspan="2">15</th>
+                      <th colspan="2">16</th>
+                      <th colspan="2">17</th>
+                      <th colspan="2">18</th>
+                      <th colspan="2">19</th>
+                      <th colspan="2">20</th>
+                      <th colspan="2">21</th>                
+                    </tr>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
+                      <th>00</th>
+                      <th>30</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <th>이름</th>
-                      <th>아주메일</th>
-                      <th>포인트</th>
-                      <th>학번</th>
-                      <th>진행중인 스터디</th>
-                      <th>Salary</th>                    </tr>
+                      <th>건물명</th>
+                      <th>호수</th>
+                      <th>수용인원</th>
+                      <th colspan="2">07</th>
+                      <th colspan="2">08</th>
+                      <th colspan="2">09</th>
+                      <th colspan="2">10</th>
+                      <th colspan="2">11</th>
+                      <th colspan="2">12</th>
+                      <th colspan="2">13</th>
+                      <th colspan="2">14</th>
+                      <th colspan="2">15</th>
+                      <th colspan="2">16</th>
+                      <th colspan="2">17</th>
+                      <th colspan="2">18</th>
+                      <th colspan="2">19</th>
+                      <th colspan="2">20</th>
+                      <th colspan="2">21</th>                
+                    </tr>
                   </tfoot>
-                  <tbody>
-                    <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td>강찬혁</td>
-                      <td>rkdcksgur@ajou.ac.kr</td>
-                      <td>-200</td>
-                      <td>201520995</td>
-                      <td>동반 입대하실분</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td>곽명섭</td>
-                      <td>kwakms123@ajou.ac.kr</td>
-                      <td>30</td>
-                      <td>201520991</td>
-                      <td>스프링 하실분, 캡디 10조만 오세요</td>
-                      <td>$170,750</td>
-                    </tr>
-                    <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td>이현주</td>
-                      <td>dlguswn7175@ajou.ac.kr</td>
-                      <td>13</td>
-                      <td>201520971</td>
-                      <td>파이썬 뿌실분, 동반 입대 하실분</td>
-                      <td>$86,000</td>
-                    </tr>
-                    <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td>한정우</td>
-                      <td>hjw9504@ajou.ac.kr</td>
-                      <td>33</td>
-                      <td>201520987</td>
-                      <td>홀리쮯</td>
-                      <td>$433,060</td>
-                    </tr>
-                    <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    
+                  <tbody>  
                   </tbody>
                 </table>
               </div>
