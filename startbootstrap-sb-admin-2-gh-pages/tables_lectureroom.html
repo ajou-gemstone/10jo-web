@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
   <title>ASMR</title>
 
@@ -28,7 +29,32 @@
             trObj.style.backgroundColor = oldColor;
         }
         
-    }
+    }    
+</script>
+    
+    <link rel="stylesheet" href="./jquery-ui-1.12.1/jquery-ui.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        $(function(){
+	       $("#date1").datepicker();
+	       $("#date2").datepicker({
+                showOn: "button",
+                buttonImage: "images/calendar.gif",
+	           buttonImageOnly: false,
+		      buttonText: "Select date"
+	       });
+	       $("#date3").datepicker({
+		      onSelect:function(dateText, inst) {
+			 console.log(dateText);
+			 console.log(inst);
+            }
+	       });
+        });
+        //]]>
     </script>
 </head>
 
@@ -77,9 +103,9 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="tables_reservation.html">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>사진 보기</span>
+          <span>예약관리</span>
         </a>
       </li>
 
@@ -128,6 +154,7 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
+
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -313,8 +340,29 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
             </div>
+              
             <div class="card-body">
               <div class="table-responsive">
+                    <label for="selectbox">건물명 : </label>
+                        <select id="selectbox" title="선택 구분">
+                            <option selected="selected">성호관</option>
+                            <option>팔달관</option>
+                            <option>율곡관</option>
+                            <option>종합관</option>
+                            <option>선택4</option>
+                        </select>
+                    <label for="selectbox">시설물 구분 : </label>
+                        <select id="selectbox" title="선택 구분">
+                            <option selected="selected">성호관</option>
+                            <option>선택1</option>
+                            <option>선택2</option>
+                            <option>선택3</option>
+                            <option>선택4</option>
+                        </select>
+
+<input type="text" name="date" id="date3" size="12" />
+<input type="button" value="달력" onclick="$('#date3').datepicker('show');" />
+
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout= "fixed">
                   <thead>
                     <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
