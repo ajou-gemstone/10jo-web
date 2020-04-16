@@ -4,10 +4,10 @@ var router = express.Router();
 var date;
 var realresults;
 router.route('/').get(function(req,res){
-    res.render('start.html');
+    res.render('login.html');
 });
-router.route('/select1').get(function(req,res){
-    res.render('select1.html');
+router.route('/main').get(function(req,res){
+    res.render('index.html');
 });
 router.route('/calender').get(function(req,res){
     res.render('calender3.html');
