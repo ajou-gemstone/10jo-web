@@ -6,45 +6,32 @@ var realresults;
 router.route('/').get(function(req,res){
     res.render('login.html');
 });
+router.route('/login').get(function(req,res){
+    res.render('login.html');
+});
 router.route('/main').get(function(req,res){
     res.render('index.html');
 });
-router.route('/calender').get(function(req,res){
-    res.render('calender3.html');
+router.route('/register').get(function(req,res){
+    res.render('register.html');
 });
-router.route('/help').get(function(req,res){
-    res.render('help.html');
+router.route('/lectureroom').get(function(req,res){
+    res.render('tables-lectureroom.html');
 });
-router.route('/amusementpark').get(function(req,res){
-    res.render('amusementpark.html');
+router.route('/reservation').get(function(req,res){
+    res.render('tables-reservation.html');
 });
-router.route('/pastinfo').get(function(req,res){
-    res.render('pastinfo.html');
+router.route('/student').get(function(req,res){
+    res.render('tables-student.html');
 });
-
-router.route('/everland').get(function(req,res){
-    res.render('everlandfee.html');
+router.route('/study').get(function(req,res){
+    res.render('tables-study.html');
 });
-router.route('/lotteworld').get(function(req,res){
-    res.render('lotteworldfee.html');
+router.route('/cafe').get(function(req,res){
+    res.render('tables-cafe.html');
 });
-router.route('/eworld').get(function(req,res){
-    res.render('eworldfee.html');
-});
-router.route('/weather').get(function(req,res){
-    res.render('weatherrealtime.html');
-});
-router.route('/date').get(function(req,res){
-    res.render('selectDate.html');
-});
-router.route('/complete').get(function(req,res){
-    res.render('complete.html');
-});
-router.route('/datareceive').get(function(req,res){
-    res.render('complete.html');
-});
-router.get('/send_data', function(req, res, next){
-    res.render('selectDate.html', { title: '' });
+router.route('/register').get(function(req,res){
+    res.render('register.html');
 });
 
 module.exports = router;

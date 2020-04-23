@@ -4,14 +4,12 @@
 <head>
 
   <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-<!--  <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  
-  <title>ASMR</title>
+
+  <title>SB Admin 2 - Tables</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,41 +20,6 @@
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script>
-    function changeTrColor(trObj, oldColor, newColor) {
-        trObj.style.backgroundColor = newColor;
-        
-        trObj.onmouseout = function(){
-            trObj.style.backgroundColor = oldColor;
-        }
-        
-    }    
-</script>
-    
-    <link rel="stylesheet" href="./jquery-ui-1.12.1/jquery-ui.min.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
-    <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
-
-    <script type="text/javascript">
-        //<![CDATA[
-        $(function(){
-	       $("#date1").datepicker();
-	       $("#date2").datepicker({
-                showOn: "button",
-                buttonImage: "images/calendar.gif",
-	            buttonImageOnly: false,
-		        buttonText: "Select date"
-	       });
-	       $("#date3").datepicker({
-		     onSelect:function(dateText, inst) {
-			 console.log(dateText);
-			 console.log(inst);
-            }
-	       });
-        });
-        //]]>
-    </script>
 
 </head>
 
@@ -94,9 +57,10 @@
         관리자 모드
       </div>
 
+
 <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tables_lectureroom.html">
+        <a class="nav-link collapsed" href="http://localhost:5010/lectureroom">
           <i class="fas fa-fw fa-cog"></i>
           <span>강의실 관리</span>
         </a>
@@ -105,7 +69,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tables_reservation.html">
+        <a class="nav-link collapsed" href="http://localhost:5010/reservation">
           <i class="fas fa-fw fa-wrench"></i>
           <span>예약관리</span>
         </a>
@@ -113,7 +77,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tables_student.html">
+        <a class="nav-link collapsed" href="http://localhost:5010/student">
           <i class="fas fa-fw fa-folder"></i>
           <span>학생관리</span>
         </a>
@@ -121,14 +85,14 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="tables_cafe.html">
+        <a class="nav-link" href="http://localhost:5010/cafe">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>카페관리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables_study.html">
+        <a class="nav-link" href="http://localhost:5010/study">
           <i class="fas fa-fw fa-table"></i>
           <span>스터디관리</span></a>
       </li>
@@ -142,7 +106,7 @@
 
     </ul>
     <!-- End of Sidebar -->
-
+      
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -156,7 +120,6 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -337,111 +300,37 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">강의실 관리</h1>
+          <h1 class="h3 mb-2 text-gray-800">예약 관리(전송된 사진 확인)</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
             </div>
-              
             <div class="card-body">
               <div class="table-responsive">
-                    
-                <body>
-                    <label for="selectbox">건물명 : </label>
-                    <select id="selectbox" title="선택 구분">
-                        <option selected="selected">성호관</option>
-                        <option>팔달관</option>
-                        <option>율곡관</option>
-                        <option>종합관</option>
-                        <option>선택4</option>
-                    </select>
-                    <label for="date">날짜보기</label>
-                    <input type="text" name="date" id="date2" size="12" />
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout= "fixed">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
+                    <tr>
+                      <th>예약일시</th>
                       <th>건물명</th>
                       <th>호수</th>
-                      <th>수용인원</th>
-                      <th colspan="2">07</th>
-                      <th colspan="2">08</th>
-                      <th colspan="2">09</th>
-                      <th colspan="2">10</th>
-                      <th colspan="2">11</th>
-                      <th colspan="2">12</th>
-                      <th colspan="2">13</th>
-                      <th colspan="2">14</th>
-                      <th colspan="2">15</th>
-                      <th colspan="2">16</th>
-                      <th colspan="2">17</th>
-                      <th colspan="2">18</th>
-                      <th colspan="2">19</th>
-                      <th colspan="2">20</th>
-                      <th colspan="2">21</th>                
-                    </tr>
-                    <tr>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
-                      <th>00</th>
-                      <th>30</th>
+                      <th>예약시간</th>
+                      <th>예약자</th>
                     </tr>
                   </thead>
                   <tfoot>
-                    <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
+                    <tr>
+                      <th>예약일시</th>
                       <th>건물명</th>
                       <th>호수</th>
-                      <th>수용인원</th>
-                      <th colspan="2">07</th>
-                      <th colspan="2">08</th>
-                      <th colspan="2">09</th>
-                      <th colspan="2">10</th>
-                      <th colspan="2">11</th>
-                      <th colspan="2">12</th>
-                      <th colspan="2">13</th>
-                      <th colspan="2">14</th>
-                      <th colspan="2">15</th>
-                      <th colspan="2">16</th>
-                      <th colspan="2">17</th>
-                      <th colspan="2">18</th>
-                      <th colspan="2">19</th>
-                      <th colspan="2">20</th>
-                      <th colspan="2">21</th>                
+                      <th>예약시간</th>
+                      <th>예약자</th>
                     </tr>
                   </tfoot>
-                  <tbody>  
+                  <tbody>
+                    
                   </tbody>
                 </table>
               </div>
-                </div>
             </div>
           </div>
 
@@ -455,6 +344,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
           </div>
         </div>
       </footer>
@@ -491,11 +381,8 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-
-<!--
-    <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
--->
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -504,16 +391,12 @@
   <script src="js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
-        
-
-    
 </body>
 
 </html>
