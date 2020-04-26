@@ -30,8 +30,5 @@ router.route('/study').get(function(req,res){
 router.route('/cafe').get(function(req,res){
     res.render('tables-cafe.html');
 });
-router.route('/register').get(function(req,res){
-    res.render('register.html');
-});
 
 module.exports = router;
