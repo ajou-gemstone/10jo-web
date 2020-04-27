@@ -1,8 +1,6 @@
 var express = require('express');
-var multer = require('multer');
 var router = express.Router();
-var date;
-var realresults;
+var dbQuery = require("../database/promiseQuery.js");
 
 router.get('/', function(req,res){
     res.render('tables-study.html');

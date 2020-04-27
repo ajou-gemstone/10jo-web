@@ -1,11 +1,9 @@
 var express = require('express');
-var multer = require('multer');
 var router = express.Router();
-var date;
-var realresults;
+var dbQuery = require("../database/promiseQuery.js");
 
 router.get('/', function(req,res){
-    res.render('tables-lectureroom');
+    res.render('tables-lectureroom',{id:'Hello', name: 'Hi'});
 });
 
 module.exports = router;
