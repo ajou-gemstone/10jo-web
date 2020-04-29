@@ -21,10 +21,23 @@
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <script>
+        function add_row() {
+            var my_tbody = document.getElementById('reserveBody');
+            // var row = my_tbody.insertRow(0); // 상단에 추가
+            var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = '항목';
+            cell2.innerHTML = "홀리쮯떠뻑";
+        }
+        
+    </script>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload = "add_row()">
 
+    
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -326,8 +339,7 @@
                       <th>예약자</th>
                     </tr>
                   </tfoot>
-                  <tbody>
-                    
+                  <tbody id = "reserveBody">
                   </tbody>
                 </table>
               </div>
