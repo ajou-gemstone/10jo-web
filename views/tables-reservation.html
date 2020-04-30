@@ -19,8 +19,84 @@
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-</head>
 
+    <script>
+//        function add_row() {
+//            var my_tbody = document.getElementById('reserveBody');
+//             var row = my_tbody.insertRow(0); // 상단에 추가
+//            //var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
+//            var cell1 = row.insertCell(0);
+//            var cell2 = row.insertCell(1);
+//            var cell3 = row.insertCell(2);
+//            var cell4 = row.insertCell(3);
+//            var cell5 = row.insertCell(4);
+//
+//            cell1.innerHTML = "2020-05-02";
+//            cell2.innerHTML = "성호관";
+//            cell3.innerHTML = "336";
+//            cell4.innerHTML = "17:00~19:00";
+//            cell5.innerHTML = "강찬혁,이현주";
+//        }
+//
+//        function append() {
+//            var tbl = document.getElementById("dataTable").getElementsByTagName("TBODY")[0];
+//            var html1 = '컬럼1';
+//            var html2 = '컬럼2';
+//
+//            var row = document.createElement("tr");
+//            var col1 = document.createElement("td");
+//            var col2 = document.createElement("td");
+//            row.appendChild(col1);
+//            row.appendChild(col2);
+//            col1.innerHTML = html1;
+//            col2.innerHTML = html2;
+//            tbl.appendChild(row);
+//        }
+//        function remove() {
+//            var tbl = document.getElementById("unc-poll-tab").getElementsByTagName("TBODY")[0];
+//            if (tbl.hasChildNodes()) {
+//                tbl.removeChild(tbl.lastChild); // 마지막 로우
+//                //tbl.removeChild(tbl.firstChild); // 첫번째 로우
+//
+//            }
+    window.onload = function append(){
+            for(var i=0;i<3;i++){
+            var rowItem = "<tr>"
+                rowItem += "<td>2020-05-03</td>"
+                rowItem += "<td>성호관</td>"
+                rowItem += "<td>334</td>"
+                rowItem += "<td>17:00~19:00</td>"
+                rowItem += "<td>강찬혁</td>"
+                rowItem += "</tr>"
+            $('#reserveBody').append(rowItem)
+            }
+        }
+//        $(document).ready(function(){
+//                for(var i=0;i<3;i++){
+//            var rowItem = "<tr>"
+//                rowItem += "<td>2020-05-03</td>"
+//                rowItem += "<td>성호관</td>"
+//                rowItem += "<td>334</td>"
+//                rowItem += "<td>17:00~19:00</td>"
+//                rowItem += "<td>강찬혁</td>"
+//                rowItem += "</tr>"
+//            $('#reserveBody').append(rowItem)
+//
+//
+//        });
+
+    </script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+      var result = new Array();
+      axios.get('http://localhost:5010/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        result = res.data;
+      })
+    </script>
+
+</head>
 
 <body id="page-top">
 
@@ -326,9 +402,6 @@
                       <th>예약자</th>
                     </tr>
                   </tfoot>
-                  <tbody id = "reserveBody">
-
-                  </tbody>
                 </table>
               </div>
             </div>
@@ -393,20 +466,20 @@
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    
+
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
-    <script>  
-        
+    <script>
+
 
     var result = new Array();
 
-     (function dataPrint() { 
+     (function dataPrint() {
          result = [{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"A","leaderId":2},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"B","leaderId":2},{"date":"2020-05-02T15:00:00.000Z","buildingName":"율곡관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-05-05T15:00:00.000Z","buildingName":"종합관","lectureRoomNum":309,"time":"A","leaderId":"강찬혁"}];
 //        await axios.get('http://172.30.1.4:5010/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
 //            result = res.data;
-//            console.log(result);  
+//            console.log(result);
 //        });
 //        console.log("들어온다");
         for(var i=0;i<result.length;i++){
