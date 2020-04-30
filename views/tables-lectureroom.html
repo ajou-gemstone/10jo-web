@@ -62,37 +62,37 @@
 </head>
 
 <body id="page-top">
-<!--
+
   <script>
-    axios.get('/lectureRoom').then(res => { // 불러온 값을 Console에 뿌려줍니다.
-      console.log(res);
-       var elements = document.getElementById("admin");
-       elements.innerText = res;
+    axios.get('/lectureRoom/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+      var result = new Array();
+      result = res.data;
+      var elements = document.getElementById("admin");
     })
   </script>
--->
-    <script>
-//        var tableBody = document.getElementById("lectureTbody");
-//        // table 또는 tbody 객체를 가져온다.
-//        
-//        // table 또는 tbody 에 저장된 row 의 개수를 가져온다.
-//        var iRowCount = 2;
-//        //tableBody.rows.length;
-//
-//        // table 또는 tbody 에 4개의 row 가 있다면 2 와 3 번째 사이에 
-//        // 새로운 row 를 추가하고 싶으면 아래와 같이 호출한다.
-//        // 맨 마지막에 row 를 추가하고 싶으면 iRowCount 를 입력한다.
-//        var clsRow = tableBody.insertRow( iRowCount - 2 );
-//
-//        // 새로운 row 에 2개의 cell 을 추가한다.
-//        var clsCell1 = clsRow.insertCell(0);
-//        var clsCell2 = clsRow.insertCell(1);
 
-        $("#lectureTbody").append("<tr><td>개빡치네</td></tr>")
-        // 각 cell 에 텍스트를 입력한다.
-        clsCell1.innerHTML = "Cell1";
-        clsCell2.innerHTML = "Cell2";
-    </script>
+  <script>
+    //        var tableBody = document.getElementById("lectureTbody");
+    //        // table 또는 tbody 객체를 가져온다.
+    //
+    //        // table 또는 tbody 에 저장된 row 의 개수를 가져온다.
+    //        var iRowCount = 2;
+    //        //tableBody.rows.length;
+    //
+    //        // table 또는 tbody 에 4개의 row 가 있다면 2 와 3 번째 사이에
+    //        // 새로운 row 를 추가하고 싶으면 아래와 같이 호출한다.
+    //        // 맨 마지막에 row 를 추가하고 싶으면 iRowCount 를 입력한다.
+    //        var clsRow = tableBody.insertRow( iRowCount - 2 );
+    //
+    //        // 새로운 row 에 2개의 cell 을 추가한다.
+    //        var clsCell1 = clsRow.insertCell(0);
+    //        var clsCell2 = clsRow.insertCell(1);
+
+    $("#lectureTbody").append("<tr><td>개빡치네</td></tr>")
+    // 각 cell 에 텍스트를 입력한다.
+    clsCell1.innerHTML = "Cell1";
+    clsCell2.innerHTML = "Cell2";
+  </script>
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -469,7 +469,7 @@
                         <th colspan="2">21</th>
                       </tr>
                     </tfoot>
-                    <tbody id = "lectureTbody">
+                    <tbody id="lectureTbody">
                     </tbody>
                   </table>
               </div>

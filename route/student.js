@@ -3,7 +3,7 @@ var router = express.Router();
 var dbQuery = require("../database/promiseQuery.js");
 
 router.get('/', function(req,res){
-    res.render('tables-student.html');
+    res.render('tables-student');
 });
 
 module.exports = router;

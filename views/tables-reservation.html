@@ -11,7 +11,7 @@
 
   <title>SB Admin 2 - Tables</title>
 
-    
+
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -21,6 +21,7 @@
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<<<<<<< Updated upstream
 
     <script>
 //        function add_row() {
@@ -32,14 +33,14 @@
 //            var cell3 = row.insertCell(2);
 //            var cell4 = row.insertCell(3);
 //            var cell5 = row.insertCell(4);
-//            
+//
 //            cell1.innerHTML = "2020-05-02";
 //            cell2.innerHTML = "성호관";
 //            cell3.innerHTML = "336";
 //            cell4.innerHTML = "17:00~19:00";
 //            cell5.innerHTML = "강찬혁,이현주";
 //        }
-//    
+//
 //        function append() {
 //            var tbl = document.getElementById("dataTable").getElementsByTagName("TBODY")[0];
 //            var html1 = '컬럼1';
@@ -83,16 +84,31 @@
 //                rowItem += "<td>강찬혁</td>"
 //                rowItem += "</tr>"
 //            $('#reserveBody').append(rowItem)
-// 
+//
 //
 //        });
 
     </script>
-    
+
 </head>
 
 <body id="page-top" >
-    
+
+=======
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script>
+    var result = new Array();
+    axios.get('/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+      result = res.data;
+    })
+  </script>
+</head>
+
+<body id="page-top" onload="add_row()">
+
+
+>>>>>>> Stashed changes
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -126,7 +142,7 @@
       </div>
 
 
-<!-- Nav Item - Pages Collapse Menu -->
+      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="http://localhost:5010/lectureroom">
           <i class="fas fa-fw fa-cog"></i>
@@ -149,7 +165,7 @@
           <i class="fas fa-fw fa-folder"></i>
           <span>학생관리</span>
         </a>
-    </li>
+      </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
@@ -174,7 +190,7 @@
 
     </ul>
     <!-- End of Sidebar -->
-      
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -385,6 +401,8 @@
                       <th>예약자</th>
                     </tr>
                   </thead>
+                  <tbody id="reserveBody">
+                  </tbody>
                   <tfoot>
                     <tr>
                       <th>예약일시</th>
@@ -395,7 +413,7 @@
                     </tr>
                   </tfoot>
                   <tbody id = "reserveBody">
-                        
+
                   </tbody>
                 </table>
               </div>
@@ -457,7 +475,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-  
+
   <!-- Page level plugins -->
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
@@ -465,7 +483,7 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
-  
+
 </body>
 
 </html>
