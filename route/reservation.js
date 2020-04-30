@@ -6,9 +6,12 @@ router.get('/', function(req,res){
     res.render('tables-reservation');
 });
 
-router.get('/list', function(req,res){
-  var array = [{'id': 1}, {'id': 2}]
-  res.json(array);
+router.get('/list', async function(req,res){
+  let sql = 'select rd.date, l.buildingName, l.lectureRoomNum, rd.time, r.leaderId from reservation r, reservationdescription rd, lectureroom l where r.lectureRoomId=l.id'
+  let recodes = await dbQuery(sql);
+
+  recodes = recodes.rows;
+  res.json(recodes);
 });
 
 module.exports = router;

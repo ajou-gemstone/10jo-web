@@ -21,7 +21,6 @@
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-<<<<<<< Updated upstream
 
     <script>
 //        function add_row() {
@@ -94,21 +93,19 @@
 
 <body id="page-top" >
 
-=======
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <script>
     var result = new Array();
     axios.get('/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
       result = res.data;
+      console.log(result[0]);
     })
   </script>
-</head>
+</body>
 
 <body id="page-top" onload="add_row()">
 
-
->>>>>>> Stashed changes
   <!-- Page Wrapper -->
   <div id="wrapper">
 
