@@ -11,11 +11,8 @@ var reservation = require('./route/reservation.js');
 var student = require('./route/student.js');
 var cafe = require('./route/cafe.js');
 var study = require('./route/study.js');
-var cors = require('cors');
 
 var app = express();
-
-app.use(cors());
 
 app.get('/', function(req, res){
   res.render('login');
