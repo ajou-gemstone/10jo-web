@@ -24,7 +24,7 @@
 
 <body id="page-top">
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -307,7 +307,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>예약일시</th>
@@ -326,7 +326,7 @@
                       <th>예약자</th>
                     </tr>
                   </tfoot>
-                  <tbody id = "reserveBody">
+                  <tbody id="reserveBody">
 
                   </tbody>
                 </table>
@@ -379,7 +379,7 @@
       </div>
     </div>
   </div>
-<!-- Bootstrap core JavaScript-->
+  <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -395,40 +395,37 @@
 
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
+  <!-- <script src="js/demo/datatables-demo.js"></script> -->
 
-    <script>
-
-
+  <script>
     var result = new Array();
 
-     ( function dataPrint() {
-         // result = [{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"A","leaderId":2},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"B","leaderId":2},{"date":"2020-05-02T15:00:00.000Z","buildingName":"율곡관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-05-05T15:00:00.000Z","buildingName":"종합관","lectureRoomNum":309,"time":"A","leaderId":"강찬혁"}];
-        axios.get('http://172.30.1.4:5010/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
-           result = res.data;
-           console.log(result);
-           for(var i=0;i<result.length;i++){
-   //            var rowItem = "<tr>"
-   //                rowItem += "<td>이름</td>"
-   //                rowItem += "<td>하하하</td>"
-   //                rowItem += "<td>기모딱!</td>"
-   //                rowItem += "<td>ㅠㅠㅠ</td>"
-   //                rowItem += "<td>십라</td>"
-   //                rowItem += "</tr>"
-   //            $('#reserveBody').append(rowItem)
-               var rowItem = "<tr>"
-                   rowItem += "<td>"+result[i].date.slice(0,10)+"</td>"
-                   rowItem += "<td>"+result[i].buildingName+"</td>"
-                   rowItem += "<td>"+result[i].lectureRoomNum+"</td>"
-                   rowItem += "<td>"+result[i].time+"</td>"
-                   rowItem += "<td>"+result[i].leaderId+"</td>"
-                   rowItem += "</tr>"
-               $('#reserveBody').append(rowItem)
-
-           }
-       });
-       console.log("들어온다");
-
+    (async function dataPrint() {
+      // result = [{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"A","leaderId":2},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"B","leaderId":2},{"date":"2020-05-02T15:00:00.000Z","buildingName":"율곡관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-05-05T15:00:00.000Z","buildingName":"종합관","lectureRoomNum":309,"time":"A","leaderId":"강찬혁"}];
+      await axios.get('http://localhost:5010/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        result = res.data;
+      });
+      for (var i = 0; i < result.length; i++) {
+        //            var rowItem = "<tr>"
+        //                rowItem += "<td>이름</td>"
+        //                rowItem += "<td>하하하</td>"
+        //                rowItem += "<td>기모딱!</td>"
+        //                rowItem += "<td>ㅠㅠㅠ</td>"
+        //                rowItem += "<td>십라</td>"
+        //                rowItem += "</tr>"
+        //            $('#reserveBody').append(rowItem)
+        var rowItem = "<tr>"
+        rowItem += "<td>" + result[i].date.slice(0, 10) + "</td>"
+        rowItem += "<td>" + result[i].buildingName + "</td>"
+        rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
+        rowItem += "<td>" + result[i].time + "</td>"
+        rowItem += "<td>" + result[i].leaderId + "</td>"
+        rowItem += "</tr>"
+        $('#reserveBody').append(rowItem)
+      }
+      $(document).ready(function() {
+        $('#dataTable').DataTable();
+      });
     })(2);
   </script>
 </body>
