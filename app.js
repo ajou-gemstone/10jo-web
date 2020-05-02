@@ -11,6 +11,7 @@ var reservation = require('./route/reservation.js');
 var student = require('./route/student.js');
 var cafe = require('./route/cafe.js');
 var study = require('./route/study.js');
+var lectureRoomRegister = require('./route/lectureRoomRegister.js');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use('/admin', admin);
 app.use('/lectureRoom', lectureRoom);
+app.use('/register', lectureRoomRegister);
 app.use('/reservation', reservation);
 app.use('/student', student);
 app.use('/cafe', cafe);
