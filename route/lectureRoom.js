@@ -6,6 +6,10 @@ router.get('/', function(req, res) {
   res.render('tables-lectureroom');
 });
 
+router.get('/register', function(req, res) {
+  res.render('register-lectureroom');
+});
+
 router.get('/list', async function(req, res) {
   let sql = 'select rd.date, l.buildingName, l.lectureRoomNum, rd.time, r.leaderId from reservation r, reservationdescription rd, lectureroom l where r.lectureRoomId=l.id and r.id=rd.reservationId'
   let recodes = await dbQuery(sql);
