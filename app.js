@@ -12,6 +12,7 @@ var student = require('./route/student.js');
 var cafe = require('./route/cafe.js');
 var study = require('./route/study.js');
 var lectureRoomRegister = require('./route/lectureRoomRegister.js');
+var classRegister = require('./route/classRegister.js');
 
 var app = express();
 
@@ -34,6 +35,8 @@ app.use('/reservation', reservation);
 app.use('/student', student);
 app.use('/cafe', cafe);
 app.use('/study', study);
+app.use('/classRegister', classRegister);
+
 
 app.post('/lectureRoomInfo',function(req, res) {
   console.log(req.body.buildingName);
