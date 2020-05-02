@@ -401,10 +401,10 @@
     var result = new Array();
 
     (async function dataPrint() {
-      // result = [{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"A","leaderId":2},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"B","leaderId":2},{"date":"2020-05-02T15:00:00.000Z","buildingName":"율곡관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-05-05T15:00:00.000Z","buildingName":"종합관","lectureRoomNum":309,"time":"A","leaderId":"강찬혁"}];
-      await axios.get('http://localhost:5010/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
-        result = res.data;
-      });
+       result = [{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"A","leaderId":2},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"B","leaderId":2},{"date":"2020-05-02T15:00:00.000Z","buildingName":"율곡관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-05-05T15:00:00.000Z","buildingName":"종합관","lectureRoomNum":309,"time":"A","leaderId":"강찬혁"}];
+//      await axios.get('http://localhost:5010/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+//        result = res.data;
+//      });
       for (var i = 0; i < result.length; i++) {
         //            var rowItem = "<tr>"
         //                rowItem += "<td>이름</td>"
