@@ -6,4 +6,6 @@ router.get('/', function(req, res) {
   res.render('register-lectureroom');
 });
 
+
+
 module.exports = router;

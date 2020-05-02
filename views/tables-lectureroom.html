@@ -349,8 +349,9 @@
               <div class="table-responsive">
 
                 <body>
+                  <form action = "/lectureRoomSearch" method="post">
                   <label for="selectbox">건물명 : </label>
-                  <select id="selectbox" title="선택 구분">
+                  <select id="selectbox" name = "buildingName" title="선택 구분">
                     <option selected="selected">성호관</option>
                     <option>팔달관</option>
                     <option>율곡관</option>
@@ -359,7 +360,10 @@
                   </select>
                   <label for="date">날짜보기</label>
                   <input type="text" name="date" id="date2" size="12" />
-                  <input type="button" value="강의실 등록" onClick="location.href='http://localhost:5010/lectureRoom/register'"/>  
+                  <input type="submit" value = "검색"/>
+                  </form>
+                  <p></p>
+                  <input type="button" value="강의실 등록" onClick="location.href='http://localhost:5010/lectureRoomRegister'"/>  
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
                     <thead>
                       <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
