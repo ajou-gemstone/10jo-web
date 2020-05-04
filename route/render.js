@@ -46,5 +46,8 @@ router.get('/cafestaff', function(req,res){
     res.render('index_cafe');
 });
 
+router.get('/cafeedit', function(req,res){
+    res.render('cafe-edit');
+});
 
 module.exports = router;
