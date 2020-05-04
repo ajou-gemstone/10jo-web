@@ -1,17 +1,81 @@
 var express = require('express');
 var router = express.Router();
 var dbQuery = require("../database/promiseQuery.js");
-
-router.get('/', function(req, res) {
-  res.render('tables-reservation');
-});
+var moment = require('moment');
+var calculateTime = require('../utils/calculateTime');
+var timeTable = require('../utils/timeTable');
 
 router.get('/list', async function(req, res) {
-  let sql = 'select rd.date, l.buildingName, l.lectureRoomNum, rd.time, r.leaderId from reservation r, reservationdescription rd, lectureroom l where r.lectureRoomId=l.id and r.id=rd.reservationId'
-  let recodes = await dbQuery(sql);
+  var date = req.query.date;
+  var building = req.query.building;
+  let recodes;
+  var tableList = new Array();
+  let jsonResult = new Array();
+  let queryResult;
+  let reservedRoomArray = new Array();
+  let resultList;
+  var stateList = new Array();
 
+  date = date.split('-');
+  date = moment([date[0], date[1] - 1, date[2]]).format("YYYY-MM-DD");
+
+  let sql = `select lectureRoomId, lectureRoomNum, buildingName from lectureRoom where buildingName='${building}'`
+  queryResult = await dbQuery(sql);
+  queryResult = queryResult.rows;
+
+  sql = `SELECT lectureroomdescription.TIME, lectureroomdescription.roomStatus, lectureRoom.lectureRoomId FROM lectureroom, lectureroomdescription WHERE lectureroom.buildingName='${building}' AND lectureroomdescription.date='${date}' AND lectureroom.id=lectureroomdescription.lectureRoomId`
+  recodes = await dbQuery(sql);
   recodes = recodes.rows;
-  res.json(recodes);
+
+  var array = new Array();
+  for (var j = 0; j < recodes.length; j++) {
+    array.push(recodes[j]['lectureRoomId'])
+    reservedRoomArray.push(recodes[j]['lectureRoomId'])
+  }
+
+  array = Array.from(new Set(array));
+
+  for (var l = 0; l < array.length; l++) {
+    var result = recodes.filter(function(recode) {
+      return recode.lectureRoomId == array[l];
+    });
+
+    var sortingField = "TIME";
+
+    result.sort(function(a, b) { // 오름차순
+      return a[sortingField] - b[sortingField];
+    });
+
+    tableList = timeTable(result, date);
+
+    resultList = {
+      building: building,
+      lectureroom: result[0].lectureRoomId,
+      lectureRoomNum: queryResult[l].lectureRoomNum,
+      stateList: tableList
+    }
+
+    jsonResult.push(resultList);
+  }
+
+reservedRoomArray = Array.from(new Set(reservedRoomArray));
+
+for (var i = 0; i < queryResult.length; i++) {
+  if (reservedRoomArray.indexOf(array[i]) == -1) {
+    for (var j = 0; j <= 27; j++) {
+      stateList.push('A');
+    }
+    resultList = {
+      building: building,
+      lectureroom: queryResult[i].lectureRoomId,
+      lectureRoomNum: queryResult[l].lectureRoomNum,
+      stateList: stateList
+    }
+    jsonResult.push(resultList);
+  }
+}
+
+res.json(jsonResult);
 });
 
 module.exports = router;

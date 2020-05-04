@@ -13,6 +13,7 @@ var cafe = require('./route/cafe.js');
 var study = require('./route/study.js');
 var lectureRoomRegister = require('./route/lectureRoomRegister.js');
 var classRegister = require('./route/classRegister.js');
+var render = require('./route/render.js');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.set('port', 5010);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use('/', render);
 app.use('/admin', admin);
 app.use('/lectureRoom', lectureRoom);
 app.use('/lectureRoomRegister', lectureRoomRegister);
