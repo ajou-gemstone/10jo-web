@@ -13,6 +13,7 @@ var cafe = require('./route/cafe.js');
 var study = require('./route/study.js');
 var lectureRoomRegister = require('./route/lectureRoomRegister.js');
 var classRegister = require('./route/classRegister.js');
+var education = require('./route/education.js');
 var render = require('./route/render.js');
 
 var app = express();
@@ -38,14 +39,7 @@ app.use('/student', student);
 app.use('/cafe', cafe);
 app.use('/study', study);
 app.use('/classRegister', classRegister);
-
-
-app.post('/lectureRoomInfo',function(req, res) {
-  console.log(req.body.buildingName);
-  console.log(req.body.numberOfLectureRoom);
-  console.log(req.body.numberOfPeople);
-});
-//강의실 등록정보 포스트로 받아옴
+app.use('/education',education);
 
 app.post('/lectureRoomSearch',function(req, res) {
   console.log(req.body.buildingName);
