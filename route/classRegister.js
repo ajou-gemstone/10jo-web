@@ -10,8 +10,8 @@ router.post('/classInfo',function(req, res) {
   console.log(req.body.buildingName);
   console.log(req.body.numberOfLectureRoom);
   console.log(req.body.professor);
-  console.log(req.body.subjectCode);
-  
+  console.log(req.body.subjectCode); 
 });
+//이거 수업등록인데 
 
 module.exports = router;

@@ -54,4 +54,8 @@ router.get('/register', function(req,res){
     res.render('register');
 });
 
+router.get('/prereserve', function(req,res){
+    res.render('priority-reserve');
+});
+
 module.exports = router;

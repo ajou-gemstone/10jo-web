@@ -78,4 +78,11 @@ for (var i = 0; i < queryResult.length; i++) {
 res.json(jsonResult);
 });
 
+router.post('/reservationSearch',function(req, res) {
+  console.log(req.body.buildingName);
+  console.log(req.body.date);
+});
+
+
+
 module.exports = router;

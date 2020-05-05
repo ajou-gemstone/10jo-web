@@ -18,7 +18,7 @@ var render = require('./route/render.js');
 var cafestaff = require('./route/cafestaff.js');
 var cafeedit = require('./route/cafeedit.js');
 var register = require('./route/register.js');
-
+var prereserve = require('./route/prereserve.js');
 
 var app = express();
 
@@ -47,7 +47,7 @@ app.use('/education',education);
 app.use('/cafestaff',cafestaff);
 app.use('/cafeedit',cafeedit);
 app.use('/register',register);
-
+app.use('/prereserve',prereserve);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("express start: %d ", app.get('port'));

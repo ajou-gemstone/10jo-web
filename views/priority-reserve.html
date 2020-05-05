@@ -71,7 +71,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/education">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -83,9 +83,9 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html" id='admin'>
+        <a class="nav-link" href="http://localhost:5010/education">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>관리자</span></a>
+          <span>교직원</span></a>
       </li>
 
       <!-- Divider -->
@@ -93,47 +93,26 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        관리자 모드
+        교직원 모드
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+<!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://13.125.206.202:5010/lectureroom">
+        <a class="nav-link collapsed" href="http://localhost:5010/classRegister">
           <i class="fas fa-fw fa-cog"></i>
-          <span>강의실 관리</span>
+          <span>수업 등록하기</span>
         </a>
 
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://13.125.206.202:5010/reservation">
+        <a class="nav-link collapsed" href="http://localhost:5010/prereserve">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>예약관리</span>
+          <span>강의실 우선예약</span>
         </a>
       </li>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="http://13.125.206.202:5010/student">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>학생관리</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="http://13.125.206.202:5010/cafe">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>카페관리</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="http://13.125.206.202:5010/study">
-          <i class="fas fa-fw fa-table"></i>
-          <span>스터디관리</span></a>
-      </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -144,7 +123,6 @@
 
     </ul>
     <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -355,16 +333,15 @@
                     <option selected="selected">성호관</option>
                     <option>팔달관</option>
                     <option>율곡관</option>
-                    <option>연암관</option>
-                    <option>동관</option>
-                    <option>서관</option>
+                    <option>종합관</option>
+                    <option>선택4</option>
                   </select>
                   <label for="date">날짜보기</label>
                   <input type="text" name="date" id="date2" size="12" />
                   <input type="submit" value = "검색"/>
                   </form>
                   <p></p>
-                  <input type="button" value="강의실 등록" onClick="location.href='http://13.125.206.202:5010/lectureRoomRegister'"/>
+                  <input type="button" value="강의실 등록" onClick="location.href='http://localhost:5010/lectureRoomRegister'"/>
                   <p></p>
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
                     <thead>

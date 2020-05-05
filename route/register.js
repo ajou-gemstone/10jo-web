@@ -9,8 +9,7 @@ router.post('/registerInfo',function(req, res) {
   console.log(req.body.address);    
   console.log(req.body.zonecode);
   console.log(req.body.address_etc);
-  console.log(req.body.cafeTel);
-  
+  console.log(req.body.cafeTel);  
 });
 
 module.exports = router;
