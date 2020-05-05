@@ -17,6 +17,7 @@ var education = require('./route/education.js');
 var render = require('./route/render.js');
 var cafestaff = require('./route/cafestaff.js');
 var cafeedit = require('./route/cafeedit.js');
+var register = require('./route/register.js');
 
 
 var app = express();
@@ -45,11 +46,8 @@ app.use('/classRegister', classRegister);
 app.use('/education',education);
 app.use('/cafestaff',cafestaff);
 app.use('/cafeedit',cafeedit);
+app.use('/register',register);
 
-app.post('/lectureRoomSearch',function(req, res) {
-  console.log(req.body.buildingName);
-  console.log(req.body.date);
-});
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("express start: %d ", app.get('port'));

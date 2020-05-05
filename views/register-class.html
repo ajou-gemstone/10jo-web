@@ -291,7 +291,29 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-                 <form action="" method="post">
+                <form action="/classRegister/classInfo" method="post">
+                <label for = "schedule1">요일1 : </label>
+                <select name = "schedule1" id="schedule1" title="선택 구분">
+                    <option selected="selected">월</option>
+                    <option>화</option>
+                    <option>수</option>
+                    <option>목</option>
+                    <option>금</option>
+                  </select>
+                <label for = "timeOfClass1">시간1 : </label>
+                <input type="text" name = "timeOfClass1"/>
+                <h6> </h6>
+                <label for = "schedule2">요일2 : </label>
+                <select name = "schedule2" id="schedule2" title="선택 구분">
+                    <option selected="selected">월</option>
+                    <option>화</option>
+                    <option>수</option>
+                    <option>목</option>
+                    <option>금</option>
+                  </select>
+                <label for = "timeOfClass2">시간2 : </label>
+                <input type="text" name = "timeOfClass2"/>
+                <h6>  </h6>
                 <label for = "buildingName">건물명 : </label>
                 <select name = "buildingName" id="buildingName" title="선택 구분">
                     <option selected="selected">성호관</option>
@@ -305,9 +327,6 @@
                 <h6>  </h6>
                 <label for = "numberOfLectureRoom">호수 : </label>
                 <input type="text" name = "numberOfLectureRoom" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
-                <h6>  </h6>
-                <label for = "schedule">요일 : </label>
-                <input type="text" name = "schedule"/> 
                 <h6>  </h6>
                 <label for = "professor">교수 : </label>
                 <input type="text" name = "professor"/>

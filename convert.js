@@ -31,4 +31,6 @@ router.route('/cafe').get(function(req,res){
     res.render('tables-cafe.html');
 });
 
+
+
 module.exports = router;

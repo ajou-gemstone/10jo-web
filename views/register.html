@@ -51,31 +51,26 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">카페 정보 입력</h1>
               </div>
-              <form class="user">
+              <form class="user" action="/register/registerInfo" method="post">
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="cafeAdminId" placeholder="관리자 ID">
-            </div>
+                <input type="text" class="form-control form-control-user" name = "cafeAdminId" id="cafeAdminId" placeholder="관리자 ID">
+              </div>
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-user" id="cafeAdminPw" placeholder="관리자 PW">
+                    <input type="password" class="form-control form-control-user" name="cafeAdminPw" id="cafeAdminPw" placeholder="관리자 PW">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="cafeName" placeholder="카페 이름">
+                  <input type="text" class="form-control form-control-user" name = "cafeName" id="cafeName" placeholder="카페 이름">
                 </div>
                   <div class = "form-group">
-                    <input type="text" class="form-control form-control-user" style="width:100px;" id="postcode1" placeholder="카페주소">
-                    <input type="text" class="form-control form-control-user" style="width:100px;" id="postcode2" placeholder="카페주소">
-                    <input type="text" class="form-control form-control-user" style="width:100px;" id="zonecode" placeholder="카페주소">
+                    <input type="text" class="form-control form-control-user" name = "address" id="address" placeholder="주소">
+	                <input type="text" class="form-control form-control-user" name = "zonecode" id="zonecode" placeholder="우편번호">
+                    <input type="text" class="form-control form-control-user" name = "address_etc" id="address_etc" placeholder="나머지 주소">
                     <input type="button" onClick="openDaumZipAddress();" value = "주소 찾기" />
-	               <br/>
-	               <input type="text" id="address" value="" style="width:240px;" readonly/>
-	               <input type="text" id="address_etc" value="" style="width:200px;"/>
                   </div>
                 <div class="form-group">
-                    <input type="tel" class="form-control form-control-user" id="cafeTel" placeholder="전화번호">
+                    <input type="tel" class="form-control form-control-user" name="cafeTel" id="cafeTel" placeholder="전화번호">
                 </div>
-                <a href="http://localhost:5010/" class="btn btn-primary btn-user btn-block">
-                  카페 신청하기
-                </a>
+                <input type = "submit" value = "카페 신청하기" class="btn btn-primary btn-user btn-block">
               </form>
               <hr>
               <div class="text-center">
