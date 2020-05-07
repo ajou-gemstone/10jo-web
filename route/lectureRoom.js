@@ -4,10 +4,15 @@ var dbQuery = require("../database/promiseQuery.js");
 var moment = require('moment');
 var calculateTime = require('../utils/calculateTime');
 var timeTable = require('../utils/timeTable');
+//router.post('/lectureRoomSearch',function(req, res) {
+//  console.log(req.body.buildingName);
+//  console.log(req.body.date);
+//  senddate = req.body.date;
+//});
 
-router.get('/list', async function(req, res) {
-  var date = req.query.date;
-  var building = req.query.building;
+router.post('/lectureRoomSearch', async function(req, res) {
+  var date ;
+  var building = req.body.buildingName;
   let recodes;
   var tableList = new Array();
   let jsonResult = new Array();
@@ -15,8 +20,9 @@ router.get('/list', async function(req, res) {
   let reservedRoomArray = new Array();
   let resultList;
   var stateList = new Array();
-
-  date = '2020-5-15';
+  console.log(building);
+  date = req.body.date;
+  console.log(date);
   date = date.split('-');
   date = moment([date[0], date[1] - 1, date[2]]).format("YYYY-MM-DD");
 
@@ -75,15 +81,11 @@ for (var i = 0; i < queryResult.length; i++) {
     jsonResult.push(resultList);
   }
 }
-
-res.json(jsonResult);
+    res.json(jsonResult);
 });
 
 
-router.post('/lectureRoomSearch',function(req, res) {
-  console.log(req.body.buildingName);
-  console.log(req.body.date);
-});
+
 
 
 module.exports = router;

@@ -9,15 +9,10 @@ router.get('/list', async function(req, res) {
   recodes = recodes.rows;
   res.json(recodes);
 });
-<<<<<<< Updated upstream
-
 router.post('/reservationSearch',function(req, res) {
   console.log(req.body.buildingName);
   console.log(req.body.date);
 });
 
-
-=======
->>>>>>> Stashed changes
 
 module.exports = router;

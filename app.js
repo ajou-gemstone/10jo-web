@@ -18,13 +18,7 @@ var render = require('./route/render.js');
 var cafestaff = require('./route/cafestaff.js');
 var cafeedit = require('./route/cafeedit.js');
 var register = require('./route/register.js');
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 var prereserve = require('./route/prereserve.js');
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 var cors = require('cors');
 
 var app = express();
