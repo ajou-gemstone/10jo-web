@@ -18,7 +18,14 @@ var render = require('./route/render.js');
 var cafestaff = require('./route/cafestaff.js');
 var cafeedit = require('./route/cafeedit.js');
 var register = require('./route/register.js');
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 var prereserve = require('./route/prereserve.js');
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+var cors = require('cors');
 
 var app = express();
 
@@ -32,6 +39,7 @@ app.set('view engine', 'html');
 
 app.set('port', 5010);
 
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use('/', render);
