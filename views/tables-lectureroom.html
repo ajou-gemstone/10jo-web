@@ -64,14 +64,14 @@
         var orgTColor = '#000000';
         var color = orgBColor;
         function HighLightTR(target, backColor,textColor) {
-            
+
             var tbody = target.parentNode;
             var tds = tbody.getElementsByTagName('td');
             for ( var i = 0; i < tds.length; i++ ) {
                 if ( tds[i] != target ) {
 //                    tds[i].style.backgroundColor = orgBColor;
 //                    tds[i].style.color = orgTColor;
-                } 
+                }
                 else {
                     if(tds[i].childNodes[0].nodeValue==" " || tds[i].childNodes[0].nodeValue=="R"
                        || tds[i].childNodes[0].nodeValue=="M"){
@@ -82,12 +82,12 @@
                         }
                         else{
                             tds[i].style.backgroundColor = backColor;
-                            tds[i].style.color = textColor;    
+                            tds[i].style.color = textColor;
                             color = backColor;
-                        }  
+                        }
                     }
                 }
-                
+
             } // endfor i
         }
     </script>
@@ -568,7 +568,7 @@
 //        rowItem += "<td onClick=\"HighLightTR(this, \'#c9cc99\',\'cc3333\');\">" + result[i].re9030 + "</td>"
 //        rowItem += "<td onClick=\"HighLightTR(this, \'#c9cc99\',\'cc3333\');\">" + result[i].re9300 + "</td>"
 //        rowItem += "<td onClick=\"HighLightTR(this, \'#c9cc99\',\'cc3333\');\">" + result[i].re10030 + "</td>"
-//        rowItem += "<td onClick=\"HighLightTR(this, \'#c9cc99\',\'cc3333\');\">" + result[i].re10300 + "</td>"          
+//        rowItem += "<td onClick=\"HighLightTR(this, \'#c9cc99\',\'cc3333\');\">" + result[i].re10300 + "</td>"
 //        rowItem += "<td onClick=\"HighLightTR(this, \'#c9cc99\',\'cc3333\');\">" + result[i].re11030 + "</td>"
 //        rowItem += "<td onClick=\"HighLightTR(this, \'#c9cc99\',\'cc3333\');\">" + result[i].re11300 + "</td>"
 //        rowItem += "<td onClick=\"HighLightTR(this, \'#c9cc99\',\'cc3333\');\">" + result[i].re12030 + "</td>"
