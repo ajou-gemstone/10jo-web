@@ -282,29 +282,19 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <form action="" method="post">
-                <label for = "buildingName">건물명 : </label>
-                <select name = "buildingName" id="buildingName" title="선택 구분">
-                    <option selected="selected">성호관</option>
-                    <option>팔달관</option>
-                    <option>율곡관</option>
-                    <option>종합관</option>
-                    <option>동관</option>
-                    <option>서관</option>
-                    <option>연암관</option>
-                  </select>
+                <form action="/cafeedit/cafeeditinfo" method="post">
+                <label for = "cafeName">카페이름 : </label>
+                <input type="text" name = "cafeName"/> 
                 <h6>  </h6>
-                <label for = "numberOfLectureRoom">호수 : </label>
-                <input type="text" name = "numberOfLectureRoom" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                <label for = "telephoneNumber">전화번호 : </label>
+                <input type="text" name = "telephoneNumber" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
                 <h6>  </h6>
-                <label for = "schedule">요일 : </label>
-                <input type="text" name = "schedule"/> 
-                <h6>  </h6>
-                <label for = "professor">교수 : </label>
-                <input type="text" name = "professor"/>
-                <h6>  </h6>
-                <label for = "subjectCode">과목코드 : </label>
-                <input type="text" name = "subjectCode"/>
+                <label for = "state">혼잡도(1~5) : </label>
+                <label><input type="radio" name="state" value="1">1</label>
+                <label><input type="radio" name="state" value="2">2</label>
+                <label><input type="radio" name="state" value="3">3</label>
+                <label><input type="radio" name="state" value="4">4</label>
+                <label><input type="radio" name="state" value="5">5</label>
                 <h6>  </h6>
                 <input type="submit" value = "등록하기"/>
                 </form>
