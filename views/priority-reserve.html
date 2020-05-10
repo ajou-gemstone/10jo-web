@@ -64,11 +64,6 @@
         var color = orgBColor;
         function HighLightTD(target, backColor,textColor) {
             var tbody = target.parentNode;
-            for(var i=1;i<10;i++){
-                for(var j=1;j<10;j++){
-                    console.log(tbody.rows[i].cells[j].innerHTML);
-                }    
-            }
             var tds = tbody.getElementsByTagName('td');
             for (var i = 0; i < tds.length; i++) {
                 if ( tds[i] != target ) {
