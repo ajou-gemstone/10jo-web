@@ -32,7 +32,7 @@
 
     }
   </script>
-
+  
   <link rel="stylesheet" href="./jquery-ui-1.12.1/jquery-ui.min.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
@@ -58,6 +58,8 @@
     });
     //]]>
   </script>
+<<<<<<< HEAD
+=======
 
     <script>
         var orgBColor = '#ffffff';
@@ -91,6 +93,7 @@
             } // endfor i
         }
     </script>
+>>>>>>> e9303b288aabf6ac0fba7f7ad76b2aadb9b85a1f
 </head>
 
 <body id="page-top">
@@ -381,9 +384,8 @@
               <div class="table-responsive">
 
                 <body>
-                  <form action = "/lectureRoom/lectureRoomSearch" method="post">
                   <label for="selectbox">건물명 : </label>
-                  <select id="selectbox" name = "buildingName" title="선택 구분">
+                  <select id="selectbox" name = "buildingName" id = "buildingName" title="선택 구분">
                     <option selected="selected">성호관</option>
                     <option>팔달관</option>
                     <option>율곡관</option>
@@ -393,10 +395,45 @@
                   </select>
                   <label for="date">날짜보기</label>
                   <input type="text" name="date" id="date2" size="12" />
-                  <input type="submit" value = "검색"/>
-                  </form>
+                  <input type="button" value = "검색" onclick="dataPrint();"/>
                   <p></p>
-                  <input type="button" value="강의실 등록" onClick="location.href='http://localhost:5010/lectureRoomRegister'"/>
+                    <script>
+    async function dataPrint() {
+       var result = new Array();
+        
+       var date2 =  document.getElementById("date2").value;
+       var lectureRoom =  document.getElementById("selectbox");
+       var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
+       await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{
+          params: {
+            id: date2, id2:lectureRoom2
+          }
+        }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        result = res.data;
+      });
+         $('#lectureTbody').empty();
+      for (var i = 0; i < result.length; i++) {
+        var rowItem = "<tr>"
+        rowItem += "<td>" + result[i].building + "</td>"
+        rowItem += "<td>" + result[i].lectureroom.substring(1,4) + "</td>"
+        rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
+        for(var j=0;j<30;j++){
+            if(result[i].stateList[j]=="A"){
+                rowItem += "<td>"+" "+"</td>"    
+            }
+            else{
+                rowItem += "<td>" + result[i].stateList[j] + "</td>"        
+            }
+        }
+        rowItem += "</tr>"
+        $('#lectureTbody').append(rowItem)
+      }
+    };
+    
+  </script>
+
+
+                <input type="button" value="강의실 등록" onClick="location.href='http://localhost:5010/lectureRoomRegister'"/>
                   <p></p>
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
                     <thead>
@@ -481,7 +518,7 @@
                     <tbody id="lectureTbody">
                     </tbody>
                   </table>
-                    <h6>T 시험 L 수업 R 타인예약 M 본인예약 X 예약불가기간</h6>
+                    <h6>T 시험 L 수업 R 학생예약 X 예약불가기간</h6>
               </div>
             </div>
           </div>
@@ -548,6 +585,9 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+<<<<<<< HEAD
+    
+=======
   <script>
   var result = new Array();
    (async function dataPrint() {
@@ -601,6 +641,7 @@
 
     </script>
 
+>>>>>>> e9303b288aabf6ac0fba7f7ad76b2aadb9b85a1f
 
 
 </body>

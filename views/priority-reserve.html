@@ -32,7 +32,7 @@
 
     }
   </script>
-
+  
   <link rel="stylesheet" href="./jquery-ui-1.12.1/jquery-ui.min.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
@@ -59,10 +59,42 @@
     //]]>
   </script>
 
+    <script>
+        var orgBColor = '#ffffff';
+        var color = orgBColor;
+        function HighLightTD(target, backColor,textColor) {
+            var tbody = target.parentNode;
+            for(var i=1;i<10;i++){
+                for(var j=1;j<10;j++){
+                    console.log(tbody.rows[i].cells[j].innerHTML);
+                }    
+            }
+            var tds = tbody.getElementsByTagName('td');
+            for (var i = 0; i < tds.length; i++) {
+                if ( tds[i] != target ) {
+//                    tds[i].style.backgroundColor = orgBColor;
+//                    tds[i].style.color = orgTColor;
+                }
+                else {
+                    if(tds[i].childNodes[0].nodeValue==" " || tds[i].childNodes[0].nodeValue=="R"
+                       || tds[i].childNodes[0].nodeValue=="M"){
+                        if(color == backColor){
+                            tds[i].style.backgroundColor = orgBColor;
+                            color = orgBColor;
+                        }
+                        else{
+                            tds[i].style.backgroundColor = backColor;
+                            color = backColor;
+                        }
+                    }
+                }
+                
+            } // endfor i
+        }
+    </script>
 </head>
 
 <body id="page-top">
-
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -80,7 +112,6 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
-
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
         <a class="nav-link" href="http://localhost:5010/education">
@@ -95,6 +126,7 @@
       <div class="sidebar-heading">
         교직원 모드
       </div>
+
 
 <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -112,7 +144,6 @@
           <span>강의실 우선예약</span>
         </a>
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -123,6 +154,8 @@
 
     </ul>
     <!-- End of Sidebar -->
+
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -317,7 +350,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">강의실 관리</h1>
+          <h1 class="h3 mb-2 text-gray-800">강의실 우선예약(예약불가 기간 설정)</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -327,25 +360,59 @@
               <div class="table-responsive">
 
                 <body>
-                  <form action = "/lectureRoom/lectureRoomSearch" method="post">
                   <label for="selectbox">건물명 : </label>
-                  <select id="selectbox" name = "buildingName" title="선택 구분">
+                  <select id="selectbox" name = "buildingName" id = "buildingName" title="선택 구분">
                     <option selected="selected">성호관</option>
                     <option>팔달관</option>
                     <option>율곡관</option>
-                    <option>종합관</option>
-                    <option>선택4</option>
+                    <option>연암관</option>
+                    <option>동관</option>
+                    <option>서관</option>
                   </select>
                   <label for="date">날짜보기</label>
-                  <input type="text" name="date" id="date2" size="12" />
-                  <input type="submit" value = "검색"/>
-                  </form>
+                  <input type="text" name="date" id="date2" size="12"/>
+                  <input type="button" value = "검색" onclick="dataPrint();"/>
                   <p></p>
-                  <input type="button" value="강의실 등록" onClick="location.href='http://localhost:5010/lectureRoomRegister'"/>
-                  <p></p>
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
+                <input type="button" value = "예약불가 설정"/>
+                    <script>
+    async function dataPrint() {
+       var result = new Array();
+        
+       var date2 =  document.getElementById("date2").value;
+       var lectureRoom =  document.getElementById("selectbox");
+       var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
+       await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{
+          params: {
+            id: date2, id2:lectureRoom2
+          }
+        }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        result = res.data;
+      });
+         $('#lectureTbody').empty();
+      for (var i = 0; i < result.length; i++) {
+        var rowItem = "<tr>"
+        rowItem += "<td>" + result[i].building + "</td>"
+        rowItem += "<td>" + result[i].lectureroom.substring(1,4) + "</td>"
+        rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
+        for(var j=0;j<30;j++){
+            if(result[i].stateList[j]=="A"){
+                rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">"+" "+"</td>"    
+            }
+            else{
+                rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">" + result[i].stateList[j] + "</td>"        
+            }
+            
+        }
+        rowItem += "</tr>"
+        $('#lectureTbody').append(rowItem)
+      }
+    
+    };
+    
+  </script>
+           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
                     <thead>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
+                      <tr>
                         <th>건물명</th>
                         <th>호수</th>
                         <th>수용인원</th>
@@ -402,7 +469,7 @@
                       </tr>
                     </thead>
                     <tfoot>
-                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
+                      <tr>
                         <th>건물명</th>
                         <th>호수</th>
                         <th>수용인원</th>
@@ -426,7 +493,7 @@
                     <tbody id="lectureTbody">
                     </tbody>
                   </table>
-                    <h6>T 시험 L 수업 R 타인예약 M 본인예약 X 예약불가기간</h6>
+                    <h6>T 시험 L 수업 R 학생예약 X 예약불가기간</h6>
               </div>
             </div>
           </div>
@@ -493,59 +560,7 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-  <script>
-  var result = new Array();
-  var string = "onclick=\"location.href=\'http://nzeo.co.kr\'\" style=\"cursor:hand\"";
-    (async function dataPrint() {
-       result = [{"buildingName":"성호관","lectureRoomNum":101,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"성호관","lectureRoomNum":102,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"성호관","lectureRoomNum":103,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"성호관","lectureRoomNum":104,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"성호관","lectureRoomNum":105,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"성호관","lectureRoomNum":106,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"팔달관","lectureRoomNum":101,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"팔달관","lectureRoomNum":102,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"팔달관","lectureRoomNum":103,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"팔달관","lectureRoomNum":104,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"팔달관","lectureRoomNum":105,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"율곡관","lectureRoomNum":201,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},{"buildingName":"율곡관","lectureRoomNum":202,"peopleNum":"50","re7030":"L","re7300":"L","re8030":"L","re8300":"L","re9030":"L","re9300":"L","re10030":"L","re10300":"L","re11030":"L","re11300":"L","re12030":"L","re12300":"L","re13030":"L","re13300":" ","re14030":" ","re14300":" ","re15030":"L ","re15300":"L","re16030":" ","re16300":"L","re17030":"L","re17300":" ","re18030":" ","re18300":" ","re19030":" ","re19300":" ","re20030":" ","re20300":" ","re21030":" ","re21300":"L"},]
-//      await axios.get('http://localhost:5010/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
-//        result = res.data;
-//      });
-      for (var i = 0; i < result.length; i++) {
-        var rowItem = "<tr onmouseover=\"javascript:changeTrColor(this, \'#FFFFFF\', \'#F4FFFD\')\">"
-        rowItem += "<td>" + result[i].buildingName + "</td>"
-        rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
-        rowItem += "<td>" + result[i].peopleNum + "</td>"
-        rowItem += "<td>" + result[i].re7030 + "</td>"
-        rowItem += "<td>" + result[i].re7300 + "</td>"
-        rowItem += "<td>" + result[i].re8030 + "</td>"
-        rowItem += "<td>" + result[i].re8300 + "</td>"
-        rowItem += "<td>" + result[i].re9030 + "</td>"
-        rowItem += "<td>" + result[i].re9300 + "</td>"
-        rowItem += "<td>" + result[i].re10030 + "</td>"
-        rowItem += "<td>" + result[i].re10300 + "</td>"          
-        rowItem += "<td>" + result[i].re11030 + "</td>"
-        rowItem += "<td>" + result[i].re11300 + "</td>"
-        rowItem += "<td>" + result[i].re12030 + "</td>"
-        rowItem += "<td>" + result[i].re12300 + "</td>"
-        rowItem += "<td>" + result[i].re13030 + "</td>"
-        rowItem += "<td>" + result[i].re13300 + "</td>"
-        rowItem += "<td>" + result[i].re14030 + "</td>"
-        rowItem += "<td>" + result[i].re14300 + "</td>"
-        rowItem += "<td>" + result[i].re15030 + "</td>"
-        rowItem += "<td>" + result[i].re15300 + "</td>"
-        rowItem += "<td>" + result[i].re16030 + "</td>"
-        rowItem += "<td>" + result[i].re16300 + "</td>"
-        rowItem += "<td>" + result[i].re17030 + "</td>"
-        rowItem += "<td>" + result[i].re17300 + "</td>"
-        rowItem += "<td>" + result[i].re18030 + "</td>"
-        rowItem += "<td>" + result[i].re18300 + "</td>"
-        rowItem += "<td>" + result[i].re19030 + "</td>"
-        rowItem += "<td>" + result[i].re19300 + "</td>"
-        rowItem += "<td>" + result[i].re20030 + "</td>"
-        rowItem += "<td>" + result[i].re20300 + "</td>"
-        rowItem += "<td>" + result[i].re21030 + "</td>"
-        rowItem += "<td>" + result[i].re21300 + "</td>"
-        rowItem += "</tr>"
-        $('#lectureTbody').append(rowItem)
-      }
-      $(document).ready(function() {
-        $('#dataTable').DataTable();
-      });
-    })(2);
-
-    </script>
-
+    
 
 
 </body>
