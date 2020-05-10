@@ -10,9 +10,9 @@ var timeTable = require('../utils/timeTable');
 //  senddate = req.body.date;
 //});
 
-router.post('/lectureRoomSearch', async function(req, res) {
+router.get('/lectureRoomSearch', async function(req, res) {
   var date ;
-  var building = req.body.buildingName;
+  var building = req.query.id2;
   let recodes;
   var tableList = new Array();
   let jsonResult = new Array();
@@ -21,7 +21,7 @@ router.post('/lectureRoomSearch', async function(req, res) {
   let resultList;
   var stateList = new Array();
   console.log(building);
-  date = req.body.date;
+  date = req.query.id;
   console.log(date);
   date = date.split('-');
   date = moment([date[0], date[1] - 1, date[2]]).format("YYYY-MM-DD");
