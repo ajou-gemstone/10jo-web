@@ -3,19 +3,37 @@ var router = express.Router();
 var dbQuery = require("../database/promiseQuery.js");
 
 router.get('/list', async function(req, res) {
-  let sql = `select cafe.name, cafe.congestion, cafe.address, (select user.userId from user, cafe where user.id=cafe.userId) as userId, (select user.userPassword from user, cafe where user.id=cafe.userId) as userPassword, (select user.phoneNumber from user, cafe where user.id=cafe.userId) as phoneNumber from cafe`;
-  var queryResult = await dbQuery(sql);
+  var userList = new Array();
 
+  let sql = `select cafe.userId, cafe.name, cafe.congestion, cafe.address from cafe`;
+  var queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;
+
+  for(var i=0;i<queryResult.length;i++){
+    sql = `select user.userId, user.phoneNumber from user, cafe where user.id=${queryResult[i].userId}`;
+    var query = await dbQuery(sql);
+    query = query.rows;
+    queryResult[i].userId = query[0].userId;
+    queryResult[i].phoneNumber = query[0].phoneNumber;
+  }
 
   res.json(queryResult);
 });
 
 router.get('/waiting', async function(req, res) {
-  let sql = `select cafe.name, cafe.address, (select user.phoneNumber from user, cafe where user.id=cafe.userId) as phoneNumber from cafe where cafe.confirm=0`;
+  let sql = `select cafe.id, cafe.name, cafe.address from cafe where cafe.confirm=0`;
   var queryResult = await dbQuery(sql);
 
   queryResult = queryResult.rows;
+
+  for(var i=0;i<queryResult.length;i++){
+    sql = `select user.phoneNumber from user, cafe where user.id=${queryResult[i].id}`;
+    var query = await dbQuery(sql);
+
+    query = query.rows;
+
+    queryResult[i].phoneNumber = query[i].phoneNumber;
+  }
 
   res.json(queryResult);
 });

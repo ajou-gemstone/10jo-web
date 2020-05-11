@@ -20,6 +20,7 @@
   <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+    
   <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -343,7 +344,6 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <form action = "/reservation/reservationSearch" method="post">
                   <label for="selectbox">건물명 : </label>
                   <select id="selectbox" name = "buildingName" title="선택 구분">
                     <option selected="selected">성호관</option>
@@ -355,8 +355,8 @@
                   </select>
                   <label for="date">날짜보기</label>
                   <input type="text" name="date" id="date2" size="12"/>
-                  <input type="submit" value = "검색"/>
-                  </form>
+                  <input type="button" value = "검색" onclick="filteringPrint();"/>
+
 
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
@@ -452,19 +452,10 @@
     var result = new Array();
 
     (async function dataPrint() {
-//       result = [{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"A","leaderId":2},{"date":"2020-04-29T15:00:00.000Z","buildingName":"팔달관","lectureRoomNum":201,"time":"B","leaderId":2},{"date":"2020-05-02T15:00:00.000Z","buildingName":"율곡관","lectureRoomNum":101,"time":"A","leaderId":1},{"date":"2020-05-05T15:00:00.000Z","buildingName":"종합관","lectureRoomNum":309,"time":"A","leaderId":"강찬혁"}];
-      await axios.get('http://13.125.206.202:5010/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+      await axios.get('http://localhost:5010/reservation/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
         result = res.data;
       });
       for (var i = 0; i < result.length; i++) {
-        //            var rowItem = "<tr>"
-        //                rowItem += "<td>이름</td>"
-        //                rowItem += "<td>하하하</td>"
-        //                rowItem += "<td>기모딱!</td>"
-        //                rowItem += "<td>ㅠㅠㅠ</td>"
-        //                rowItem += "<td>십라</td>"
-        //                rowItem += "</tr>"
-        //            $('#reserveBody').append(rowItem)
         var rowItem = "<tr onmouseover=\"javascript:changeTrColor(this, \'#FFFFFF\', \'#F4FFFD\')\">"
         rowItem += "<td>" + result[i].date.slice(0, 10) + "</td>"
         rowItem += "<td>" + result[i].buildingName + "</td>"
@@ -478,6 +469,36 @@
         $('#dataTable').DataTable();
       });
     })(2);
+  </script>
+  <script>
+    async function filteringPrint() {
+       var result2 = new Array();
+
+       var date2 =  document.getElementById("date2").value;
+       var lectureRoom =  document.getElementById("selectbox");
+       var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
+       await axios.get('http://localhost:5010/reservation/list',).then(res => { 
+        // 불러온 값을 Console에 뿌려줍니다.
+        result2 = res.data;
+      });
+      $('#reserveBody').empty();
+      for (var i = 0; i < result.length; i++) {
+        if(date2==result2[i].date.slice(0, 10)||date2==""){
+            if(lectureRoom2==result2[i].buildingName){
+                var rowItem = "<tr onmouseover=\"javascript:changeTrColor(this, \'#FFFFFF\', \'#F4FFFD\')\">"
+                rowItem += "<td>" + result2[i].date.slice(0, 10) + "</td>"
+                rowItem += "<td>" + result2[i].buildingName + "</td>"
+                rowItem += "<td>" + result2[i].lectureRoomNum + "</td>"
+                rowItem += "<td>" + result2[i].time + "</td>"
+                rowItem += "<td>" + result2[i].leaderId + "</td>"
+                rowItem += "</tr>"
+                $('#reserveBody').append(rowItem)
+            }
+        }
+      }
+
+    };
+
   </script>
 </body>
 

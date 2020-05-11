@@ -307,7 +307,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="studyDataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>스터디 구분</th>
@@ -326,7 +326,7 @@
                       <th>강의실</th>
                     </tr>
                   </tfoot>
-                  <tbody>
+                  <tbody id="studyTbody">
                     
                   </tbody>
                 </table>
@@ -396,7 +396,36 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+<script>
+    var result = new Array();
 
+    (async function dataPrint() {
+      await axios.get('http://localhost:5010/study/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        result = res.data;
+      });
+      for (var i = 0; i < result.length; i++) {
+        var rowItem = "<tr>"
+        rowItem += "<td>" + result[i].category + "</td>"
+        rowItem += "<td>" + result[i].title + "</td>"
+        rowItem += "<td>" + result[i].studyGroupNumCurrent + "</td>"
+        rowItem += "<td>" 
+        for(var j=0;j<result[i].userList.length;j++){
+            rowItem += result[i].userList[j].name
+            rowItem += " "
+        }
+        rowItem +="</td>"
+        rowItem += "<td>" + result[i].lectureRoom[0].lectureRoomId + "</td>"
+        rowItem += "</tr>"
+        $('#studyTbody').append(rowItem)
+      }
+      $(document).ready(function() {
+        $('#studyDataTable').DataTable();
+      });
+    })(2);
+    
+
+  </script>
 </body>
 
 </html>

@@ -307,7 +307,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="cafeTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>카페이름</th>
@@ -315,7 +315,6 @@
                       <th>현재상태</th>
                       <th>주소</th>
                       <th>ID</th>
-                      <th>Password</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -325,10 +324,9 @@
                       <th>현재상태</th>
                       <th>주소</th>
                       <th>ID</th>
-                      <th>Password</th>
                     </tr>
                   </tfoot>
-                  <tbody>
+                  <tbody id = "cafeTbody">
                     
                   </tbody>
                 </table>
@@ -352,28 +350,24 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="cafeWaitTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>카페이름</th>
                       <th>전화번호</th>
-                      <th>현재상태</th>
                       <th>주소</th>
-                      <th>ID</th>
-                      <th>Password</th>
+                      <th>수락하기</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>카페이름</th>
                       <th>전화번호</th>
-                      <th>현재상태</th>
                       <th>주소</th>
-                      <th>ID</th>
-                      <th>Password</th>
+                      <th>수락하기</th>
                     </tr>
                   </tfoot>
-                  <tbody>
+                  <tbody id="cafeWaitingTbody">
                     
                   </tbody>
                 </table>
@@ -416,7 +410,7 @@
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -430,6 +424,46 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
+<script>
+    var result = new Array();
+
+    (async function dataPrint() {
+      await axios.get('http://localhost:5010/cafe/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        result = res.data;
+      });
+      for (var i = 0; i < result.length; i++) {
+        var rowItem = "<tr>"
+        rowItem += "<td>" + result[i].name + "</td>"
+        rowItem += "<td>" + result[i].phoneNumber + "</td>"
+        rowItem += "<td>" + result[i].congestion + "</td>"
+        rowItem += "<td>" + result[i].address + "</td>"
+        rowItem += "<td>" + result[i].userId + "</td>"
+        rowItem += "</tr>"
+        $('#cafeTbody').append(rowItem)
+      }
+      $(document).ready(function() {
+        $('#cafeTable').DataTable();
+      });
+    })(2);
+    (async function waitingDataPrint() {
+      await axios.get('http://localhost:5010/cafe/waiting').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        result = res.data;
+      });
+      for (var i = 0; i < result.length; i++) {
+        var rowItem = "<tr>"
+        rowItem += "<td>" + result[i].name + "</td>"
+        rowItem += "<td>" + result[i].phoneNumber + "</td>"
+        rowItem += "<td>" + result[i].address + "</td>"
+        rowItem += "<td>"+"<input type = \"button\" value = \"수락하기\" id = "+ result[i].id +">"+"</td>"
+        rowItem += "</tr>"
+        $('#cafeWaitingTbody').append(rowItem)
+      }
+      $(document).ready(function() {
+        $('#cafeWaitTable').DataTable();
+      });
+    })(2);
+  </script>
+    
 </body>
 
 </html>

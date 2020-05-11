@@ -403,13 +403,13 @@
        var date2 =  document.getElementById("date2").value;
        var lectureRoom =  document.getElementById("selectbox");
        var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
-       await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{
-          params: {
-            id: date2, id2:lectureRoom2
-          }
-        }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
-        result = res.data;
-      });
+            await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{
+                params: {
+                    id: date2, id2:lectureRoom2
+                }
+            }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+                result = res.data;
+            });
          $('#lectureTbody').empty();
       for (var i = 0; i < result.length; i++) {
         var rowItem = "<tr>"
@@ -616,6 +616,9 @@
         rowItem += "</tr>"
         $('#lectureTbody').append(rowItem)
       }
+        if(date2==""){
+            $('#lectureTbody').empty();
+        }
 
     };
 

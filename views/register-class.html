@@ -292,29 +292,7 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <form action="/classRegister/classInfo" method="post">
-                <label for = "schedule1">요일1 : </label>
-                <select name = "schedule1" id="schedule1" title="선택 구분">
-                    <option selected="selected">월</option>
-                    <option>화</option>
-                    <option>수</option>
-                    <option>목</option>
-                    <option>금</option>
-                  </select>
-                <label for = "timeOfClass1">시간1 : </label>
-                <input type="text" name = "timeOfClass1"/>
-                <h6> </h6>
-                <label for = "schedule2">요일2 : </label>
-                <select name = "schedule2" id="schedule2" title="선택 구분">
-                    <option selected="selected">월</option>
-                    <option>화</option>
-                    <option>수</option>
-                    <option>목</option>
-                    <option>금</option>
-                  </select>
-                <label for = "timeOfClass2">시간2 : </label>
-                <input type="text" name = "timeOfClass2"/>
-                <h6>  </h6>
-                <label for = "buildingName">건물명 : </label>
+                                    <label for = "buildingName">건물명 : </label>
                 <select name = "buildingName" id="buildingName" title="선택 구분">
                     <option selected="selected">성호관</option>
                     <option>팔달관</option>
@@ -333,6 +311,131 @@
                 <h6>  </h6>
                 <label for = "subjectCode">과목코드 : </label>
                 <input type="text" name = "subjectCode"/>
+                <h6>  </h6>
+
+                    <label for = "schedule1">요일1 : </label>
+                <select name = "schedule1" id="schedule1" title="선택 구분">
+                    <option selected="selected">월</option>
+                    <option>화</option>
+                    <option>수</option>
+                    <option>목</option>
+                    <option>금</option>
+                  </select>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                    <td colspan="2">시간</td>
+                    <td colspan = "2">09</td>
+                    <td colspan = "2">10</td>
+                    <td colspan = "2">11</td>
+                    <td colspan = "2">12</td>
+                    <td colspan = "2">13</td>
+                    <td colspan = "2">14</td>
+                    </tr>
+                    <tr>
+                    <td></td>
+                    <td></td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    </tr>
+                    <tr>
+                    <td colspan = "2">15</td>
+                    <td colspan = "2">16</td>
+                    <td colspan = "2">17</td>
+                    <td colspan = "2">18</td>
+                    <td colspan = "2">19</td>
+                    <td colspan = "2">20</td>
+                    <td colspan = "2">21</td>
+                    </tr>
+                    <tr>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
+                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
+                    </tr>
+                </table>
+                <h6> </h6>
+                <label for = "schedule2">요일2 : </label>
+                <select name = "schedule2" id="schedule2" title="선택 구분">
+                    <option selected="selected">월</option>
+                    <option>화</option>
+                    <option>수</option>
+                    <option>목</option>
+                    <option>금</option>
+                  </select>
+                <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <tr>
+                    <td colspan="2">시간</td>
+                    <td colspan = "2">09</td>
+                    <td colspan = "2">10</td>
+                    <td colspan = "2">11</td>
+                    <td colspan = "2">12</td>
+                    <td colspan = "2">13</td>
+                    <td colspan = "2">14</td>
+                    </tr>
+                    <tr>
+                    <td></td>
+                    <td></td>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+
+                    
+                    </tr>
+                    <tr>
+                    <td colspan = "2">15</td>
+                    <td colspan = "2">16</td>
+                    <td colspan = "2">17</td>
+                    <td colspan = "2">18</td>
+                    <td colspan = "2">19</td>
+                    <td colspan = "2">20</td>
+                    <td colspan = "2">21</td>
+                    </tr>
+                    <tr>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+                    <td>00</td>
+                    <td>30</td>
+                    </tr>
+                </table>
                 <h6>  </h6>
                 <input type="submit" value = "등록하기"/>
                 </form>
@@ -400,6 +503,25 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+    <script>
+        var orgBColor = '#ffffff';
+        var color = orgBColor;
+        function HighLightTD(target, backColor,textColor) {
+            var tds = target.getElementsByTagName('td');
+            for (var i = 0; i < tds.length; i++) {
+                if ( tds[i] != target ) {
+                    tds[i].style.backgroundColor = orgBColor;
+                    tds[i].style.color = orgTColor;
+                }
+                else {
+                        tds[i].style.backgroundColor = backColor;
+                        color = backColor;
+                    }
+                }
+
+            } // endfor i
+        }
+    </script>
 
 </body>
 

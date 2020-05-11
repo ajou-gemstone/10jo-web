@@ -9,10 +9,5 @@ router.get('/list', async function(req, res) {
   recodes = recodes.rows;
   res.json(recodes);
 });
-router.post('/reservationSearch',function(req, res) {
-  console.log(req.body.buildingName);
-  console.log(req.body.date);
-});
-
 
 module.exports = router;
