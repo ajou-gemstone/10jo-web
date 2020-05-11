@@ -14,7 +14,7 @@ router.get('/list', async function(req, res, next) {
     // let queryResult = await dbQuery(sql);
     // recode.tagName = queryResult.rows;
 
-    sql = `select userId from userstudylist where studyId=${recode['id']}`
+    sql = `select user.name from user, userstudylist where studyId=${recode['id']} and userstudylist.userId=user.id`
     query = await dbQuery(sql);
     query = query.rows;
     recode.userList = query;
