@@ -10,11 +10,10 @@ router.get('/list', async function(req, res) {
   queryResult = queryResult.rows;
 
   for(var i=0;i<queryResult.length;i++){
-    sql = `select user.userId, user.userPassword, user.phoneNumber from user, cafe where user.id=${queryResult[i].userId}`;
+    sql = `select user.userId, user.phoneNumber from user, cafe where user.id=${queryResult[i].userId}`;
     var query = await dbQuery(sql);
     query = query.rows;
     queryResult[i].userId = query[0].userId;
-    queryResult[i].userPassword = query[0].userPassword;
     queryResult[i].phoneNumber = query[0].phoneNumber;
   }
 
