@@ -90,7 +90,7 @@ router.post('/create', async function(req, res) {
   var num;
   var lectureRoom;
 
-  let sql = 'select count(*) as num from lectureRoom';
+  let sql = 'select max(id) as num from lectureRoom';
   var queryResult = await dbQuery(sql);
 
   queryResult = queryResult.rows;
