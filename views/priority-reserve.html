@@ -32,7 +32,7 @@
 
     }
   </script>
-  
+
   <link rel="stylesheet" href="./jquery-ui-1.12.1/jquery-ui.min.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
@@ -83,7 +83,7 @@
                         }
                     }
                 }
-                
+
             } // endfor i
         }
     </script>
@@ -372,7 +372,7 @@
                     <script>
     async function dataPrint() {
        var result = new Array();
-        
+
        var date2 =  document.getElementById("date2").value;
        var lectureRoom =  document.getElementById("selectbox");
        var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
@@ -391,19 +391,19 @@
         rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
         for(var j=0;j<30;j++){
             if(result[i].stateList[j]=="A"){
-                rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">"+" "+"</td>"    
+                rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">"+" "+"</td>"
             }
             else{
-                rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">" + result[i].stateList[j] + "</td>"        
+                rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">" + result[i].stateList[j] + "</td>"
             }
-            
+
         }
         rowItem += "</tr>"
         $('#lectureTbody').append(rowItem)
       }
-    
+
     };
-    
+
   </script>
            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
                     <thead>
@@ -555,7 +555,7 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-    
+
 
 
 </body>

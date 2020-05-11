@@ -11,7 +11,7 @@ var timeTable = require('../utils/timeTable');
 //});
 
 router.get('/lectureRoomSearch', async function(req, res) {
-  var date ;
+  var date;
   var building = req.query.id2;
   let recodes;
   var tableList = new Array();
@@ -20,17 +20,15 @@ router.get('/lectureRoomSearch', async function(req, res) {
   let reservedRoomArray = new Array();
   let resultList;
   var stateList = new Array();
-  console.log(building);
   date = req.query.id;
-  console.log(date);
   date = date.split('-');
   date = moment([date[0], date[1] - 1, date[2]]).format("YYYY-MM-DD");
 
-  let sql = `select buildingName, lectureRoomId, lectureRoomNum, buildingName from lectureRoom`
+  let sql = `select buildingName, lectureRoomId, lectureRoomNum, buildingName from lectureRoom where buildingName='${building}'`
   queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;
 
-  sql = `SELECT lectureroomdescription.TIME, lectureroomdescription.roomStatus, lectureRoom.lectureRoomId FROM lectureroom, lectureroomdescription WHERE lectureroomdescription.date='${date}' AND lectureroom.id=lectureroomdescription.lectureRoomId`
+  sql = `SELECT lectureroomdescription.TIME, lectureroomdescription.roomStatus, lectureRoom.lectureRoomId FROM lectureroom, lectureroomdescription WHERE lectureroomdescription.date='${date}' AND lectureRoom.buildingName='${building}' AND lectureroom.id=lectureroomdescription.lectureRoomId`
   recodes = await dbQuery(sql);
   recodes = recodes.rows;
 
@@ -65,27 +63,49 @@ router.get('/lectureRoomSearch', async function(req, res) {
     jsonResult.push(resultList);
   }
 
-reservedRoomArray = Array.from(new Set(reservedRoomArray));
+  reservedRoomArray = Array.from(new Set(reservedRoomArray));
 
-for (var i = 0; i < queryResult.length; i++) {
-  if (reservedRoomArray.indexOf(array[i]) == -1) {
-    for (var j = 0; j <= 27; j++) {
-      stateList.push('A');
+  for (var i = 0; i < queryResult.length; i++) {
+    if (reservedRoomArray.indexOf(array[i]) == -1) {
+      for (var j = 0; j <= 27; j++) {
+        stateList.push('A');
+      }
+      resultList = {
+        building: building,
+        lectureroom: queryResult[i].lectureRoomId,
+        lectureRoomNum: queryResult[l].lectureRoomNum,
+        stateList: stateList
+      }
+      jsonResult.push(resultList);
     }
-    resultList = {
-      building: building,
-      lectureroom: queryResult[i].lectureRoomId,
-      lectureRoomNum: queryResult[l].lectureRoomNum,
-      stateList: stateList
-    }
-    jsonResult.push(resultList);
   }
-}
-    res.json(jsonResult);
+
+  res.json(jsonResult);
 });
 
+router.post('/create', async function(req, res) {
+  var buildingName = req.body.buildingName;
+  var lectureRoomId = req.body.lectureRoomId;
+  var lectureRoomNum = req.body.lectureRoomNum;
+  var num;
+  var lectureRoom;
 
+  let sql = 'select count(*) as num from lectureRoom';
+  var queryResult = await dbQuery(sql);
 
+  queryResult = queryResult.rows;
 
+  num = queryResult[0]['num'];
+  num = num + 1;
+
+  lectureRoom = buildingName[0]+lectureRoomId;
+
+  sql = `insert into lectureRoom(id, lectureRoomId, fixture, lectureRoomNum, floor, buildingName) values(${num}, '${lectureRoom}', null, '${lectureRoomNum}', '${lectureRoomId[0]}', '${buildingName}')`;
+  queryResult = await dbQuery(sql);
+
+  res.json({
+    response: 'success'
+  });
+});
 
 module.exports = router;
