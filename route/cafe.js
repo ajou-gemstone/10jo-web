@@ -46,7 +46,7 @@ router.post('/create', async function(req, res) {
   var phoneNumber = req.body.phoneNumber;
   var userNum, cafeNum;
 
-  let sql = 'select count(*) as num from user';
+  let sql = 'select max(id) as num from user';
   var queryResult = await dbQuery(sql);
 
   queryResult = queryResult.rows;
@@ -54,7 +54,7 @@ router.post('/create', async function(req, res) {
   userNum = queryResult[0]['num'];
   userNum = userNum + 1;
 
-  sql = 'select count(*) as num from cafe';
+  sql = 'select max(id) as num from cafe';
   queryResult = await dbQuery(sql);
 
   queryResult = queryResult.rows;
