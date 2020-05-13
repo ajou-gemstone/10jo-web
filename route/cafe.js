@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var dbQuery = require("../database/promiseQuery.js");
+var crypto = require('crypto');
 
 router.get('/list', async function(req, res) {
   var userList = new Array();
@@ -62,7 +63,10 @@ router.post('/create', async function(req, res) {
   cafeNum = queryResult[0]['num'];
   cafeNum = cafeNum + 1;
 
-  sql = `insert into user(id, userId, userPassword, email, userType, photo, phoneNumber, score, studentNum) values(${userNum}, '${userId}', '${userPassword}', null, 3, null, '${phoneNumber}', null, null)`;
+  let salt = Math.round((new Date().valueOf() * Math.random())) + "";
+  let hashPassword = crypto.createHash("sha512").update(userPassword + salt).digest("hex");
+
+  sql = `insert into user(id, userId, userPassword, email, userType, photo, phoneNumber, score, studentNum) values(${userNum}, '${userId}', '${hashPassword}', null, 3, null, '${phoneNumber}', null, null)`;
   queryResult = await dbQuery(sql);
 
   sql = `insert into cafe(id, name, address, latitude, longitude, congestion, imgSource, cafeBody, userId, confirm) values(${cafeNum}, '${cafeName}', '${address}', null, null, null, null, null, '${userNum}', 0)`;

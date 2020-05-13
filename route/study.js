@@ -5,6 +5,7 @@ var dbQuery = require("../database/promiseQuery.js");
 router.get('/list', async function(req, res, next) {
   let sql = 'select id, category, title, studyGroupNumCurrent, leaderId from study'
   let recodes = await dbQuery(sql);
+  var timeList = new Array();
 
   recodes = recodes.rows
 
@@ -24,6 +25,22 @@ router.get('/list', async function(req, res, next) {
     queryList = queryList.rows;
     console.log(queryList);
     recode.lectureRoom = queryList;
+
+    sql = `select reservationdescription.date, reservationdescription.time from reservation, reservationdescription where reservation.leaderId=${recode['leaderId']} and reservation.id=reservationdescription.reservationId`;
+    var queryResult = await dbQuery(sql);
+    queryResult = queryResult.rows;
+
+    for (var j = 0; j < queryResult.length; j++) {
+      timeList.push(queryResult[j].time)
+    }
+
+    timeList.sort(function(a, b) {
+      return a - b;
+    });
+
+    recode.time = timeList;
+
+    timeList = [];
   }
 
   res.json(recodes);
