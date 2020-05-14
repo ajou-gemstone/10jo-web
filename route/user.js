@@ -32,7 +32,6 @@ router.get('/list', async function(req, res) {
 router.post('/login', async function(req, res, next) {
   var id = req.body.userId;
   var password = req.body.password;
-
   let sql = `select id, salt, userPassword, userType from user where userId='${id}'`;
   let recodes = await dbQuery(sql);
   recodes = recodes.rows;

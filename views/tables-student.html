@@ -316,27 +316,24 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="studentTable" width="100%" cellspacing="0">
                   <thead>
                     <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
                       <th>이름</th>
                       <th>아주메일</th>
-                      <th>포인트</th>
                       <th>학번</th>
                       <th>진행중인 스터디</th>
-                      <th>Salary</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
                       <th>이름</th>
                       <th>아주메일</th>
-                      <th>포인트</th>
                       <th>학번</th>
                       <th>진행중인 스터디</th>
-                      <th>Salary</th>                    </tr>
+                      </tr>
                   </tfoot>
-                  <tbody>
+                  <tbody id ="studentTbody">
                   </tbody>
                 </table>
               </div>
@@ -405,7 +402,39 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+    <script>
+    var result = new Array();
 
+    (async function dataPrint() {
+      await axios.get('http://localhost:5010/user/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        result = res.data;
+      });
+      for (var i = 0; i < result.length; i++) {
+        var rowItem = "<tr>"
+        rowItem += "<td>" + result[i].name + "</td>"
+        rowItem += "<td>" + result[i].email + "</td>"
+        rowItem += "<td>" + result[i].studentNum + "</td>"
+        rowItem += "<td>"
+        if(result[i].studyList.length!=0){
+            for(var j=0;j<result[i].studyList.length;j++){
+                if(j==result[i].studyList.length-1){
+                    rowItem += result[i].studyList[j].title
+                }
+                else{
+                    rowItem += result[i].studyList[j].title +" ,"
+                }
+            }
+        }
+        rowItem += "</td>"
+        rowItem += "</tr>"
+        $('#studentTbody').append(rowItem)
+      }
+      $(document).ready(function() {
+        $('#studentTable').DataTable();
+      });
+    })(2);
+    </script>
 </body>
 
 </html>

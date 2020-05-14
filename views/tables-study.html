@@ -314,7 +314,7 @@
                       <th>방제목</th>
                       <th>인원</th>
                       <th>이용자</th>
-                      <th>강의실</th>
+                      <th>예약 현황</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -323,7 +323,7 @@
                       <th>방제목</th>
                       <th>인원</th>
                       <th>이용자</th>
-                      <th>강의실</th>
+                      <th>예약 현황</th>
                     </tr>
                   </tfoot>
                   <tbody id="studyTbody">
@@ -415,7 +415,12 @@
             rowItem += " "
         }
         rowItem +="</td>"
-        rowItem += "<td>" + result[i].lectureRoom[0].lectureRoomId + "</td>"
+        if(result[i].lectureRoom.length!=0){
+            rowItem += "<td>" + result[i].lectureRoom[0].lectureRoomId +" "+ result[i].time + "</td>"
+        }
+        else{
+            rowItem +="<td>"+" "+"</td>"
+        }
         rowItem += "</tr>"
         $('#studyTbody').append(rowItem)
       }

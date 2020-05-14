@@ -454,7 +454,7 @@
         rowItem += "<td>" + result[i].name + "</td>"
         rowItem += "<td>" + result[i].phoneNumber + "</td>"
         rowItem += "<td>" + result[i].address + "</td>"
-        rowItem += "<td>"+"<input type = \"button\" value = \"수락하기\" id = "+ result[i].id +">"+"</td>"
+        rowItem += "<td>"+"<input type = \"button\" onclick=\"showConfirm(this.id);\" value = \"수락하기\" id = \""+ result[i].id +"\">"+"</td>"
         rowItem += "</tr>"
         $('#cafeWaitingTbody').append(rowItem)
       }
@@ -463,7 +463,21 @@
       });
     })(2);
   </script>
-    
+    <script language="javascript">
+         function showConfirm(id) {
+             
+            if (confirm("등록을 수락하시겠습니까?"))
+            {
+                axios.post('http://localhost:5010/cafe/confirm',{cafeId:id}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+                    result = res.data;
+                });
+                alert("수락 되었습니다.");
+                
+            } else {
+                alert("거절 하였습니다.");
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -77,4 +77,15 @@ router.post('/create', async function(req, res) {
   });
 });
 
+router.post('/confirm', async function(req, res) {
+  var cafeId = req.body.cafeId;
+
+  let sql = `update cafe set confirm=1 where id=${cafeId}`;
+  var queryResult = await dbQuery(sql);
+
+  res.json({
+    response: 'success'
+  });
+});
+
 module.exports = router;
