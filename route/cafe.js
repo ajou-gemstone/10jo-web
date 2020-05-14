@@ -88,8 +88,4 @@ router.post('/confirm', async function(req, res) {
   });
 });
 
-<<<<<<< Updated upstream
 module.exports = router;
-=======
-module.exports = router;
->>>>>>> Stashed changes
