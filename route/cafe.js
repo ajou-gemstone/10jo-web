@@ -3,6 +3,16 @@ var router = express.Router();
 var dbQuery = require("../database/promiseQuery.js");
 var crypto = require('crypto');
 
+router.get('/info', async function(req, res) {
+  var cafeId = req.query.id;
+
+  let sql = `select cafe.name, cafe.address, user.phoneNumber, cafe.congestion from cafe, user where cafe.id=${cafeId} and user.id=cafe.userId`;
+  var queryResult = await dbQuery(sql);
+  queryResult = queryResult.rows;
+
+  res.json(queryResult);
+});
+
 router.get('/list', async function(req, res) {
   var userList = new Array();
 
@@ -88,6 +98,24 @@ router.post('/confirm', async function(req, res) {
 
   let sql = `update cafe set confirm=1 where id=${cafeId}`;
   var queryResult = await dbQuery(sql);
+
+  res.json({
+    response: 'success'
+  });
+});
+
+router.post('/delete', async function(req, res) {
+  var cafeId = req.body.cafeId;
+
+  let sql = `select userId from cafe where id=${cafeId}`;
+  var queryResult = await dbQuery(sql);
+  queryResult = queryResult.rows;
+
+  sql = `delete from cafe where id=${cafeId}`;
+  var query = await dbQuery(sql);
+
+  sql = `delete from user where id=${queryResult[0].userId}`;
+  queryResult = await dbQuery(sql);
 
   res.json({
     response: 'success'

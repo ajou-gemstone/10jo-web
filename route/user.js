@@ -57,15 +57,42 @@ router.post('/login', async function(req, res, next) {
 
   let hashPassword = crypto.createHash("sha512").update(password + recodes[0].salt).digest("hex");
 
-  if (hashPassword == recodes[0].userPassword) {
-    res.json({
-      id: recodes[0].id,
-      userType: recodes[0].userType
-    });
-  } else {
-    res.json({
-      id: -1
-    });
+  if(recodes[0].userType=='3'){
+    sql = `select confirm from cafe where userId='${recodes[0].id}'`;
+    recode = await dbQuery(sql);
+    recode = recode.rows;
+
+    if(recode[0].confirm==0){
+      res.json({
+        id: -1
+      });
+    }
+
+    else{
+      if (hashPassword == recodes[0].userPassword) {
+        res.json({
+          id: recodes[0].id,
+          userType: recodes[0].userType
+        });
+      } else {
+        res.json({
+          id: -1
+        });
+      }
+    }
+  }
+
+  else{
+    if (hashPassword == recodes[0].userPassword) {
+      res.json({
+        id: recodes[0].id,
+        userType: recodes[0].userType
+      });
+    } else {
+      res.json({
+        id: -1
+      });
+    }
   }
 });
 
