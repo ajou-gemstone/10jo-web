@@ -62,9 +62,12 @@
     <script>
         var orgBColor = '#ffffff';
         var color = orgBColor;
+        var aaa;
         function HighLightTD(target, backColor,textColor) {
             var tbody = target.parentNode;
-            var tds = tbody.getElementsByTagName('td');
+            aaa = target.id;
+            var tds  = tbody.getElementsByTagName('td');
+            console.log(aaa);
             for (var i = 0; i < tds.length; i++) {
                 if ( tds[i] != target ) {
 //                    tds[i].style.backgroundColor = orgBColor;
@@ -85,6 +88,9 @@
                 }
 
             } // endfor i
+        }
+        function sendData(){
+            
         }
     </script>
 </head>
@@ -391,10 +397,10 @@
         rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
         for(var j=0;j<30;j++){
             if(result[i].stateList[j]=="A"){
-                rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">"+" "+"</td>"
+                rowItem += "<td id=\"time"+i+j+"\"\" onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">"+" "+"</td>"
             }
             else{
-                rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">" + result[i].stateList[j] + "</td>"
+                rowItem += "<td id=\"time"+i+j+"\"\" onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">" + result[i].stateList[j] + "</td>"
             }
 
         }

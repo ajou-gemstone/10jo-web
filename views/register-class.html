@@ -31,6 +31,26 @@
     }
     </script>
 
+    <script>
+        var orgBColor = '#ffffff';
+        var color = orgBColor;
+        function HighLightTD(target, backColor,textColor) {
+            var tds = target.getElementsByTagName('td');
+            for (var i = 0; i < tds.length; i++) {
+                if ( tds[i] != target ) {
+                    tds[i].style.backgroundColor = orgBColor;
+                    tds[i].style.color = orgTColor;
+                }
+                else {
+                        tds[i].style.backgroundColor = backColor;
+                        color = backColor;
+                    }
+                }
+
+            } // endfor i
+        
+    </script>
+
 </head>
 
 <body id="page-top">
@@ -503,26 +523,7 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-    <script>
-        var orgBColor = '#ffffff';
-        var color = orgBColor;
-        function HighLightTD(target, backColor,textColor) {
-            var tds = target.getElementsByTagName('td');
-            for (var i = 0; i < tds.length; i++) {
-                if ( tds[i] != target ) {
-                    tds[i].style.backgroundColor = orgBColor;
-                    tds[i].style.color = orgTColor;
-                }
-                else {
-                        tds[i].style.backgroundColor = backColor;
-                        color = backColor;
-                    }
-                }
-
-            } // endfor i
-        }
-    </script>
-
+    
 </body>
 
 </html>

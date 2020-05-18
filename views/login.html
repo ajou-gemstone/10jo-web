@@ -39,21 +39,9 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">ASMR 관리자 페이지</h1>
                   </div>
-                  <form class="user" name="login" action="/user/login" method="POST">
-                    <div class="form-group">
                       <input type="text" name="userId" class="form-control form-control-user" id="userId" aria- placeholder="아이디">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호">
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
-                    </div>
-                      <input type="submit" value="로그인"/>
-                  </form>
+                      <input type="password" name="password" class="form-control form-control-user" id="password" placeholder="비밀번호">
+                    <input type="button" value="로그인" onclick="login();"/>
                   <a href="http://localhost:5010/admin" class="btn btn-primary btn-user btn-block">
                     관리자
                   </a>
@@ -95,7 +83,25 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+    function login(){
+        var id = document.getElementById("userId").value;
+        var pw = document.getElementById("password").value;
+        console.log("함수안에 들어왔습니다");
+            axios.post('http://localhost:5010/user/login',
+                {
+                    userId:id, 
+                    password:pw, 
+                }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+                    result = res.data.id;
+                    console.log(result)
+                });
 
+    }
+    
+    
+    </script>
 </body>
 
 </html>

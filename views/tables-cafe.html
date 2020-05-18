@@ -465,11 +465,10 @@
   </script>
     <script language="javascript">
          function showConfirm(id) {
-             
+             var result;
             if (confirm("등록을 수락하시겠습니까?"))
             {
                 axios.post('http://localhost:5010/cafe/confirm',{cafeId:id}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
-                    result = res.data;
                 });
                 alert("수락 되었습니다.");
                 

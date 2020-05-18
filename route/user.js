@@ -29,9 +29,31 @@ router.get('/list', async function(req, res) {
   res.json(queryResult);
 });
 
+router.post('/confirm', async function(req, res, next) {
+  var userId = req.body.userId;
+  console.log(userId);
+  let sql = `select userId from user where userId='${userId}'`;
+  let recodes = await dbQuery(sql);
+  recodes = recodes.rows;
+
+  if(recodes.length==0){
+    res.json({
+      response: 'success'
+    });
+  }
+
+  else{
+    res.json({
+      response: 'fail'
+    });
+  }
+});
+
 router.post('/login', async function(req, res, next) {
   var id = req.body.userId;
   var password = req.body.password;
+    console.log(id)
+    console.log(password)
   let sql = `select id, salt, userPassword, userType from user where userId='${id}'`;
   let recodes = await dbQuery(sql);
   recodes = recodes.rows;

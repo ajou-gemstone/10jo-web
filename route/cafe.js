@@ -6,7 +6,7 @@ var crypto = require('crypto');
 router.get('/list', async function(req, res) {
   var userList = new Array();
 
-  let sql = `select cafe.userId, cafe.name, cafe.congestion, cafe.address from cafe`;
+  let sql = `select cafe.userId, cafe.name, cafe.congestion, cafe.address from cafe where cafe.confirm=1`;
   var queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;
 
@@ -46,7 +46,13 @@ router.post('/create', async function(req, res) {
   var address = req.body.address;
   var phoneNumber = req.body.phoneNumber;
   var userNum, cafeNum;
-
+  
+console.log(userId)
+console.log(userPassword)
+console.log(cafeName)
+console.log(address)
+console.log(phoneNumber)
+    
   let sql = 'select max(id) as num from user';
   var queryResult = await dbQuery(sql);
 
