@@ -435,7 +435,12 @@
         var rowItem = "<tr>"
         rowItem += "<td>" + result[i].name + "</td>"
         rowItem += "<td>" + result[i].phoneNumber + "</td>"
-        rowItem += "<td>" + result[i].congestion + "</td>"
+        if(result[i].congestion == null){
+            rowItem += "<td> 미설정 </td>"
+        }
+        else{
+            rowItem += "<td>" + result[i].congestion + "</td>"
+        }  
         rowItem += "<td>" + result[i].address + "</td>"
         rowItem += "<td>" + result[i].userId + "</td>"
         rowItem += "</tr>"

@@ -20,10 +20,10 @@ router.get('/list', async function(req, res, next) {
     query = query.rows;
     recode.userList = query;
 
-    sql = `select lectureRoom.lectureRoomId from lectureRoom, reservation, study where study.leaderId=${recode['leaderId']} and study.leaderId=reservation.leaderId and reservation.lectureRoomId=lectureRoom.id`
+    sql = `select lectureRoom.lectureRoomId from lectureRoom, reservation, study where study.id=${recode['id']} and study.leaderId=${recode['leaderId']} and reservation.leaderId=study.leaderId and reservation.lectureRoomId=lectureRoom.id`
     queryList = await dbQuery(sql);
     queryList = queryList.rows;
-    console.log(queryList);
+
     recode.lectureRoom = queryList;
 
     sql = `select reservationdescription.date, reservationdescription.time from reservation, reservationdescription where reservation.leaderId=${recode['leaderId']} and reservation.id=reservationdescription.reservationId`;
@@ -38,7 +38,14 @@ router.get('/list', async function(req, res, next) {
       return a - b;
     });
 
-    recode.date = queryResult[0].date;
+    if(queryResult.length==0){
+      recode.date = [];
+    }
+
+    else{
+      recode.date = queryResult[0].date;
+    }
+
     recode.time = timeList;
 
     timeList = [];
