@@ -46,13 +46,13 @@ router.post('/create', async function(req, res) {
   var address = req.body.address;
   var phoneNumber = req.body.phoneNumber;
   var userNum, cafeNum;
-  
+
 console.log(userId)
 console.log(userPassword)
 console.log(cafeName)
 console.log(address)
 console.log(phoneNumber)
-    
+
   let sql = 'select max(id) as num from user';
   var queryResult = await dbQuery(sql);
 
@@ -72,7 +72,7 @@ console.log(phoneNumber)
   let salt = Math.round((new Date().valueOf() * Math.random())) + "";
   let hashPassword = crypto.createHash("sha512").update(userPassword + salt).digest("hex");
 
-  sql = `insert into user(id, userId, userPassword, email, userType, photo, phoneNumber, score, studentNum) values(${userNum}, '${userId}', '${hashPassword}', null, 3, null, '${phoneNumber}', null, null)`;
+  sql = `insert into user(id, userId, userPassword, email, userType, photo, phoneNumber, score, studentNum, salt) values(${userNum}, '${userId}', '${hashPassword}', null, 3, null, '${phoneNumber}', null, null, '${salt}')`;
   queryResult = await dbQuery(sql);
 
   sql = `insert into cafe(id, name, address, latitude, longitude, congestion, imgSource, cafeBody, userId, confirm) values(${cafeNum}, '${cafeName}', '${address}', null, null, null, null, null, '${userNum}', 0)`;

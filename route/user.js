@@ -10,12 +10,12 @@ router.get('/list', async function(req, res) {
   var queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;
 
-  for(var i=0;i<queryResult.length;i++){
+  for (var i = 0; i < queryResult.length; i++) {
     sql = `select studyId from userstudylist where userId=${queryResult[i].id}`;
     var query = await dbQuery(sql);
     query = query.rows;
 
-    for(var j=0;j<query.length;j++){
+    for (var j = 0; j < query.length; j++) {
       sql = `select title from study where id=${query[j].studyId}`;
       var recodes = await dbQuery(sql);
       recodes = recodes.rows;
@@ -31,22 +31,16 @@ router.get('/list', async function(req, res) {
 
 router.post('/confirm', async function(req, res, next) {
   var userId = req.body.userId;
-<<<<<<< Updated upstream
-  console.log(userId);
-=======
 
->>>>>>> Stashed changes
   let sql = `select userId from user where userId='${userId}'`;
   let recodes = await dbQuery(sql);
   recodes = recodes.rows;
 
-  if(recodes.length==0){
+  if (recodes.length == 0) {
     res.json({
       response: 'success'
     });
-  }
-
-  else{
+  } else {
     res.json({
       response: 'fail'
     });
@@ -56,20 +50,22 @@ router.post('/confirm', async function(req, res, next) {
 router.post('/login', async function(req, res, next) {
   var id = req.body.userId;
   var password = req.body.password;
-    console.log(id)
-    console.log(password)
+
   let sql = `select id, salt, userPassword, userType from user where userId='${id}'`;
   let recodes = await dbQuery(sql);
   recodes = recodes.rows;
 
-  let hashPassword = crypto.createHash("sha512").update(password+recodes[0].salt).digest("hex");
+  let hashPassword = crypto.createHash("sha512").update(password + recodes[0].salt).digest("hex");
 
   if (hashPassword == recodes[0].userPassword) {
-    res.json({id: recodes[0].id, userType: recodes[0].userType});
-  }
-
-  else{
-    res.json({id: -1});
+    res.json({
+      id: recodes[0].id,
+      userType: recodes[0].userType
+    });
+  } else {
+    res.json({
+      id: -1
+    });
   }
 });
 
