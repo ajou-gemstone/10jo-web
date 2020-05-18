@@ -31,7 +31,11 @@ router.get('/list', async function(req, res) {
 
 router.post('/confirm', async function(req, res, next) {
   var userId = req.body.userId;
+<<<<<<< Updated upstream
   console.log(userId);
+=======
+
+>>>>>>> Stashed changes
   let sql = `select userId from user where userId='${userId}'`;
   let recodes = await dbQuery(sql);
   recodes = recodes.rows;
