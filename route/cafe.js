@@ -4,9 +4,9 @@ var dbQuery = require("../database/promiseQuery.js");
 var crypto = require('crypto');
 
 router.get('/info', async function(req, res) {
-  var cafeId = req.query.id;
+  var userId = req.query.id;
 
-  let sql = `select cafe.name, cafe.address, user.phoneNumber, cafe.congestion from cafe, user where cafe.id=${cafeId} and user.id=cafe.userId`;
+  let sql = `select cafe.name, cafe.address, user.phoneNumber, cafe.congestion from cafe, user where user.id=${userId} and user.id=cafe.userId`;
   var queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;
 
