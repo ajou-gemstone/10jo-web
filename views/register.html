@@ -27,7 +27,7 @@
 					jQuery("#postcode1").val(data.postcode1);
 					jQuery("#postcode2").val(data.postcode2);
 					jQuery("#zonecode").val(data.zonecode);
-					jQuery("#address").val(data.address);
+					jQuery("#firaddress").val(data.address);
 					jQuery("#address_etc").focus();
 					console.log(data);
 				}
@@ -104,19 +104,20 @@
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
-          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+        <!--  <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> -->
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">카페 정보 입력</h1>
               </div>
-                <button type="button" name="idConfirm" id="idConfirm" value="중복확인" onclick="idConfirm();">중복확인</button>
-
+                
               <div class="form-group">
                 <input type="text" class="form-control form-control-user" name = "userId" id="userId" placeholder="관리자 ID">
-                 
-                  </div>
+                <button type="button" name="idConfirm" id="idConfirm" value="중복확인" onclick="idConfirm();" style="float: right;margin-top: 10px;margin-bottom: 10px;background-color:#3e64d1;color: white">중복확인</button>
+                   </div>
+                <p></p>
                 <div class="form-group">
+                    <p></p>
                     <input type="password" class="form-control form-control-user" name="userPassword" id="userPassword" placeholder="관리자 PW">
                 </div>
                 <div class="form-group">
@@ -124,7 +125,9 @@
                 </div>
                   <div class = "form-group">
                     <input type="text" class="form-control form-control-user" name = "firaddress" id="firaddress" placeholder="주소">
-	                <input type="text" class="form-control form-control-user" name = "zonecode" id="zonecode" placeholder="우편번호">
+	                <p></p>
+                    <input type="text" class="form-control form-control-user" name = "zonecode" id="zonecode" placeholder="우편번호">
+                    <p></p>
                     <input type="text" class="form-control form-control-user" name = "address_etc" id="address_etc" placeholder="나머지 주소">
                     <input type="button" onClick="openDaumZipAddress();" value = "주소 찾기" />
                   </div>

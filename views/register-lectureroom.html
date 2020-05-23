@@ -312,7 +312,6 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <form action="/lectureRoom/create" method="post">
                 <label for = "buildingName">건물명 : </label>
                 <select name = "buildingName" id="buildingName" title="선택 구분">
                     <option selected="selected">성호관</option>
@@ -325,12 +324,11 @@
                   </select>
                 <h6>  </h6>
                 <label for = "lectureRoomId">호수 : </label>
-                <input type="text" name = "lectureRoomId" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                <input type="text" id = "lectureRoomId" name = "lectureRoomId" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
                 <h6>  </h6>
                 <label for = "lectureRoomNum">수용인원 : </label>
-                <input type="text" name = "lectureRoomNum" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> 
-                <input type="submit" value = "등록하기"/>
-                </form>
+                <input type="text" id = "lectureRoomNum" name = "lectureRoomNum" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> 
+                <button onclick="lectureRoomRegister();" >등록하기</button>
             </div>
           </div>
         </div>
@@ -392,10 +390,30 @@
   <!-- Page level plugins -->
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-
+  <script>
+    function lectureRoomRegister(){
+    var lectureRoomNum = document.getElementById("lectureRoomNum").value;
+    var building = document.getElementById("buildingName");
+    var buildingName = building.options[building.selectedIndex].value;
+    var lectureRoomId = document.getElementById("lectureRoomId").value;
+            axios.post('http://localhost:5010/lectureRoom/create',{lectureRoomNum:lectureRoomNum, lectureRoomId:lectureRoomId,buildingName:buildingName}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+                result = res.data.response;
+                console.log(result)
+                if(result == 'success'){
+                    alert("강의실이 추가되었습니다");
+                    location.reload();
+                }
+                else{
+                    alert("강의실 추가가 실패하였습니다");
+                    location.reload();
+                }
+            });  
+        }
+    
+ </script>
 </body>
 
 </html>

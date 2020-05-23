@@ -63,15 +63,6 @@
                       <input type="password" name="password" class="form-control form-control-user" id="password" placeholder="비밀번호">
                     <p></p>
                     <input type="button" value="로그인" onclick="login();" class="btn btn-primary btn-user btn-block"/>
-                  <a href="http://localhost:5010/admin" class="btn btn-primary btn-user btn-block">
-                    관리자
-                  </a>
-                    <a href="http://localhost:5010/education" class="btn btn-primary btn-user btn-block">
-                    교직원
-                  </a>
-                    <a href="http://localhost:5010/cafestaff" class="btn btn-primary btn-user btn-block">
-                    카페사장님
-                  </a>
                   <hr>
                   <a href="http://localhost:5010/register" class="btn btn-google btn-user btn-block">
                     <i class="fab fa-fw"></i> 카페 신청하기
@@ -98,33 +89,31 @@
   <script src="js/sb-admin-2.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-    async function login(){
+    function login(){
         var result;
         var id = document.getElementById("userId").value;
         var pw = document.getElementById("password").value;
         console.log("함수안에 들어왔습니다");
-            await axios.post('http://localhost:5010/user/login',
+            axios.post('http://localhost:5010/user/login',
                 {
                     userId:id, 
                     password:pw, 
                 }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                     result = res.data;
-                    console.log(result)
-                });
-        if(result.userType==3){
-            location.replace('http://localhost:5010/cafestaff');
-
-        }
+                if(result.userType==3){
+                    location.replace('http://localhost:5010/cafestaff?id='+result.id);
+                }
         else if(result.userType==4){
             location.replace('http://localhost:5010/admin');
         }
         else if(result.userType==1){
-            location.replace('http://localhost:5010/education')
+            location.replace('http://localhost:5010/education');
         }
         else
         {
             alert("회원정보가 잘못 되었거나 아직 수락되지 않은 카페입니다")        
         }
+    });
     }
     
     

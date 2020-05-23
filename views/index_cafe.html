@@ -42,20 +42,20 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/cafestaff">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center"  onclick="cafeMain();">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <i class="fas fa-laugh-wink"></i> 
         </div>
-        <div class="sidebar-brand-text mx-3">ASMR</div>
+        <div class="sidebar-brand-text mx-3" onclick="cafeMain();">ASMR</div>
       </a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/cafestaff">
+        <a class="nav-link">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>xx카페님 환영합니다</span></a>
+          <span id = welcome></span></a>
       </li>
 
       <!-- Divider -->
@@ -68,9 +68,9 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/cafeedit">
+        <a class="nav-link collapsed" onclick="cafeEdit();">
           <i class="fas fa-fw fa-cog"></i>
-          <span>카페관리</span>
+          <span >카페관리</span>
         </a>
       </li>
 
@@ -278,26 +278,18 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">카페정보 수정</h1>
+          <h1 class="h3 mb-2 text-gray-800" id = "welcome2">카페사장님 환영합니다</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <form action="/cafeedit/cafeeditinfo" method="post">
-                <label for = "cafeName">메뉴</label>
-                <input type="text" name = "cafeName"/> 
+                    <e id = "cafeName" name = "cafeName"></e> 
+                <h2>  </h2>
+                    <e name = "telephoneNumber" id = "telephoneNumber"></e>
+                <h2>  </h2>
+                    <e name = "state" id = "state"></e>
+                <h2>  </h2>
+                    <e name = "cafeBody" id = "cafeBody"></e>
                 <h6>  </h6>
-                <label for = "telephoneNumber">전화번호 : </label>
-                <input type="text" name = "telephoneNumber" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
-                <h6>  </h6>
-                <label for = "state">혼잡도(1~5) : </label>
-                <label><input type="radio" name="state" value="1">1</label>
-                <label><input type="radio" name="state" value="2">2</label>
-                <label><input type="radio" name="state" value="3">3</label>
-                <label><input type="radio" name="state" value="4">4</label>
-                <label><input type="radio" name="state" value="5">5</label>
-                <h6>  </h6>
-                <input type="submit" value = "등록하기"/>
-                </form>
             </div>
           </div>
         </div>
@@ -359,10 +351,53 @@
   <!-- Page level plugins -->
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-
+<script>
+    var result = new Array();
+    function getUrlParams()
+    {
+        var params = {};
+        window.location.search.replace(
+            /[?&]+([^=&]+)=([^&]*)/gi,
+                function(str,key,value){ params[key] = value; }
+            
+        );
+        return params;
+    }       
+    (async function dataPrint() {
+      var params = getUrlParams();
+      var text1 = document.getElementById("welcome");
+      var text2 = document.getElementById("cafeName");
+      var text3 = document.getElementById("state");
+      var text4 = document.getElementById("telephoneNumber");
+      var text5 = document.getElementById("welcome2");
+      var text6 = document.getElementById("cafeBody");
+      await axios.get('http://localhost:5010/cafe/info',{
+          params: {
+            id: params.id
+          }
+        }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+          console.log(res);
+          text5.innerHTML = res.data[0].name+" 카페사장님 환영합니다"
+          text1.innerHTML = res.data[0].name+" 카페님 환영합니다";
+          text2.innerHTML = "카페이름:  "+res.data[0].name;
+          text4.innerHTML = "전화번호:  "+res.data[0].phoneNumber;
+          text3.innerHTML = "혼잡도:  "+res.data[0].congestion;
+          text6.innerHTML = "카페정보:  "+res.data[0].cafeBody;
+      });
+    })(2);
+    function cafeEdit(){
+        var params = getUrlParams();
+        location.href='http://localhost:5010/cafeedit?id='+params.id;
+    }
+    
+    function cafeMain(){
+        var params = getUrlParams();
+        location.href="http://localhost:5010/cafestaff?id="+params.id;
+    }
+  </script>
 </body>
     
 </html>

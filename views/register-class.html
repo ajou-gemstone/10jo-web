@@ -46,8 +46,14 @@
                         color = backColor;
                     }
                 }
+//            var table = document.getElementId("tableId");
+//            var tr = table.getElementsByTagName("tr");
+//	       for(var i=0; i<tr.length; i++){
+//		      tr[i].style.background = "white";
+//	       }
+//	       obj.style.backgroundColor = "#FCE6E0";
 
-            } // endfor i
+        } // endfor i
         
     </script>
 
@@ -311,8 +317,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <form action="/classRegister/classInfo" method="post">
-                                    <label for = "buildingName">건물명 : </label>
+                <label for = "buildingName">건물명 : </label>
                 <select name = "buildingName" id="buildingName" title="선택 구분">
                     <option selected="selected">성호관</option>
                     <option>팔달관</option>
@@ -329,11 +334,11 @@
                 <label for = "professor">교수 : </label>
                 <input type="text" name = "professor"/>
                 <h6>  </h6>
-                <label for = "subjectCode">과목코드 : </label>
-                <input type="text" name = "subjectCode"/>
+                <label for = "lectureCode">과목코드 : </label>
+                <input type="text" name = "lectureCode"/>
                 <h6>  </h6>
 
-                    <label for = "schedule1">요일1 : </label>
+                <label for = "schedule1">요일1 : </label>
                 <select name = "schedule1" id="schedule1" title="선택 구분">
                     <option selected="selected">월</option>
                     <option>화</option>
@@ -341,7 +346,75 @@
                     <option>목</option>
                     <option>금</option>
                   </select>
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <p></p>
+                    <label for = "startingTime1">시간 : </label>
+                    <select name = "startingTime1" id="startingTime1" title="선택 구분">
+                    <option selected="selected">7:00</option>
+                    <option>7:00</option>
+                    <option>7:30</option>
+                    <option>8:00</option>
+                    <option>8:30</option>
+                    <option>9:00</option>
+                    <option>9:30</option>
+                    <option>10:00</option>
+                    <option>10:30</option>
+                    <option>11:00</option>
+                    <option>11:30</option>
+                    <option>12:00</option>
+                    <option>12:30</option>
+                    <option>13:00</option>
+                    <option>13:30</option>
+                    <option>14:00</option>
+                    <option>14:30</option>
+                    <option>15:00</option>
+                    <option>15:30</option>
+                    <option>16:00</option>
+                    <option>16:30</option>
+                    <option>17:00</option>
+                    <option>17:30</option>
+                    <option>18:00</option>
+                    <option>18:30</option>
+                    <option>19:00</option>
+                    <option>19:30</option>
+                    <option>20:00</option>
+                    <option>20:30</option>
+                    <option>21:00</option>
+                    <option>21:30</option>
+                  </select>
+                    <select name = "endingTime1" id="endingTime1" title="선택 구분">
+                    <option selected="selected">7:00</option>
+                    <option>7:00</option>
+                    <option>7:30</option>
+                    <option>8:00</option>
+                    <option>8:30</option>
+                    <option>9:00</option>
+                    <option>9:30</option>
+                    <option>10:00</option>
+                    <option>10:30</option>
+                    <option>11:00</option>
+                    <option>11:30</option>
+                    <option>12:00</option>
+                    <option>12:30</option>
+                    <option>13:00</option>
+                    <option>13:30</option>
+                    <option>14:00</option>
+                    <option>14:30</option>
+                    <option>15:00</option>
+                    <option>15:30</option>
+                    <option>16:00</option>
+                    <option>16:30</option>
+                    <option>17:00</option>
+                    <option>17:30</option>
+                    <option>18:00</option>
+                    <option>18:30</option>
+                    <option>19:00</option>
+                    <option>19:30</option>
+                    <option>20:00</option>
+                    <option>20:30</option>
+                    <option>21:00</option>
+                    <option>21:30</option>
+                  </select>
+    <!--            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <tr>
                     <td colspan="2">시간</td>
                     <td colspan = "2">09</td>
@@ -392,7 +465,7 @@
                     <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
                     <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
                     </tr>
-                </table>
+                </table> -->
                 <h6> </h6>
                 <label for = "schedule2">요일2 : </label>
                 <select name = "schedule2" id="schedule2" title="선택 구분">
@@ -402,7 +475,75 @@
                     <option>목</option>
                     <option>금</option>
                   </select>
-                <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <p></p>
+                    <label for = "startingTime2">시간 : </label>
+                    <select name = "startingTime2" id="startingTime2" title="선택 구분">
+                    <option selected="selected">7:00</option>
+                    <option>7:00</option>
+                    <option>7:30</option>
+                    <option>8:00</option>
+                    <option>8:30</option>
+                    <option>9:00</option>
+                    <option>9:30</option>
+                    <option>10:00</option>
+                    <option>10:30</option>
+                    <option>11:00</option>
+                    <option>11:30</option>
+                    <option>12:00</option>
+                    <option>12:30</option>
+                    <option>13:00</option>
+                    <option>13:30</option>
+                    <option>14:00</option>
+                    <option>14:30</option>
+                    <option>15:00</option>
+                    <option>15:30</option>
+                    <option>16:00</option>
+                    <option>16:30</option>
+                    <option>17:00</option>
+                    <option>17:30</option>
+                    <option>18:00</option>
+                    <option>18:30</option>
+                    <option>19:00</option>
+                    <option>19:30</option>
+                    <option>20:00</option>
+                    <option>20:30</option>
+                    <option>21:00</option>
+                    <option>21:30</option>
+                  </select>
+                    <select name = "endingTime2" id="endingTime2" title="선택 구분">
+                    <option selected="selected">7:00</option>
+                    <option>7:00</option>
+                    <option>7:30</option>
+                    <option>8:00</option>
+                    <option>8:30</option>
+                    <option>9:00</option>
+                    <option>9:30</option>
+                    <option>10:00</option>
+                    <option>10:30</option>
+                    <option>11:00</option>
+                    <option>11:30</option>
+                    <option>12:00</option>
+                    <option>12:30</option>
+                    <option>13:00</option>
+                    <option>13:30</option>
+                    <option>14:00</option>
+                    <option>14:30</option>
+                    <option>15:00</option>
+                    <option>15:30</option>
+                    <option>16:00</option>
+                    <option>16:30</option>
+                    <option>17:00</option>
+                    <option>17:30</option>
+                    <option>18:00</option>
+                    <option>18:30</option>
+                    <option>19:00</option>
+                    <option>19:30</option>
+                    <option>20:00</option>
+                    <option>20:30</option>
+                    <option>21:00</option>
+                    <option>21:30</option>
+                  </select>
+    <!--            <table class="table table-bordered" id="dataTable" cellspacing="0">
                     <tr>
                     <td colspan="2">시간</td>
                     <td colspan = "2">09</td>
@@ -426,9 +567,7 @@
                     <td>00</td>
                     <td>30</td>
                     <td>00</td>
-                    <td>30</td>
-
-                    
+                    <td>30</td>                    
                     </tr>
                     <tr>
                     <td colspan = "2">15</td>
@@ -455,10 +594,9 @@
                     <td>00</td>
                     <td>30</td>
                     </tr>
-                </table>
-                <h6>  </h6>
-                <input type="submit" value = "등록하기"/>
-                </form>
+                </table> -->
+                <h6> </h6>
+                <button onclick = "classRegister();">등록하기</button>
             </div>
           </div>
         </div>
@@ -520,10 +658,42 @@
   <!-- Page level plugins -->
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+    <script>
+    function classRegister(){
+    var lectureRoomNum = document.getElementById("lectureRoomNum").value;
+    var building = document.getElementById("buildingName");
+    var buildingName = building.options[building.selectedIndex].value;
+    var lectureRoomId = document.getElementById("lectureRoomId").value;
+    var professor = document.getElementById("professor").value;
+    var lectureCode = document.getElementById("lectureCode").value;
+    var sc1 = document.getElementById("schedule1");
+    var schedule1 = sc1.options[sc1.selectedIndex].value;
+    var sc2 = document.getElementById("schedule2");
+    var schedule2 = sc2.options[sc2.selectedIndex].value;
+    var st1 = document.getElementById("startingTime1");
+    var startingTime1 = st1.options[st1.selected];
+    var en1 = document.getElementById("endingTime1");
+    var st2
+    var en2 
+//            axios.post('http://localhost:5010/lecture/create',{lectureRoomNum:lectureRoomNum, lectureRoomId:lectureRoomId,buildingName:buildingName}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+//                result = res.data.response;
+//                console.log(result)
+//                if(result == 'success'){
+//                    alert("강의실이 추가되었습니다");
+//                    location.reload();
+//                }
+//                else{
+//                    alert("강의실 추가가 실패하였습니다");
+//                    location.reload();
+//                }
+//            });  
+        }
     
+ </script>
 </body>
 
 </html>

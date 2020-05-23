@@ -4,9 +4,9 @@ var dbQuery = require("../database/promiseQuery.js");
 var crypto = require('crypto');
 
 router.get('/info', async function(req, res) {
-  var cafeId = req.query.id;
+  var userId = req.query.id;
 
-  let sql = `select cafe.name, cafe.address, user.phoneNumber, cafe.congestion from cafe, user where cafe.id=${cafeId} and user.id=cafe.userId`;
+  let sql = `select cafe.name, cafe.address, user.phoneNumber, cafe.congestion, cafe.cafeBody from cafe, user where user.id=${userId} and user.id=cafe.userId`;
   var queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;
 
@@ -20,7 +20,7 @@ router.get('/list', async function(req, res) {
   var queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;
 
-  for(var i=0;i<queryResult.length;i++){
+  for (var i = 0; i < queryResult.length; i++) {
     sql = `select user.userId, user.phoneNumber from user, cafe where user.id=${queryResult[i].userId}`;
     var query = await dbQuery(sql);
     query = query.rows;
@@ -37,7 +37,7 @@ router.get('/waiting', async function(req, res) {
 
   queryResult = queryResult.rows;
 
-  for(var i=0;i<queryResult.length;i++){
+  for (var i = 0; i < queryResult.length; i++) {
     sql = `select user.phoneNumber from user, cafe where user.id=${queryResult[i].id}`;
     var query = await dbQuery(sql);
 
@@ -57,11 +57,11 @@ router.post('/create', async function(req, res) {
   var phoneNumber = req.body.phoneNumber;
   var userNum, cafeNum;
 
-console.log(userId)
-console.log(userPassword)
-console.log(cafeName)
-console.log(address)
-console.log(phoneNumber)
+  console.log(userId)
+  console.log(userPassword)
+  console.log(cafeName)
+  console.log(address)
+  console.log(phoneNumber)
 
   let sql = 'select max(id) as num from user';
   var queryResult = await dbQuery(sql);
@@ -86,6 +86,24 @@ console.log(phoneNumber)
   queryResult = await dbQuery(sql);
 
   sql = `insert into cafe(id, name, address, latitude, longitude, congestion, imgSource, cafeBody, userId, confirm) values(${cafeNum}, '${cafeName}', '${address}', null, null, null, null, null, '${userNum}', 0)`;
+  queryResult = await dbQuery(sql);
+
+  res.json({
+    response: 'success'
+  });
+});
+
+router.post('/edit', async function(req, res) {
+  var userId = req.body.userId;
+  var cafeName = req.body.cafeName;
+  var phoneNumber = req.body.phoneNumber;
+  var congestion = req.body.congestion;
+  var cafeBody = req.body.cafeBody;
+
+  let sql = `update cafe set name='${cafeName}', congestion='${congestion}', cafeBody='${cafeBody}' where userId=${userId}`;
+  var queryResult = await dbQuery(sql);
+
+  sql = `update user set phoneNumber='${phoneNumber}' where id=${userId}`;
   queryResult = await dbQuery(sql);
 
   res.json({

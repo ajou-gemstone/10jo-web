@@ -412,9 +412,25 @@
       });
       for (var i = 0; i < result.length; i++) {
         var rowItem = "<tr>"
-        rowItem += "<td>" + result[i].name + "</td>"
-        rowItem += "<td>" + result[i].email + "</td>"
-        rowItem += "<td>" + result[i].studentNum + "</td>"
+        if(result[i].name == null){
+            rowItem += "<td>"+" "+"</td>"
+        }
+        else {
+            rowItem += "<td>" + result[i].name + "</td>"
+        }
+        if(result[i].email==null){
+            rowItem += "<td>"+" "+"</td>"
+        }
+        else{
+          rowItem += "<td>" + result[i].email + "</td>"  
+        }
+        if(result[i].studentNum==null){
+            rowItem += "<td>"+" "+"</td>"
+        }
+        else{
+         rowItem += "<td>" + result[i].studentNum + "</td>" 
+        }  
+        
         rowItem += "<td>"
         if(result[i].studyList.length!=0){
             for(var j=0;j<result[i].studyList.length;j++){
@@ -422,7 +438,7 @@
                     rowItem += result[i].studyList[j].title
                 }
                 else{
-                    rowItem += result[i].studyList[j].title +" ,"
+                    rowItem += result[i].studyList[j].title +" , "
                 }
             }
         }

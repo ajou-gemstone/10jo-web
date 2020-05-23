@@ -43,7 +43,9 @@ router.get('/admin', function(req,res){
 });
 
 router.get('/cafestaff', function(req,res){
-    res.render('index_cafe');
+    var id = req.query.id;
+    console.log(id);
+    res.render('index_cafe',{id:id});
 });
 
 router.get('/cafeedit', function(req,res){

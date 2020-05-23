@@ -3,10 +3,37 @@ var router = express.Router();
 var dbQuery = require("../database/promiseQuery.js");
 
 router.get('/list', async function(req, res) {
-  let sql = 'select rd.date, l.buildingName, l.lectureRoomNum, rd.time, r.leaderId from reservation r, reservationdescription rd, lectureroom l where r.lectureRoomId=l.id and r.id=rd.reservationId'
-  let recodes = await dbQuery(sql);
-
+  var timeList = new Array();
+  let sql = `select id, leaderId, lectureRoomId from reservation where id!=0`;
+  var recodes = await dbQuery(sql);
   recodes = recodes.rows;
+
+  for(var i=0;i<recodes.length;i++){
+    sql = `select lectureRoomId, buildingName from lectureroom where id=${recodes[i].lectureRoomId}`;
+    var recode = await dbQuery(sql);
+    recode = recode.rows;
+
+    recodes[i].lectureRoomNum = recode[0].lectureRoomId;
+    recodes[i].buildingName = recode[0].buildingName;
+
+    sql = `select date, time from reservationdescription where reservationid=${recodes[i].id}`;
+    var queryResult = await dbQuery(sql);
+    queryResult = queryResult.rows;
+
+    for (var j = 0; j < queryResult.length; j++) {
+      timeList.push(queryResult[j].time)
+    }
+
+    timeList.sort(function(a, b) {
+      return a - b;
+    });
+
+    recodes[i].date = queryResult[0].date;
+
+    recodes[i].startTime = timeList[0];
+    recodes[i].lastTime = timeList[timeList.length - 1];
+  }
+
   res.json(recodes);
 });
 
