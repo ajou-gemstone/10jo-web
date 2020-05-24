@@ -63,7 +63,7 @@ router.post('/login', async function(req, res, next) {
 
   else {
     let hashPassword = crypto.createHash("sha512").update(password + recodes[0].salt).digest("hex");
-    
+
     if (recodes[0].userType == '3') {
       sql = `select confirm from cafe where userId='${recodes[0].id}'`;
       recode = await dbQuery(sql);

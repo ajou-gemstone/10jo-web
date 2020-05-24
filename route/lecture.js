@@ -4,8 +4,7 @@ var dbQuery = require("../database/promiseQuery.js");
 var calculateTime = require('../utils/calculateTime');
 
 router.post('/create', async function(req, res, next) {
-  var day = req.body.day;
-  var time = req.body.time;
+  var timeList = req.body.timeList;
   var buildingName = req.body.buildingName;
   var lectureName = req.body.lectureName;
   var professorName = req.body.professorName;
@@ -15,7 +14,7 @@ router.post('/create', async function(req, res, next) {
   var lectureRoom = buildingName[0]+lectureRoomNum;
   var date = new Date();
 
-  let sql = 'select max(id) as num from lectureRoom';
+  let sql = 'select max(id) as num from lecture';
   var queryResult = await dbQuery(sql);
 
   queryResult = queryResult.rows;
@@ -23,13 +22,15 @@ router.post('/create', async function(req, res, next) {
   num = queryResult[0]['num'];
   num = num + 1;
 
-  sql = `insert into lecture(id, lectureName, professorName, taName, lectureCode) values(${num}, '${lectureName}', '${professorName}', null, '${lectureCode}')`
+  // sql = `insert into lecture(id, lectureName, professorName, taName, lectureCode) values(${num}, '${lectureName}', '${professorName}', null, '${lectureCode}')`
+  // recodes = await dbQuery(sql);
+  sql = `select id from lecture where lectureName='${lectureName}'`
   recodes = await dbQuery(sql);
+  var id = recodes[0].id;
 
-  for(var i=0;i<time.length;i++){
-    for(var j=0;j<day.length;j++){
-      day[j] = calculateTime(day[j]);
-      sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day) values(${num}, '${lectureRoom}', '${time[i]}', '2020-1', 'L', '${date}', '${day[j]}')`
+  for(var i=0;i<timeList.length;i++){
+    for(var j=timeList[i].startTime;j<=day.timeList[i].lastTime;j++){
+      sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day) values(${id}, '${lectureRoom}', '${time[i]}', '2020-1', 'L', '${date}', '${timeList[i].day}')`
       recodes = await dbQuery(sql);
     }
   }
