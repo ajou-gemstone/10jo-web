@@ -17,22 +17,22 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    
+
     <style type="text/css">
  #img_container {
      position:absolute;
      width:100%;
      height:100%;
-	 
+
  }
- 
+
  #img_container img {
     position:absolute;
     top:50%;
     left:50%;
     margin-top:-25px;
     margin-left:-25px;
-	
+
 }
 </style>
 </head>
@@ -67,7 +67,7 @@
                   <a href="http://localhost:5010/register" class="btn btn-google btn-user btn-block">
                     <i class="fab fa-fw"></i> 카페 신청하기
                   </a>
-                  
+
                   <hr>
                   </div>
               </div>
@@ -96,13 +96,14 @@
         console.log("함수안에 들어왔습니다");
             axios.post('http://localhost:5010/user/login',
                 {
-                    userId:id, 
-                    password:pw, 
+                    userId:id,
+                    password:pw,
                 }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                     result = res.data;
                 if(result.userType==3){
                     location.replace('http://localhost:5010/cafestaff?id='+result.id);
                 }
+
                 else if(result.userType==4){
                     location.replace('http://localhost:5010/admin');
                 }
@@ -115,8 +116,8 @@
                 }
             });
     }
-    
-    
+
+
     </script>
 </body>
 
