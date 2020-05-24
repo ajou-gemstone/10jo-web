@@ -6,7 +6,7 @@ var crypto = require('crypto');
 router.get('/list', async function(req, res) {
   var userList = new Array();
 
-  let sql = `select id, name, email, studentNum from user`;
+  let sql = `select id, name, email, studentNum from user where userType=0`;
   var queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;
 
@@ -63,7 +63,7 @@ router.post('/login', async function(req, res, next) {
 
   else {
     let hashPassword = crypto.createHash("sha512").update(password + recodes[0].salt).digest("hex");
-    
+
     if (recodes[0].userType == '3') {
       sql = `select confirm from cafe where userId='${recodes[0].id}'`;
       recode = await dbQuery(sql);

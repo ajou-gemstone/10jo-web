@@ -103,17 +103,17 @@
                 if(result.userType==3){
                     location.replace('http://localhost:5010/cafestaff?id='+result.id);
                 }
-        else if(result.userType==4){
-            location.replace('http://localhost:5010/admin');
-        }
-        else if(result.userType==1){
-            location.replace('http://localhost:5010/education');
-        }
-        else
-        {
-            alert("회원정보가 잘못 되었거나 아직 수락되지 않은 카페입니다")        
-        }
-    });
+                else if(result.userType==4){
+                    location.replace('http://localhost:5010/admin');
+                }
+                else if(result.userType==1){
+                    location.replace('http://localhost:5010/education');
+                }
+                else
+                {
+                    alert("회원정보가 잘못 되었거나 아직 수락되지 않은 카페입니다")        
+                }
+            });
     }
     
     

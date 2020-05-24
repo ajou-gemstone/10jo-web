@@ -4,11 +4,6 @@ var dbQuery = require("../database/promiseQuery.js");
 var moment = require('moment');
 var calculateTime = require('../utils/calculateTime');
 var timeTable = require('../utils/timeTable');
-//router.post('/lectureRoomSearch',function(req, res) {
-//  console.log(req.body.buildingName);
-//  console.log(req.body.date);
-//  senddate = req.body.date;
-//});
 
 router.get('/lectureRoomSearch', async function(req, res) {
   var date;

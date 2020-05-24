@@ -32,7 +32,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/admin">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -44,7 +44,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="http://localhost:5010/admin">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>관리자</span></a>
       </li>
@@ -315,6 +315,7 @@
                       <th>현재상태</th>
                       <th>주소</th>
                       <th>ID</th>
+                    <th>삭제</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -324,6 +325,7 @@
                       <th>현재상태</th>
                       <th>주소</th>
                       <th>ID</th>
+                      <th>삭제</th>
                     </tr>
                   </tfoot>
                   <tbody id = "cafeTbody">
@@ -443,6 +445,7 @@
         }  
         rowItem += "<td>" + result[i].address + "</td>"
         rowItem += "<td>" + result[i].userId + "</td>"
+        rowItem += "<td>"+"<input type = \"button\" onclick=\"deleteCafe(this.id);\" value = \"삭제하기\" id = \""+ result[i].id +"\">"+"</td>"
         rowItem += "</tr>"
         $('#cafeTbody').append(rowItem)
       }
@@ -469,11 +472,25 @@
     })(2);
   </script>
     <script language="javascript">
+         function deleteCafe(id){
+             var result;
+             if(confirm("정말로 삭제하시겠습니까?")){
+                axios.post('http://localhost:5010/cafe/delete',{cafeId:id}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+                    console.log(res);
+                });
+                alert("삭제 되었습니다."); 
+             }
+             else{
+                 alert("삭제를 실패하였습니다")
+             }
+         }
+        
          function showConfirm(id) {
              var result;
             if (confirm("등록을 수락하시겠습니까?"))
             {
                 axios.post('http://localhost:5010/cafe/confirm',{cafeId:id}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+                
                 });
                 alert("수락 되었습니다.");
                 

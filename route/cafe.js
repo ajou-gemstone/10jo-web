@@ -16,7 +16,7 @@ router.get('/info', async function(req, res) {
 router.get('/list', async function(req, res) {
   var userList = new Array();
 
-  let sql = `select cafe.userId, cafe.name, cafe.congestion, cafe.address from cafe where cafe.confirm=1`;
+  let sql = `select cafe.id, cafe.userId, cafe.name, cafe.congestion, cafe.address from cafe where cafe.confirm=1`;
   var queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;
 
@@ -57,12 +57,6 @@ router.post('/create', async function(req, res) {
   var phoneNumber = req.body.phoneNumber;
   var userNum, cafeNum;
 
-  console.log(userId)
-  console.log(userPassword)
-  console.log(cafeName)
-  console.log(address)
-  console.log(phoneNumber)
-
   let sql = 'select max(id) as num from user';
   var queryResult = await dbQuery(sql);
 
@@ -85,7 +79,7 @@ router.post('/create', async function(req, res) {
   sql = `insert into user(id, userId, userPassword, email, userType, photo, phoneNumber, score, studentNum, salt) values(${userNum}, '${userId}', '${hashPassword}', null, 3, null, '${phoneNumber}', null, null, '${salt}')`;
   queryResult = await dbQuery(sql);
 
-  sql = `insert into cafe(id, name, address, latitude, longitude, congestion, imgSource, cafeBody, userId, confirm) values(${cafeNum}, '${cafeName}', '${address}', null, null, null, null, null, '${userNum}', 0)`;
+  sql = `insert into cafe(id, name, address, latitude, longitude, congestion, imgSource, cafeBody, userId, confirm) values(${cafeNum}, '${cafeName}', '${address}', null, null, 0, null, '카페 정보 없음', '${userNum}', 0)`;
   queryResult = await dbQuery(sql);
 
   res.json({
@@ -124,7 +118,7 @@ router.post('/confirm', async function(req, res) {
 
 router.post('/delete', async function(req, res) {
   var cafeId = req.body.cafeId;
-
+  console.log(cafeId);
   let sql = `select userId from cafe where id=${cafeId}`;
   var queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;

@@ -317,6 +317,8 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
+                <label for = "lectureName">수업이름 : </label>
+                <input type="text" id = "lectureName" name = "lectureName"/>
                 <label for = "buildingName">건물명 : </label>
                 <select name = "buildingName" id="buildingName" title="선택 구분">
                     <option selected="selected">성호관</option>
@@ -328,14 +330,14 @@
                     <option>연암관</option>
                   </select>
                 <h6>  </h6>
-                <label for = "numberOfLectureRoom">호수 : </label>
-                <input type="text" name = "numberOfLectureRoom" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                <label for = "lectureRoomNum">호수 : </label>
+                <input type="text" id = "lectureRoomNum" name = "lectureRoomNum" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
                 <h6>  </h6>
                 <label for = "professor">교수 : </label>
-                <input type="text" name = "professor"/>
+                <input type="text" name = "professor" id = "professor"/>
                 <h6>  </h6>
                 <label for = "lectureCode">과목코드 : </label>
-                <input type="text" name = "lectureCode"/>
+                <input type="text" name = "lectureCode" id = "lectureCode"/>
                 <h6>  </h6>
 
                 <label for = "schedule1">요일1 : </label>
@@ -350,7 +352,6 @@
                     <label for = "startingTime1">시간 : </label>
                     <select name = "startingTime1" id="startingTime1" title="선택 구분">
                     <option selected="selected">7:00</option>
-                    <option>7:00</option>
                     <option>7:30</option>
                     <option>8:00</option>
                     <option>8:30</option>
@@ -379,11 +380,10 @@
                     <option>20:00</option>
                     <option>20:30</option>
                     <option>21:00</option>
-                    <option>21:30</option>
                   </select>
                     <select name = "endingTime1" id="endingTime1" title="선택 구분">
                     <option selected="selected">7:00</option>
-                    <option>7:00</option>
+
                     <option>7:30</option>
                     <option>8:00</option>
                     <option>8:30</option>
@@ -412,60 +412,7 @@
                     <option>20:00</option>
                     <option>20:30</option>
                     <option>21:00</option>
-                    <option>21:30</option>
                   </select>
-    <!--            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-                    <td colspan="2">시간</td>
-                    <td colspan = "2">09</td>
-                    <td colspan = "2">10</td>
-                    <td colspan = "2">11</td>
-                    <td colspan = "2">12</td>
-                    <td colspan = "2">13</td>
-                    <td colspan = "2">14</td>
-                    </tr>
-                    <tr>
-                    <td></td>
-                    <td></td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    </tr>
-                    <tr>
-                    <td colspan = "2">15</td>
-                    <td colspan = "2">16</td>
-                    <td colspan = "2">17</td>
-                    <td colspan = "2">18</td>
-                    <td colspan = "2">19</td>
-                    <td colspan = "2">20</td>
-                    <td colspan = "2">21</td>
-                    </tr>
-                    <tr>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">00</td>
-                    <td onclick = "HighLightTD(this, '#c9cc99','cc3333')">30</td>
-                    </tr>
-                </table> -->
                 <h6> </h6>
                 <label for = "schedule2">요일2 : </label>
                 <select name = "schedule2" id="schedule2" title="선택 구분">
@@ -479,7 +426,6 @@
                     <label for = "startingTime2">시간 : </label>
                     <select name = "startingTime2" id="startingTime2" title="선택 구분">
                     <option selected="selected">7:00</option>
-                    <option>7:00</option>
                     <option>7:30</option>
                     <option>8:00</option>
                     <option>8:30</option>
@@ -508,11 +454,9 @@
                     <option>20:00</option>
                     <option>20:30</option>
                     <option>21:00</option>
-                    <option>21:30</option>
                   </select>
                     <select name = "endingTime2" id="endingTime2" title="선택 구분">
                     <option selected="selected">7:00</option>
-                    <option>7:00</option>
                     <option>7:30</option>
                     <option>8:00</option>
                     <option>8:30</option>
@@ -541,60 +485,7 @@
                     <option>20:00</option>
                     <option>20:30</option>
                     <option>21:00</option>
-                    <option>21:30</option>
                   </select>
-    <!--            <table class="table table-bordered" id="dataTable" cellspacing="0">
-                    <tr>
-                    <td colspan="2">시간</td>
-                    <td colspan = "2">09</td>
-                    <td colspan = "2">10</td>
-                    <td colspan = "2">11</td>
-                    <td colspan = "2">12</td>
-                    <td colspan = "2">13</td>
-                    <td colspan = "2">14</td>
-                    </tr>
-                    <tr>
-                    <td></td>
-                    <td></td>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>                    
-                    </tr>
-                    <tr>
-                    <td colspan = "2">15</td>
-                    <td colspan = "2">16</td>
-                    <td colspan = "2">17</td>
-                    <td colspan = "2">18</td>
-                    <td colspan = "2">19</td>
-                    <td colspan = "2">20</td>
-                    <td colspan = "2">21</td>
-                    </tr>
-                    <tr>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>
-                    <td>00</td>
-                    <td>30</td>
-                    </tr>
-                </table> -->
                 <h6> </h6>
                 <button onclick = "classRegister();">등록하기</button>
             </div>
@@ -605,6 +496,57 @@
       </div>
       <!-- End of Main Content -->
 
+        
+    <script>    
+    function getPosition(time){
+           switch (time){
+               case "7:00": return "0"; case "7:30": return "1"; case "8:00": return "2"; case "8:30": return "3"; case "9:00": return "4"; case "9:30": return "5";
+               case "10:00": return "6"; case "10:30": return "7"; case "11:00": return "8"; case "11:30": return "9"; case "12:00": return "10"; case "12:30": return "11";
+               case "13:00": return "12"; case "13:30": return "13"; case "14:00": return "14"; case "14:30": return "15"; case "15:00": return "16"; case "15:30": return "17";
+               case "16:00": return "18"; case "16:30": return "19"; case "17:00": return "20"; case "17:30": return "21"; case "18:00": return "22"; case "18:30": return "23";
+               case "19:00": return "24"; case "19:30": return "25"; case "20:00": return "26"; case "20:30": return "27"; case "21:00": return "28";
+        }
+    }
+
+    function classRegister(){
+        var lectureRoomNum = document.getElementById("lectureRoomNum").value;
+        var building = document.getElementById("buildingName");
+        var lectureName = document.getElementById("lectureName").value;
+        var buildingName = building.options[building.selectedIndex].value;
+        var professor = document.getElementById("professor").value;
+        var lectureCode = document.getElementById("lectureCode").value;
+        var sc1 = document.getElementById("schedule1");
+        var schedule1 = sc1.options[sc1.selectedIndex].value;
+        var sc2 = document.getElementById("schedule2");
+        var schedule2 = sc2.options[sc2.selectedIndex].value;
+        var st1 = document.getElementById("startingTime1");
+        var startingTime1 = st1.options[st1.selectedIndex].value;
+        var en1 = document.getElementById("endingTime1");
+        var endingTime1 = en1.options[en1.selectedIndex].value;
+        var st2 = document.getElementById("startingTime2");
+        var startingTime2 = st2.options[st2.selectedIndex].value;
+        var en2 = document.getElementById("endingTime2");
+        var endingTime2 = en2.options[en2.selectedIndex].value;
+//  [{day: 월, startTime: 0, lastTime: 1}, {day: 월, startTime: 0, lastTime: 1}]    
+        var timeList = [];
+        var data = new Object();
+        var data2 = new Object();
+        data.day = schedule1;
+        data.startTime = getPosition(startingTime1);
+        data.lastTime = getPosition(endingTime1);
+        timeList.push(data);
+        data2.day = schedule2;
+        data2.startTime = getPosition(startingTime2);
+        data2.lastTime = getPosition(endingTime2);
+        timeList.push(data2);
+    axios.post('http://localhost:5010/lecture/create',{buildingName:buildingName, professorName:professor, lectureRoomNum:lectureRoomNum, professorName:professor, lectureCode:lectureCode, timeList:timeList, lectureName:lectureName}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+                result = res.data;
+                console.log(result);
+            });
+    
+    }
+    
+ </script>
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -662,38 +604,7 @@
     
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-    <script>
-    function classRegister(){
-    var lectureRoomNum = document.getElementById("lectureRoomNum").value;
-    var building = document.getElementById("buildingName");
-    var buildingName = building.options[building.selectedIndex].value;
-    var lectureRoomId = document.getElementById("lectureRoomId").value;
-    var professor = document.getElementById("professor").value;
-    var lectureCode = document.getElementById("lectureCode").value;
-    var sc1 = document.getElementById("schedule1");
-    var schedule1 = sc1.options[sc1.selectedIndex].value;
-    var sc2 = document.getElementById("schedule2");
-    var schedule2 = sc2.options[sc2.selectedIndex].value;
-    var st1 = document.getElementById("startingTime1");
-    var startingTime1 = st1.options[st1.selected];
-    var en1 = document.getElementById("endingTime1");
-    var st2
-    var en2 
-//            axios.post('http://localhost:5010/lecture/create',{lectureRoomNum:lectureRoomNum, lectureRoomId:lectureRoomId,buildingName:buildingName}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
-//                result = res.data.response;
-//                console.log(result)
-//                if(result == 'success'){
-//                    alert("강의실이 추가되었습니다");
-//                    location.reload();
-//                }
-//                else{
-//                    alert("강의실 추가가 실패하였습니다");
-//                    location.reload();
-//                }
-//            });  
-        }
-    
- </script>
+
 </body>
 
 </html>

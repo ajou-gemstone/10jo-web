@@ -4,8 +4,7 @@ var dbQuery = require("../database/promiseQuery.js");
 var calculateTime = require('../utils/calculateTime');
 
 router.post('/create', async function(req, res, next) {
-  var day = req.body.day;
-  var time = req.body.time;
+  var timeList = req.body.timeList;
   var buildingName = req.body.buildingName;
   var lectureName = req.body.lectureName;
   var professorName = req.body.professorName;
@@ -14,22 +13,43 @@ router.post('/create', async function(req, res, next) {
   var num;
   var lectureRoom = buildingName[0]+lectureRoomNum;
   var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth()+1;
+  var day = date.getDate();
 
-  let sql = 'select max(id) as num from lectureRoom';
-  var queryResult = await dbQuery(sql);
+  if((day+"").length<2){
+    day = "0" + day;
+  }
 
-  queryResult = queryResult.rows;
+  year = year.toString();
+  month = month.toString();
+  day = day.toString();
 
-  num = queryResult[0]['num'];
-  num = num + 1;
+  date = year+"-"+month+"-"+day;
 
-  sql = `insert into lecture(id, lectureName, professorName, taName, lectureCode) values(${num}, '${lectureName}', '${professorName}', null, '${lectureCode}')`
+  // let sql = 'select max(id) as num from lecture';
+  // var queryResult = await dbQuery(sql);
+  //
+  // queryResult = queryResult.rows;
+  //
+  // num = queryResult[0]['num'];
+  // num = num + 1;
+
+  // sql = `insert into lecture(id, lectureName, professorName, taName, lectureCode) values(${num}, '${lectureName}', '${professorName}', null, '${lectureCode}')`
+  // recodes = await dbQuery(sql);
+  let sql = `select id from lecture where lectureName='${lectureName}'`;
+  let recodes = await dbQuery(sql);
+  recodes = recodes.rows;
+  var id = recodes[0].id;
+
+  sql = `select id from lectureroom where lectureRoomId='${lectureRoom}'`;
   recodes = await dbQuery(sql);
+  recodes = recodes.rows;
+  var lectureRoomId = recodes[0].id;
 
-  for(var i=0;i<time.length;i++){
-    for(var j=0;j<day.length;j++){
-      day[j] = calculateTime(day[j]);
-      sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day) values(${num}, '${lectureRoom}', '${time[i]}', '2020-1', 'L', '${date}', '${day[j]}')`
+  for(var i=0;i<timeList.length;i++){
+    for(var j=timeList[i].startTime;j<=timeList[i].lastTime;j++){
+      sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day) values(${id}, '${lectureRoomId}', 0, '${j}', '2020-1', 'L', '${date}', '${timeList[i].day}')`
       recodes = await dbQuery(sql);
     }
   }
