@@ -17,6 +17,9 @@ router.get('/lectureRoom', function(req, res) {
 router.get('/lectureRoomRegister', function(req, res) {
   res.render('register-lectureroom');
 });
+router.get('/addressgeo', function(req, res) {
+  res.render('address-geo');
+});
 
 router.get('/classRegister', function(req, res) {
   res.render('register-class');

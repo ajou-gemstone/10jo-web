@@ -19,6 +19,7 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
     
     <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+
 	<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script type="text/javascript">
 		function openDaumZipAddress() {
@@ -35,6 +36,7 @@
 
 		}
 	</script>
+           <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9eb0615647b207a80893d1486d044017&libraries=services"></script>
     <script>
     var idcheck = 0; 
     function idConfirm(){
@@ -56,41 +58,120 @@
             });  
         }
     }
-    function register(){
+    
+ 
+//async function getLat(address){
+//    var lat;
+//    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+//        mapOption = {
+//            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+//            level: 3 // 지도의 확대 레벨
+//        };  
+//
+//    // 지도를 생성합니다    
+//    // v3가 모두 로드된 후, 이 콜백 함수가 실행됩니다.
+//    var map = new kakao.maps.Map(mapContainer, mapOption); 
+//        // 주소-좌표 변환 객체를 생성합니다
+//    var geocoder = new kakao.maps.services.Geocoder();
+//
+//    // 주소로 좌표를 검색합니다
+//    geocoder.addressSearch(address, async function(result, status) {
+//
+//    // 정상적으로 검색이 완료됐으면 
+//     if (status === kakao.maps.services.Status.OK) {
+//
+//        lat = await new kakao.maps.LatLng(result[0].y, result[0].x);
+//        console.log(lat);
+//        // 결과값으로 받은 위치를 마커로 표시합니다
+//        var marker = new kakao.maps.Marker({
+//            map: map,
+//            position: lat
+//        });
+//
+//        // 인포윈도우로 장소에 대한 설명을 표시합니다
+//        var infowindow = new kakao.maps.InfoWindow({
+//            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+//        });
+//        infowindow.open(map, marker);
+//
+//        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+//        map.setCenter(lat);
+//
+//         
+//        }
+//
+//            console.log(lat);
+//        return lat;
+//    });
+//
+//}
+        
+async function register(){
         var id = document.getElementById("userId").value;
         var pw = document.getElementById("userPassword").value;
-        var add = document.getElementById("firaddress").value + document.getElementById("address_etc").value + document.getElementById("zonecode").value;
+        var add = document.getElementById("firaddress").value +" "+ document.getElementById("address_etc").value;
         var name = document.getElementById("cafeName").value
         var phone = document.getElementById("cafeTel").value
+        var lat;
+    var geocoder = new kakao.maps.services.Geocoder();
+await geocoder.addressSearch(add, async function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        lat = await new kakao.maps.LatLng(result[0].y, result[0].x);
+        console.log(lat);
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: lat
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(lat);
+
+         
+        }
+
+            console.log(lat);
+    });
+
+       console.log(lat);
         if(id.length==0||pw.length==0||add.length==0||document.getElementById("firaddress").value.length==0||name.length==0||phone.length==0){
             alert("입력하신 정보를 다시 확인해주세요")    
         }
         else{
-            if(idcheck==1){
-                axios.post('http://localhost:5010/cafe/create',
-                {
-                    userId:id, 
-                    userPassword:pw, 
-                    cafeName:name,
-                    address:add, 
-                    phoneNumber:phone
-                }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
-                    result = res.data.response;
-                    console.log(result)
-                });
-            
-                if(result == "success"){
-                    alert("카페신청이 완료 되었습니다. 간단한 인증 절차 후 승인됩니다.")
-                    location.replace("http://localhost:5010");
-                }
-                else{
-                    alert("회원가입이 실패 하였습니다")
-                }
-            }
-                else{
-                    alert("중복확인을 해주세요")
-                }
-        
+//            if(idcheck==1){
+//                axios.post('http://localhost:5010/cafe/create',
+//                {
+//                    userId:id, 
+//                    userPassword:pw, 
+//                    cafeName:name,
+//                    address:add, 
+//                    phoneNumber:phone
+//                }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+//                    result = res.data.response;
+//                    console.log(result)
+//                });
+//            
+//                if(result == "success"){
+//                    alert("카페신청이 완료 되었습니다. 간단한 인증 절차 후 승인됩니다.")
+//                    location.replace("http://localhost:5010");
+//                }
+//                else{
+//                    alert("회원가입이 실패 하였습니다")
+//                }
+//            }
+//                else{
+//                    alert("중복확인을 해주세요")
+//                }
+//        
             }
         }
     </script>
@@ -124,9 +205,9 @@
                   <input type="text" class="form-control form-control-user" name = "cafeName" id="cafeName" placeholder="카페 이름">
                 </div>
                   <div class = "form-group">
-                    <input type="text" class="form-control form-control-user" name = "firaddress" id="firaddress" placeholder="주소">
+                    <input type="text" class="form-control form-control-user" name = "firaddress" id="firaddress" placeholder="주소" readonly/>
 	                <p></p>
-                    <input type="text" class="form-control form-control-user" name = "zonecode" id="zonecode" placeholder="우편번호">
+                    <input type="text" class="form-control form-control-user" name = "zonecode" id="zonecode" placeholder="우편번호" readonly/>
                     <p></p>
                     <input type="text" class="form-control form-control-user" name = "address_etc" id="address_etc" placeholder="나머지 주소">
                     <input type="button" onClick="openDaumZipAddress();" value = "주소 찾기" />
@@ -136,14 +217,10 @@
                 </div>
                 <input type = "button" onclick="register();" value = "카페 신청하기" class="btn btn-primary btn-user btn-block">
               <hr>
-              <div class="text-center">
-                <a class="small" href="forgot-password.html">Forgot Password?</a>
-              </div>
-              <div class="text-center">
-                <a class="small" href="login.html">Already have an account? Login!</a>
-              </div>
             </div>
           </div>
+            <div id="map" style="width:100%;height:350px;"></div>
+
         </div>
       </div>
     </div>
@@ -162,4 +239,6 @@
 
 </body>
 
+    
+    
 </html>

@@ -46,7 +46,8 @@ router.get('/list', async function(req, res, next) {
       recode.date = queryResult[0].date;
     }
 
-    recode.time = timeList;
+    recode.startTime = timeList[0];
+    recode.lastTime = timeList[timeList.length - 1];
 
     timeList = [];
   }

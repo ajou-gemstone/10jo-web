@@ -32,13 +32,13 @@ router.get('/list', async function(req, res) {
 });
 
 router.get('/waiting', async function(req, res) {
-  let sql = `select cafe.id, cafe.name, cafe.address from cafe where cafe.confirm=0`;
+  let sql = `select cafe.id, cafe.name, cafe.address, cafe.userId from cafe where cafe.confirm=0`;
   var queryResult = await dbQuery(sql);
 
   queryResult = queryResult.rows;
 
   for (var i = 0; i < queryResult.length; i++) {
-    sql = `select user.phoneNumber from user, cafe where user.id=${queryResult[i].id}`;
+    sql = `select user.phoneNumber from user, cafe where user.id=${queryResult[i].userId}`;
     var query = await dbQuery(sql);
 
     query = query.rows;

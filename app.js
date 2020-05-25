@@ -29,6 +29,7 @@ app.get('/', function(req, res){
   res.render('login');
 });
 
+
 app.engine('html', ejs.renderFile);
 app.use(express.static(path.join(__dirname,'views')));
 app.set('view engine', 'html');

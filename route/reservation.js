@@ -28,10 +28,16 @@ router.get('/list', async function(req, res) {
       return a - b;
     });
 
+    sql = `select name from user where id=${recodes[i].leaderId}`;
+    var query = await dbQuery(sql);
+    query = query.rows;
+
     recodes[i].date = queryResult[0].date;
 
     recodes[i].startTime = timeList[0];
     recodes[i].lastTime = timeList[timeList.length - 1];
+
+    recodes[i].leaderId = query[0].name;
   }
 
   res.json(recodes);
