@@ -55,6 +55,8 @@ router.post('/create', async function(req, res) {
   var cafeName = req.body.cafeName;
   var address = req.body.address;
   var phoneNumber = req.body.phoneNumber;
+  var latitude = req.body.latitude;
+  var longitude = req.body.longitude;
   var userNum, cafeNum;
 
   let sql = 'select max(id) as num from user';
@@ -79,7 +81,7 @@ router.post('/create', async function(req, res) {
   sql = `insert into user(id, userId, userPassword, email, userType, photo, phoneNumber, score, studentNum, salt) values(${userNum}, '${userId}', '${hashPassword}', null, 3, null, '${phoneNumber}', null, null, '${salt}')`;
   queryResult = await dbQuery(sql);
 
-  sql = `insert into cafe(id, name, address, latitude, longitude, congestion, imgSource, cafeBody, userId, confirm) values(${cafeNum}, '${cafeName}', '${address}', null, null, 0, null, '카페 정보 없음', '${userNum}', 0)`;
+  sql = `insert into cafe(id, name, address, latitude, longitude, congestion, imgSource, cafeBody, userId, confirm) values(${cafeNum}, '${cafeName}', '${address}', '${latitude}', '${longitude}', 0, null, '카페 정보 없음', '${userNum}', 0)`;
   queryResult = await dbQuery(sql);
 
   res.json({
