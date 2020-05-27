@@ -37,26 +37,25 @@
 </style>
 </head>
 
-<body class="bg-gradient-primary">
+<body style="background-image: linear-gradient(180deg, #4e73df 0%, #4e73df 35%, #ffffff 35%);">
 
-  <div class="container">
+  <div class="container" >
 
     <!-- Outer Row -->
     <div class="row justify-content-center">
 
-      <div class="col-xl-10 col-lg-12 col-md-9">
+      <div>
 
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block">
-                <img src="/images/asmrlogo.png">
-                </div>
-              <div class="col-lg-6">
+              <div>
                 <div class="p-5">
+
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">ASMR 관리자 페이지</h1>
+                    <img src="/images/asmr.png" width="250" height="50" style="margin-bottom: 20px; margin-left:20px; margin-right:20px;">
+                    <h4>ASMR for Admin</h4>
                   </div>
                       <input type="text" name="userId" class="form-control form-control-user" id="userId" aria- placeholder="아이디">
                     <p></p>
@@ -64,18 +63,34 @@
                     <p></p>
                     <input type="button" value="로그인" onclick="login();" class="btn btn-primary btn-user btn-block"/>
                   <hr>
-                  <a href="http://localhost:5010/register" class="btn btn-google btn-user btn-block">
-                    <i class="fab fa-fw"></i> 카페 신청하기
+                  <a href="http://localhost:5010/register" class="btn btn-user btn-block" style="background-color: #702921; color:#ffffff;">
+                     카페 신청하기
                   </a>
 
-                  <hr>
-                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+  <div class="column justify-content-center" >
+    <h4 style="padding: 2rem; color:#4e73df; text-align:center; font-weight: bold;">강의실 예약과 관리를 한번에</h4>
+    <h4 style="padding: 2rem; color:#4e73df;text-align:center; font-weight: bold;">카페 관리를 실시간으로</h4>
+    <h3 style="padding: 2rem; color:#224abe;text-align:center; font-weight: bold; margin-bottom: 150px;">ASMR에서<br><br>매일매일 쉽게 관리하세요</h3>
+    
+    <div class="row justify-content-center" >
+      <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">도움말</h6>
+      <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">의견 보내기</h6>
+      <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">개인정보처리방침</h6>
+      <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">이용약관</h6>
+      <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">고객센터</h6>
+      <h6 style="padding: 1rem; color:#4e73df;text-align:center; font-weight: bold; font-size: 13px;">ASMR</h6>
+    </div>
+    
+  </div>
+
   </div>
 
   <!-- Bootstrap core JavaScript-->
