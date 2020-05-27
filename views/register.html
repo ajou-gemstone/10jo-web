@@ -165,52 +165,66 @@ await geocoder.addressSearch(add, async function(result, status) {
     </script>
 </head>
 
-<body class="bg-gradient-primary">
+<body style="background-image: linear-gradient(180deg, #702921 0%, #702921 35%, #ffffff 35%);">
 
   <div class="container">
 
-    <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card o-hidden border-0 shadow-lg my-5" >
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
-        <div class="row">
+        <div class="row justify-content-center">
         <!--  <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> -->
-          <div class="col-lg-7">
+          <div class="col-lg-10">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">카페 정보 입력</h1>
+                <h1 class="h4 text-gray-900 mb-4">ASMR 카페 등록</h1>
               </div>
                 
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" name = "userId" id="userId" placeholder="관리자 ID">
-                <button type="button" name="idConfirm" id="idConfirm" value="중복확인" onclick="idConfirm();" style="float: right;margin-top: 10px;margin-bottom: 10px;background-color:#3e64d1;color: white">중복확인</button>
-                   </div>
+                <div class="row " style="padding: 0rem 0.75rem;">
+                  <input type="text" class="form-control form-control-user" name = "userId" id="userId" placeholder="관리자 ID" style="width: 80%;">
+                  <button type="button" name="idConfirm" id="idConfirm" value="중복확인" onclick="idConfirm();" style="width:15%; margin-left: 10px; margin-top: 5px;margin-bottom: 5px; background-color:#ffffff; color:#702921; border-radius:5px;">중복확인</button>
+                </div>     
+              </div>
                 <p></p>
                 <div class="form-group">
-                    <p></p>
-                    <input type="password" class="form-control form-control-user" name="userPassword" id="userPassword" placeholder="관리자 PW">
+                  <p></p>
+                  <input type="password" class="form-control form-control-user" name="userPassword" id="userPassword" placeholder="관리자 PW">
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" name = "cafeName" id="cafeName" placeholder="카페 이름">
                 </div>
                   <div class = "form-group">
                     <input type="text" class="form-control form-control-user" name = "firaddress" id="firaddress" placeholder="주소" readonly/>
-	                <p></p>
+	                  <p></p>
                     <input type="text" class="form-control form-control-user" name = "zonecode" id="zonecode" placeholder="우편번호" readonly/>
                     <p></p>
-                    <input type="text" class="form-control form-control-user" name = "address_etc" id="address_etc" placeholder="나머지 주소">
-                    <input type="button" onClick="openDaumZipAddress();" value = "주소 찾기" />
+                    <div class="row " style="padding: 0rem 0.75rem;">
+                      <input type="text" class="form-control form-control-user" name = "address_etc" id="address_etc" placeholder="나머지 주소" style="width: 80%;">
+                      <input type="button" onClick="openDaumZipAddress();" value = "주소 찾기" style="width:15%; margin-left: 10px; margin-top: 5px;margin-bottom: 5px; background-color:#ffffff; color:#702921; border-radius:5px;"/>
+                    </div>
                   </div>
                 <div class="form-group">
-                    <input type="tel" class="form-control form-control-user" name="cafeTel" id="cafeTel" placeholder="전화번호">
+                  <input type="tel" class="form-control form-control-user" name="cafeTel" id="cafeTel" placeholder="전화번호">
                 </div>
-                <input type = "button" onclick="register();" value = "카페 신청하기" class="btn btn-primary btn-user btn-block">
-              <hr>
+                <input type = "button" onclick="register();" value = "카페 신청하기" class="btn btn-user btn-block" style="background-color: #702921; color:#ffffff;">
+              
             </div>
           </div>
-            <div id="map" style="width:100%;height:350px;"></div>
+          
+          <!-- <div id="map" style="width:100%;height:350px;"></div> -->
 
         </div>
       </div>
+    </div>
+    
+    <div class="row justify-content-center" >
+      <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">도움말</h6>
+      <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">의견 보내기</h6>
+      <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">개인정보처리방침</h6>
+      <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">이용약관</h6>
+      <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">고객센터</h6>
+      <h6 style="padding: 1rem; color:#4e73df;text-align:center; font-weight: bold; font-size: 13px;">ASMR</h6>
     </div>
 
   </div>
