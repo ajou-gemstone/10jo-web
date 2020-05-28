@@ -29,19 +29,18 @@
   <script type="text/javascript">
     //<![CDATA[
     $(function() {
-      $("#date1").datepicker();
       $("#date2").datepicker({
         showOn: "button",
         buttonImage: "images/calendar.gif",
         buttonImageOnly: false,
         buttonText: "Select date"
       });
-      $("#date3").datepicker({
-        onSelect: function(dateText, inst) {
-          console.log(dateText);
-          console.log(inst);
-        }
-      });
+//      $("#date3").datepicker({
+//        onSelect: function(dateText, inst) {
+//          console.log(dateText);
+//          console.log(inst);
+//        }
+//      });
     });
     //]]>
   </script>
