@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/sb-admin-2.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -44,10 +44,7 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center"  onclick="cafeMain();">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i> 
-        </div>
-        <div class="sidebar-brand-text mx-3" onclick="cafeMain();">ASMR</div>
+          <img src="/images/asmr.png" onclick="cafeMain();" width="160" height="50">
       </a>
 
       <!-- Divider -->
@@ -302,7 +299,7 @@
                 <textarea rows="10" cols="30" name = "cafeBody" id = "cafeBody">
                 </textarea>    
                 <h6></h6>
-                <button onclick = "cafeEditCom();">등록하기</button>
+                <button onclick = "cafeEditCom();" class = "btn-blue">등록하기</button>
             </div>
           </div>
         </div>
