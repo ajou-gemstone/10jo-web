@@ -40,12 +40,9 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">ASMR</div>
+<!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/admin">
+        <img src="/images/asmr.png" width="160" height="50">              
       </a>
 
       <!-- Divider -->
@@ -168,14 +165,18 @@
                     <option>동관</option>
                     <option>서관</option>
                     <option>연암관</option>
+                    <option>원천관</option>
+                    <option>원천정보관</option>
+                    <option>신학생회관</option>
+                    <option>다산관</option>
                   </select>
                 <h6>  </h6>
                 <label for = "lectureRoomId">호수 : </label>
-                <input type="text" id = "lectureRoomId" name = "lectureRoomId" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                <input type="text" id = "lectureRoomId" name = "lectureRoomId"/>
                 <h6>  </h6>
                 <label for = "lectureRoomNum">수용인원 : </label>
                 <input type="text" id = "lectureRoomNum" name = "lectureRoomNum" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> 
-                <button onclick="lectureRoomRegister();" >등록하기</button>
+                <button onclick="lectureRoomRegister();" class="btn btn-primary">등록하기</button>
             </div>
           </div>
         </div>

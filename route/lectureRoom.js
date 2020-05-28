@@ -68,7 +68,7 @@ router.get('/lectureRoomSearch', async function(req, res) {
       resultList = {
         building: building,
         lectureroom: queryResult[i].lectureRoomId,
-        lectureRoomNum: queryResult[l].lectureRoomNum,
+        lectureRoomNum: queryResult[i].lectureRoomNum,
         stateList: stateList
       }
       jsonResult.push(resultList);
@@ -95,12 +95,24 @@ router.post('/create', async function(req, res) {
 
   lectureRoom = buildingName[0]+lectureRoomId;
 
-  sql = `insert into lectureRoom(id, lectureRoomId, fixture, lectureRoomNum, floor, buildingName) values(${num}, '${lectureRoom}', null, '${lectureRoomNum}', '${lectureRoomId[0]}', '${buildingName}')`;
-  queryResult = await dbQuery(sql);
+  sql = `select * from lectureroom where lectureRoomId='${lectureRoom}'`;
+  query = await dbQuery(sql);
+  query = query.rows;
 
-  res.json({
-    response: 'success'
-  });
+  if(query.length==0){
+    sql = `insert into lectureRoom(id, lectureRoomId, fixture, lectureRoomNum, floor, buildingName) values(${num}, '${lectureRoom}', null, '${lectureRoomNum}', '${lectureRoomId[0]}', '${buildingName}')`;
+    queryResult = await dbQuery(sql);
+
+    res.json({
+      response: 'success'
+    });
+  }
+
+  else{
+    res.json({
+      response: 'exist'
+    });
+  }
 });
 
 module.exports = router;

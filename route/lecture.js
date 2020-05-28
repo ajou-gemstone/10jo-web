@@ -37,7 +37,7 @@ router.post('/create', async function(req, res, next) {
 
   // sql = `insert into lecture(id, lectureName, professorName, taName, lectureCode) values(${num}, '${lectureName}', '${professorName}', null, '${lectureCode}')`
   // recodes = await dbQuery(sql);
-  let sql = `select id from lecture where lectureName='${lectureName}'`;
+  let sql = `select id from lecture where lectureName='${lectureName}' and lectureCode='${lectureCode}'`;
   let recodes = await dbQuery(sql);
   recodes = recodes.rows;
   var id = recodes[0].id;
@@ -49,7 +49,7 @@ router.post('/create', async function(req, res, next) {
 
   for(var i=0;i<timeList.length;i++){
     for(var j=timeList[i].startTime;j<=timeList[i].lastTime;j++){
-      sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day) values(${id}, '${lectureRoomId}', 0, '${j}', '2020-1', 'L', '${date}', '${timeList[i].day}')`
+      sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day, reservationId) values(${id}, '${lectureRoomId}', 0, '${j}', '2020-1', 'L', '${date}', '${timeList[i].day}', 0)`
       recodes = await dbQuery(sql);
     }
   }
