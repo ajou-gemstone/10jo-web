@@ -67,11 +67,11 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <!-- Sidebar - Brand -->
+   <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="http://localhost:5010/education">
           <img src="/images/asmr.png" width="160" height="50">
       </a>
-
+      
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
@@ -179,10 +179,15 @@
                     <option>동관</option>
                     <option>서관</option>
                     <option>연암관</option>
+                    <option>다산관</option>
+                    <option>신학생회관</option>
+                    <option>원천관</option>
+                    <option>원천정보관</option>
+                    <option>강의실 없음</option>
                   </select>
                 <h6>  </h6>
                 <label for = "lectureRoomNum">호수 : </label>
-                <input type="text" id = "lectureRoomNum" name = "lectureRoomNum" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                <input type="text" id = "lectureRoomNum" name = "lectureRoomNum"/>
                 <h6>  </h6>
                 <label for = "professor">교수 : </label>
                 <input type="text" name = "professor" id = "professor"/>
@@ -234,7 +239,6 @@
                   </select>
                     <select name = "endingTime1" id="endingTime1" title="선택 구분">
                     <option selected="selected">7:00</option>
-
                     <option>7:30</option>
                     <option>8:00</option>
                     <option>8:30</option>
@@ -393,6 +397,7 @@
     axios.post('http://localhost:5010/lecture/create',{buildingName:buildingName, professorName:professor, lectureRoomNum:lectureRoomNum, professorName:professor, lectureCode:lectureCode, timeList:timeList, lectureName:lectureName}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                 result = res.data;
                 console.log(result);
+                location.reload();
             });
     
     }

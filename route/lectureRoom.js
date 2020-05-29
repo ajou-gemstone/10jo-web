@@ -84,7 +84,9 @@ router.post('/create', async function(req, res) {
   var lectureRoomNum = req.body.lectureRoomNum;
   var num;
   var lectureRoom;
-
+    console.log(buildingName)
+    console.log(lectureRoomId)
+    console.log(lectureRoomNum)
   let sql = 'select max(id) as num from lectureRoom';
   var queryResult = await dbQuery(sql);
 
