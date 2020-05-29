@@ -69,7 +69,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="http://localhost:5010/reservation">
           <i class="fas fa-fw fa-clock"></i>
-          <span>예약관리</span>
+          <span>예약 관리</span>
         </a>
       </li>
 
@@ -77,7 +77,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="http://localhost:5010/student">
           <i class="fas fa-fw fa-user"></i>
-          <span>학생관리</span>
+          <span>학생 관리</span>
         </a>
     </li>
 
@@ -85,14 +85,14 @@
       <li class="nav-item">
         <a class="nav-link" href="http://localhost:5010/cafe">
           <i class="fas fa-fw fa-coffee"></i>
-          <span>카페관리</span></a>
+          <span>카페 관리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="http://localhost:5010/study">
           <i class="fas fa-fw fa-user-friends"></i>
-          <span>스터디관리</span></a>
+          <span>스터디 관리</span></a>
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -126,9 +126,9 @@
 
 
             <div class="topbar-divider d-none d-sm-block"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="http://localhost:5010" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  로그아웃
                 </a>
 
           </ul>
@@ -140,7 +140,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">스터디 목록</h1>
+          <h1 class="h3 mb-2 text-gray-800">스터디 관리</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -181,10 +181,15 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class="sticky-footer">
         <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+          <div class="row justify-content-center" >
+            <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">도움말</h6>
+            <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">의견 보내기</h6>
+            <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">개인정보처리방침</h6>
+            <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">이용약관</h6>
+            <h6 style="padding: 1rem; color:#000000;text-align:center; font-size: 13px;">고객센터</h6>
+            <h6 style="padding: 1rem; color:#4e73df;text-align:center; font-weight: bold; font-size: 13px;">ASMR</h6>
           </div>
         </div>
       </footer>
@@ -201,24 +206,23 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">정말 로그아웃하시겠습니까?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+        <a class="btn btn-primary" href="login.html">로그아웃</a>
       </div>
     </div>
   </div>
+</div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
