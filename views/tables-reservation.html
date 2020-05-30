@@ -27,22 +27,21 @@
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <script type="text/javascript">
-    //<![CDATA[
     $(function() {
+      $("#date1").datepicker();
       $("#date2").datepicker({
         showOn: "button",
         buttonImage: "images/calendar.gif",
         buttonImageOnly: false,
         buttonText: "Select date"
       });
-//      $("#date3").datepicker({
-//        onSelect: function(dateText, inst) {
-//          console.log(dateText);
-//          console.log(inst);
-//        }
-//      });
+      $("#date3").datepicker({
+        onSelect: function(dateText, inst) {
+          console.log(dateText);
+          console.log(inst);
+        }
+      });
     });
-    //]]>
   </script>
 
 </head>
@@ -190,10 +189,18 @@
                     <option selected="selected">성호관</option>
                     <option>팔달관</option>
                     <option>율곡관</option>
-                    <option>연암관</option>
+                    <option>종합관</option>
                     <option>동관</option>
                     <option>서관</option>
-                  </select>
+                    <option>연암관</option>
+                    <option>다산관</option>
+                    <option>신학생회관</option>
+                    <option>원천관</option>
+                    <option>원천정보관</option>
+                    <option>종합설계동</option>
+                    <option>체육관</option>
+                    <option>강의실 없음</option>
+                 </select>
                   <label for="date">날짜보기</label>
                   <input type="text" name="date" id="date2" size="12"/>
                   <input type="button" value = "검색" onclick="filteringPrint();" class="btn-blue"/>
@@ -276,10 +283,7 @@
   </div>
 </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+ 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
