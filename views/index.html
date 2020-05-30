@@ -269,14 +269,11 @@
                         <th colspan="2">18</th>
                         <th colspan="2">19</th>
                         <th colspan="2">20</th>
-                        <th colspan="2">21</th>
                       </tr>
                       <tr>
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th>00</th>
-                        <th>30</th>
                         <th>00</th>
                         <th>30</th>
                         <th>00</th>
@@ -326,7 +323,6 @@
                         <th colspan="2">18</th>
                         <th colspan="2">19</th>
                         <th colspan="2">20</th>
-                        <th colspan="2">21</th>
                       </tr>
                     </tfoot>
                     <tbody id="lectureTbody">
@@ -423,7 +419,7 @@
         rowItem += "<td>" + result[i].building + "</td>"
         rowItem += "<td>" + result[i].lectureroom.substring(1,4) + "</td>"
         rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
-        for(var j=0;j<30;j++){
+        for(var j=0;j<28;j++){
             if(result[i].stateList[j]=="A"){
                 rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">"+" "+"</td>"
             }
