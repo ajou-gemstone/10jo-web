@@ -59,40 +59,6 @@
     //]]>
   </script>
 
-    <script>
-        var orgBColor = '#ffffff';
-        var color = orgBColor;
-        var aaa;
-        function HighLightTD(target, backColor,textColor) {
-            var tbody = target.parentNode;
-            aaa = target.id;
-            var tds  = tbody.getElementsByTagName('td');
-            console.log(aaa);
-            for (var i = 0; i < tds.length; i++) {
-                if ( tds[i] != target ) {
-//                    tds[i].style.backgroundColor = orgBColor;
-//                    tds[i].style.color = orgTColor;
-                }
-                else {
-                    if(tds[i].childNodes[0].nodeValue==" " || tds[i].childNodes[0].nodeValue=="R"
-                       || tds[i].childNodes[0].nodeValue=="M"){
-                        if(color == backColor){
-                            tds[i].style.backgroundColor = orgBColor;
-                            color = orgBColor;
-                        }
-                        else{
-                            tds[i].style.backgroundColor = backColor;
-                            color = backColor;
-                        }
-                    }
-                }
-
-            } // endfor i
-        }
-        function sendData(){
-            
-        }
-    </script>
 </head>
 
 <body id="page-top">
@@ -104,14 +70,14 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="http://localhost:5010/education">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="http://localhost:5010/classRegister">
           <img src="/images/asmr.png" width="160" height="50">
       </a>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/education">
+        <a class="nav-link" href="http://localhost:5010/classRegister">
           <i class="fas fa-fw fa-user-tie"></i>
           <span>교직원</span></a>
       </li>
@@ -222,22 +188,32 @@
                   <input type="text" name="date" id="date2" size="12"/>
                   <input type="button" value = "검색" onclick="dataPrint();" class="btn-blue"/>
                   <p></p>
-                <input type="button" value = "예약불가 설정" class="btn-blue"/>
+                <input type="button" onclick="sendData();" value = "예약불가 설정" class="btn-blue"/>
                     <p></p>
                     <script>
-    async function dataPrint() {
+        var date;
+        var lect;
+        var aaa = new Array();
+        var timelist = new Array();
+        var lectureroomnum = new Array();
+        async function dataPrint() {
        var result = new Array();
 
        var date2 =  document.getElementById("date2").value;
        var lectureRoom =  document.getElementById("selectbox");
+        date = date2;
+
        var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
-       await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{
+        lect = lectureRoom2;
+        await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{
           params: {
             id: date2, id2:lectureRoom2
           }
         }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
         result = res.data;
       });
+        aaa=[];
+        timelist=[];
          $('#lectureTbody').empty();
       for (var i = 0; i < result.length; i++) {
         var rowItem = "<tr>"
@@ -246,12 +222,11 @@
         rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
         for(var j=0;j<28;j++){
             if(result[i].stateList[j]=="A"){
-                rowItem += "<td id=\"time"+i+j+"\"\" onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">"+" "+"</td>"
+                rowItem += "<td id="+"\""+result[i].lectureroom.substring(1)+"-"+j+"\""+"onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">"+" "+"</td>"
             }
             else{
-                rowItem += "<td id=\"time"+i+j+"\"\" onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">" + result[i].stateList[j] + "</td>"
+                rowItem += "<td id="+"\""+result[i].lectureroom.substring(1)+"-"+j+"\""+"onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">" + result[i].stateList[j] + "</td>"
             }
-
         }
         rowItem += "</tr>"
         $('#lectureTbody').append(rowItem)
@@ -261,6 +236,62 @@
             $('#lectureTbody').empty();
         }
     };
+    var orgBColor = '#ffffff';
+    var color = orgBColor;
+
+        function HighLightTD(target, backColor,textColor) {
+            var tbody = target.parentNode;
+            var tds  = tbody.getElementsByTagName('td');
+            var idx;
+            for (var i = 0; i < tds.length; i++) {
+                if ( tds[i] != target ) {
+//                    tds[i].style.backgroundColor = orgBColor;
+//                    tds[i].style.color = orgTColor;
+                }
+                else {
+                    if(tds[i].childNodes[0].nodeValue==" " || tds[i].childNodes[0].nodeValue=="R"
+                       || tds[i].childNodes[0].nodeValue=="M"){
+                        if(tds[i].style.background!=backColor){
+                            aaa = target.id.split("-");
+                            timelist.push(aaa[1]);
+                            lectureroomnum.push(aaa[0]);
+                        }
+                        tds[i].style.backgroundColor = backColor;
+                        color = backColor;
+                    }
+                }
+            }
+
+        } // endfor i
+        function sendData(){
+            console.log(lectureroomnum);
+            console.log(timelist);
+            console.log(date);
+            console.log(lect);
+            if(timelist.length==0||lectureroomnum.length==0){
+                alert("강의실과 시간대를 선택해주세요");
+                location.reload();
+            }
+            for(var i =0;i<lectureroomnum.length;i++){
+                if(lectureroomnum[0]!=lectureroomnum[i]){
+                    alert("강의실은 하나만 선택해주세요");
+                    location.reload();
+                }
+            }
+            timelist.sort();
+
+            console.log(timelist);
+            axios.post('http://localhost:5010/lectureRoom/prereserve',{lectureRoomNum:lectureroomnum[0],lectureRoom:lect,date:date,timeList:timelist}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+                result = res.data.response;
+                console.log(result)
+                if(result == "success"){
+                    alert("사용 가능한 아이디 입니다")
+                }
+                else{
+                    alert("이미 사용중인 아이디 입니다 다시 입력해주세요")
+                }
+            });
+        }
 
   </script>
            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
@@ -386,7 +417,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-        <a class="btn btn-primary" href="login.html">로그아웃</a>
+        <a class="btn btn-primary" href="http://localhost:5010">로그아웃</a>
       </div>
     </div>
   </div>

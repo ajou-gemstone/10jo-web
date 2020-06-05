@@ -15,6 +15,7 @@ router.get('/lectureRoomSearch', async function(req, res) {
   let reservedRoomArray = new Array();
   let resultList;
   var stateList = new Array();
+  var resultArray = new Array();
   date = req.query.id;
   date = date.split('-');
   date = moment([date[0], date[1] - 1, date[2]]).format("YYYY-MM-DD");
@@ -23,20 +24,34 @@ router.get('/lectureRoomSearch', async function(req, res) {
   queryResult = await dbQuery(sql);
   queryResult = queryResult.rows;
 
-  sql = `SELECT lectureroomdescription.TIME, lectureroomdescription.roomStatus, lectureRoom.lectureRoomId FROM lectureroom, lectureroomdescription WHERE lectureroomdescription.date='${date}' AND lectureRoom.buildingName='${building}' AND lectureroom.id=lectureroomdescription.lectureRoomId`
+  var day = calculateTime(date);
+
+  sql = `SELECT lectureroomdescription.TIME, lectureroomdescription.roomStatus, lectureRoom.lectureRoomId FROM lectureroom, lectureroomdescription WHERE lectureroom.buildingName='${building}' AND (lectureroomdescription.day='${day}' and lectureroomdescription.roomStatus='L') AND lectureroom.id=lectureroomdescription.lectureRoomId`
   recodes = await dbQuery(sql);
   recodes = recodes.rows;
 
-  var array = new Array();
   for (var j = 0; j < recodes.length; j++) {
-    array.push(recodes[j]['lectureRoomId'])
-    reservedRoomArray.push(recodes[j]['lectureRoomId'])
+    resultArray.push(recodes[j]);
+  }
+
+  sql = `SELECT lectureroomdescription.TIME, lectureroomdescription.roomStatus, lectureRoom.lectureRoomId FROM lectureroom, lectureroomdescription WHERE lectureroom.buildingName='${building}' AND lectureroomdescription.date='${date}' AND lectureroom.id=lectureroomdescription.lectureRoomId`
+  recodes = await dbQuery(sql);
+  recodes = recodes.rows;
+
+  for (var j = 0; j < recodes.length; j++) {
+    resultArray.push(recodes[j]);
+  }
+
+  var array = new Array();
+  for (var j = 0; j < resultArray.length; j++) {
+    array.push(resultArray[j]['lectureRoomId'])
+    reservedRoomArray.push(resultArray[j]['lectureRoomId'])
   }
 
   array = Array.from(new Set(array));
 
   for (var l = 0; l < array.length; l++) {
-    var result = recodes.filter(function(recode) {
+    var result = resultArray.filter(function(recode) {
       return recode.lectureRoomId == array[l];
     });
 
@@ -61,7 +76,7 @@ router.get('/lectureRoomSearch', async function(req, res) {
   reservedRoomArray = Array.from(new Set(reservedRoomArray));
 
   for (var i = 0; i < queryResult.length; i++) {
-    if (reservedRoomArray.indexOf(array[i]) == -1) {
+    if (reservedRoomArray.indexOf(queryResult[i].lectureRoomId) == -1) {
       for (var j = 0; j <= 27; j++) {
         stateList.push('A');
       }
@@ -84,9 +99,9 @@ router.post('/create', async function(req, res) {
   var lectureRoomNum = req.body.lectureRoomNum;
   var num;
   var lectureRoom;
-    console.log(buildingName)
-    console.log(lectureRoomId)
-    console.log(lectureRoomNum)
+  console.log(buildingName)
+  console.log(lectureRoomId)
+  console.log(lectureRoomNum)
   let sql = 'select max(id) as num from lectureRoom';
   var queryResult = await dbQuery(sql);
 
@@ -95,26 +110,102 @@ router.post('/create', async function(req, res) {
   num = queryResult[0]['num'];
   num = num + 1;
 
-  lectureRoom = buildingName[0]+lectureRoomId;
+  lectureRoom = buildingName[0] + lectureRoomId;
 
   sql = `select * from lectureroom where lectureRoomId='${lectureRoom}'`;
   query = await dbQuery(sql);
   query = query.rows;
 
-  if(query.length==0){
+  if (query.length == 0) {
     sql = `insert into lectureRoom(id, lectureRoomId, fixture, lectureRoomNum, floor, buildingName) values(${num}, '${lectureRoom}', null, '${lectureRoomNum}', '${lectureRoomId[0]}', '${buildingName}')`;
     queryResult = await dbQuery(sql);
 
     res.json({
       response: 'success'
     });
-  }
-
-  else{
+  } else {
     res.json({
       response: 'exist'
     });
   }
+});
+
+router.post('/prereserve', async function(req, res) {
+  var lectureRoom = req.body.lectureRoom;
+  var lectureRoomNum = req.body.lectureRoomNum;
+  var date = req.body.date;
+  var timeList = req.body.timeList;
+  var num;
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth()+1;
+  var day = date.getDate();
+
+  if((month+"").length<2){
+    month = "0" + month;
+  }
+
+  if((day+"").length<2){
+    day = "0" + day;
+  }
+
+  year = year.toString();
+  month = month.toString();
+  day = day.toString();
+
+  date = year+"-"+month+"-"+day;
+
+  lectureRoom = lectureRoom[0]+lectureRoomNum;
+
+  let sql = `select max(id) as num from reservation`;
+  var query = await dbQuery(sql);
+  query = query.rows;
+
+  num = query[0].num;
+  num = num+1;
+
+  sql = `select id from lectureroom where lectureRoomId='${lectureRoom}'`;
+  let queryResult = await dbQuery(sql);
+  queryResult = queryResult.rows;
+  var id = queryResult[0].id;
+
+  sql = `insert into reservation (id, beforeUri, afterUri, beforeTime, afterTime, leaderId, perpose, score, scoreReason, guardId, reservationType, reservationNum, randomStatus, priority, lectureRoomId) values(${num}, null, null, null, null, 8, null, null, null, null, 'X', null, null, null, ${id})`;
+  queryResult = await dbQuery(sql);
+
+  var day = calculateTime(date);
+
+  for (var i = 0; i < timeList.length; i++) {
+    sql = `select roomStatus from lectureroomdescription where time='${timeList[i]}' and date='${date}' and lectureRoomId = ${id}`;
+    query = await dbQuery(sql);
+    query = query.rows;
+
+    if (query.length != 0) {
+      if (query[0].roomStatus != 'X' && query[0].roomStatus!=null) {
+        sql = `select reservationId from lectureroomdescription where time='${timeList[i]}' and date='${date}' and lectureRoomId = ${id}`
+        queryResult = await dbQuery(sql);
+
+        var reservationArray = new Array();
+
+        for (var j = 0; j < recodes.length; j++) {
+          reservationArray.push(queryResult[j].reservationId);
+        }
+
+        reservationArray = Array.from(new Set(reservationArray));
+
+        for (var j = 0; j < recodes.length; j++) {
+          sql = `delete from reservation where id=${reservationArray[j]}`
+          queryResult = await dbQuery(sql);
+        }
+      }
+    }
+
+    sql = `insert into lectureroomdescription (lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day, reservationId) values(0, ${id}, 0, '${timeList[i]}', '2020-1', 'X', '${date}', '${day}', ${num})`;
+    queryResult = await dbQuery(sql);
+  }
+
+  res.json({
+    response: 'success'
+  });
 });
 
 module.exports = router;

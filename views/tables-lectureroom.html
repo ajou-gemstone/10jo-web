@@ -105,7 +105,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/admin">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/lectureRoom">
         <img src="/images/asmr.png" width="160" height="50">              
       </a>
 
@@ -114,7 +114,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/admin" id='admin'>
+        <a class="nav-link" href="http://localhost:5010/lectureRoom" id='admin'>
           <i class="fas fa-fw fa-user-cog"></i>
           <span>관리자</span></a>
       </li>
@@ -414,6 +414,11 @@
         result = res.data;
       });
          $('#lectureTbody').empty();
+            var sortingField = "lectureroom"
+            result.sort(function(a, b) { // 오름차순
+                return (a[sortingField].substring(1))*1 - (b[sortingField].substring(1))*1;
+                // 13, 21, 25, 44
+            });
       for (var i = 0; i < result.length; i++) {
         var rowItem = "<tr>"
         rowItem += "<td>" + result[i].building + "</td>"

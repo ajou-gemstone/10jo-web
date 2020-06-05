@@ -32,7 +32,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/admin">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/lectureRoom">
         <img src="/images/asmr.png" width="160" height="50">              
       </a>
 
@@ -153,8 +153,6 @@
                       <th>스터디 구분</th>
                       <th>방제목</th>
                       <th>인원</th>
-                      <th>이용자</th>
-                      <th>예약 현황</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -162,8 +160,6 @@
                       <th>스터디 구분</th>
                       <th>방제목</th>
                       <th>인원</th>
-                      <th>이용자</th>
-                      <th>예약 현황</th>
                     </tr>
                   </tfoot>
                   <tbody id="studyTbody">
@@ -218,7 +214,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-        <a class="btn btn-primary" href="login.html">로그아웃</a>
+        <a class="btn btn-primary" href="http://localhost:5010/lectureRoom">로그아웃</a>
       </div>
     </div>
   </div>
@@ -261,18 +257,6 @@
         rowItem += "<td>" + result[i].category + "</td>"
         rowItem += "<td>" + result[i].title + "</td>"
         rowItem += "<td>" + result[i].studyGroupNumCurrent + "</td>"
-        rowItem += "<td>" 
-        for(var j=0;j<result[i].userList.length;j++){
-            rowItem += result[i].userList[j].name
-            rowItem += " "
-        }
-        rowItem +="</td>"
-        if(result[i].lectureRoom.length!=0){
-            rowItem += "<td>" + result[i].lectureRoom[0].lectureRoomId +" "+ getTime(result[i].startTime)+" ~ "+getTime(result[i].lastTime) + "</td>"
-        }
-        else{
-            rowItem +="<td>"+" "+"</td>"
-        }
         rowItem += "</tr>"
         $('#studyTbody').append(rowItem)
       }

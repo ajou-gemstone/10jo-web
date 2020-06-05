@@ -95,8 +95,9 @@ router.post('/edit', async function(req, res) {
   var phoneNumber = req.body.phoneNumber;
   var congestion = req.body.congestion;
   var cafeBody = req.body.cafeBody;
-
-  let sql = `update cafe set name='${cafeName}', congestion='${congestion}', cafeBody='${cafeBody}' where userId=${userId}`;
+  var time = req.body.time;
+  console.log(time);
+  let sql = `update cafe set name='${cafeName}', congestion='${congestion}', cafeBody='${cafeBody}', updateTime='${time}' where userId=${userId}`;
   var queryResult = await dbQuery(sql);
 
   sql = `update user set phoneNumber='${phoneNumber}' where id=${userId}`;

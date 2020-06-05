@@ -62,7 +62,7 @@
 async function register(){
         var id = document.getElementById("userId").value;
         var pw = document.getElementById("userPassword").value;
-        var add = document.getElementById("firaddress").value +" "+ document.getElementById("address_etc").value;
+        var add = document.getElementById("firaddress").value;
         var name = document.getElementById("cafeName").value
         var phone = document.getElementById("cafeTel").value
         var lat;
@@ -89,10 +89,10 @@ await geocoder.addressSearch(add, async function(result, status) {
                     userId:id, 
                     userPassword:pw, 
                     cafeName:name,
-                    address:add, 
+                    address:add+ " " + document.getElementById("address_etc").value, 
                     phoneNumber:phone,
-                    latitude:lat.Ga,
-                    longitude:lat.Ha
+                    latitude:lat.Ha,
+                    longitude:lat.Ga
                 }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                     result = res.data.response;
                     console.log(result)
