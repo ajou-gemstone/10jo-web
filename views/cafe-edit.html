@@ -231,7 +231,7 @@
       var text4 = document.getElementById("cafeBody");
       await axios.get('http://localhost:5010/cafe/info',{
           params: {
-            id: params.id
+            id: atob(params.id)
           }
         }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
           console.log(res);
@@ -279,7 +279,7 @@
         console.log(text2);
         console.log(text3);
         console.log(congestion);
-        axios.post('http://localhost:5010/cafe/edit',{userId:params.id,cafeName:text2, phoneNumber:text3,congestion:congestion,cafeBody:cafeBody,time:time }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        axios.post('http://localhost:5010/cafe/edit',{userId:atob(params.id),cafeName:text2, phoneNumber:text3,congestion:congestion,cafeBody:cafeBody,time:time }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                 result = res.data.response;
                 if(result == "success"){
                     alert("업데이트를 성공하였습니다");

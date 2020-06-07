@@ -116,7 +116,7 @@
                 }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                     result = res.data;
                 if(result.userType==3){
-                    location.replace('http://localhost:5010/cafestaff?id='+result.id);
+                    location.replace('http://localhost:5010/cafestaff?id='+btoa(result.id));
                 }
 
                 else if(result.userType==4){

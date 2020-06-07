@@ -221,7 +221,7 @@
       var text6 = document.getElementById("cafeBody");
       await axios.get('http://localhost:5010/cafe/info',{
           params: {
-            id: params.id
+            id: atob(params.id)
           }
         }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
           console.log(res);
