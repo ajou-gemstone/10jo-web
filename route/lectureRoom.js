@@ -199,6 +199,9 @@ router.post('/prereserve', async function(req, res) {
       }
     }
 
+    sql = `insert into reservationdescription (reservationId, date, time) values(${num}, '${date}', '${i}')`;
+    queryResult = await dbQuery(sql);
+
     sql = `insert into lectureroomdescription (lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day, reservationId) values(0, ${id}, 0, '${timeList[i]}', '2020-1', 'X', '${date}', '${day}', ${num})`;
     queryResult = await dbQuery(sql);
   }

@@ -38,6 +38,8 @@ router.get('/list', async function(req, res) {
     recodes[i].lastTime = timeList[timeList.length - 1];
 
     recodes[i].leaderId = query[0].name;
+
+    timeList = [];
   }
 
   res.json(recodes);
