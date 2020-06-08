@@ -238,7 +238,13 @@
     };
     var orgBColor = '#ffffff';
     var color = orgBColor;
-
+        function isNumber(s) {
+            s += ''; // 문자열로 변환
+            s = s.replace(/^\s*|\s*$/g, ''); // 좌우 공백 제거
+            if (s == '' || isNaN(s)) return false;
+            return true;
+        }
+        
         function HighLightTD(target, backColor,textColor) {
             var tbody = target.parentNode;
             var tds  = tbody.getElementsByTagName('td');
@@ -249,8 +255,12 @@
 //                    tds[i].style.color = orgTColor;
                 }
                 else {
+                    console.log(tds[i].childNodes[0].nodeValue)
+                    console.log(isNaN(tds[i].childNodes[0].nodeValue))
+                    console.log(isNumber(tds[i].childNodes[0].nodeValue))
+                    
                     if(tds[i].childNodes[0].nodeValue==" " || tds[i].childNodes[0].nodeValue=="R"
-                       || tds[i].childNodes[0].nodeValue=="M"){
+                       || tds[i].childNodes[0].nodeValue=="M"||isNumber(tds[i].childNodes[0].nodeValue)===true){
                         if(tds[i].style.background!=backColor){
                             aaa = target.id.split("-");
                             timelist.push(aaa[1]);
@@ -279,16 +289,19 @@
                 }
             }
             timelist.sort();
-
+            var set = Array.from(new Set(timelist));
             console.log(timelist);
-            axios.post('http://localhost:5010/lectureRoom/prereserve',{lectureRoomNum:lectureroomnum[0],lectureRoom:lect,date:date,timeList:timelist}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+            console.log(set);
+            axios.post('http://localhost:5010/lectureRoom/prereserve',{lectureRoomNum:lectureroomnum[0],lectureRoom:lect,date:date,timeList:set}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                 result = res.data.response;
                 console.log(result)
                 if(result == "success"){
-                    alert("사용 가능한 아이디 입니다")
+                    alert("우선예약이 성공하였습니다.")
+                    location.reload();
                 }
                 else{
-                    alert("이미 사용중인 아이디 입니다 다시 입력해주세요")
+                    alert("우선예약이 실패하였습니다.")
+                    location.reload();
                 }
             });
         }
