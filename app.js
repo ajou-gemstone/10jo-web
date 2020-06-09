@@ -1,4 +1,4 @@
-var express =  require('express');
+var express = require('express');
 var http = require('http');
 var ejs = require('ejs');
 var multer = require('multer');
@@ -22,22 +22,39 @@ var register = require('./route/register.js');
 var prereserve = require('./route/prereserve.js');
 var user = require('./route/user.js');
 var cors = require('cors');
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
+var options = require('./database/database.js');
 
 var app = express();
+var sessionStore = new MySQLStore(options);
 
-app.get('/', function(req, res){
-  res.render('login');
+app.use(session({
+  secret: 'asmr',
+  resave: false,
+  saveUninitialized: true,
+  store: sessionStore
+}))
+
+app.get('/', function(req, res) {
+  if (req.session.uid==undefined) {
+    res.render('login');
+  } else {
+    delete req.session.uid;
+    res.redirect('/');
+  }
 });
 
-
 app.engine('html', ejs.renderFile);
-app.use(express.static(path.join(__dirname,'views')));
+app.use(express.static(path.join(__dirname, 'views')));
 app.set('view engine', 'html');
 
 app.set('port', 5010);
 
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json());
 app.use('/', render);
 app.use('/admin', admin);
@@ -49,13 +66,13 @@ app.use('/student', student);
 app.use('/cafe', cafe);
 app.use('/study', study);
 app.use('/classRegister', classRegister);
-app.use('/education',education);
-app.use('/cafestaff',cafestaff);
-app.use('/cafeedit',cafeedit);
-app.use('/register',register);
-app.use('/prereserve',prereserve);
+app.use('/education', education);
+app.use('/cafestaff', cafestaff);
+app.use('/cafeedit', cafeedit);
+app.use('/register', register);
+app.use('/prereserve', prereserve);
 app.use('/user', user);
 
-http.createServer(app).listen(app.get('port'), function(){
-    console.log("express start: %d ", app.get('port'));
+http.createServer(app).listen(app.get('port'), function() {
+  console.log("express start: %d ", app.get('port'));
 });

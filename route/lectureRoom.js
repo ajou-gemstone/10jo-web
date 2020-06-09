@@ -4,6 +4,8 @@ var dbQuery = require("../database/promiseQuery.js");
 var moment = require('moment');
 var calculateTime = require('../utils/calculateTime');
 var timeTable = require('../utils/timeTable');
+var admin = require("firebase-admin");
+var serviceAccount = require("../asmr-799cf-firebase-adminsdk-57wam-7a9f28cc260.json");
 
 router.get('/lectureRoomSearch', async function(req, res) {
   var date;
@@ -144,7 +146,7 @@ router.post('/prereserve', async function(req, res) {
   query = query.rows;
 
   num = query[0].num;
-  num = num+1;
+  num = num + 1;
 
   sql = `select id from lectureroom where lectureRoomId='${lectureRoom}'`;
   let queryResult = await dbQuery(sql);
@@ -162,19 +164,60 @@ router.post('/prereserve', async function(req, res) {
     query = query.rows;
 
     if (query.length != 0) {
-      if (query[0].roomStatus != 'X' && query[0].roomStatus!=null) {
+      if (query[0].roomStatus != 'X' && query[0].roomStatus != null) {
         sql = `select reservationId from lectureroomdescription where time='${timeList[i]}' and date='${date}' and lectureRoomId = ${id}`
         queryResult = await dbQuery(sql);
+        queryResult = queryResult.rows;
 
         var reservationArray = new Array();
 
-        for (var j = 0; j < recodes.length; j++) {
+        for (var j = 0; j < queryResult.length; j++) {
           reservationArray.push(queryResult[j].reservationId);
         }
 
         reservationArray = Array.from(new Set(reservationArray));
 
-        for (var j = 0; j < recodes.length; j++) {
+        for (var j = 0; j < reservationArray.length; j++) {
+          sql = `select user.token from user, reservation where reservation.id=${reservationArray[j]} and user.id=reservation.leaderId`
+          queryResult = await dbQuery(sql);
+          queryResult = queryResult.rows;
+
+          var token = queryResult[0].token;
+
+          if (!admin.apps.length) {
+            admin.initializeApp({
+              credential: admin.credential.cert(serviceAccount),
+              //  databaseURL: "https://asmr-799cf.firebaseio.com"
+            });
+          }
+
+          var fcm_target_token = token;
+
+          //-----------
+          //메세지 작성 부분
+          var fcm_message = {
+
+            notification: {
+              title: '새 예약 알림이 있습니다.', //여기에 알림 목적을 작성
+              body: '현재 강의실을 사용하실 수 없습니다. 다시 예약해주십시오. 죄송합니다.'
+            },
+            data: {
+              fileno: '1',
+              style: 'good'
+            },
+            token: fcm_target_token
+          }
+
+          admin.messaging().send(fcm_message)
+            .then(function(response) {
+              console.log("보내기 성공 메세지" + response);
+            }).catch(function(error) {
+              console.log('보내기 실패 메세지' + error);
+              if (!/already exists/.test(error.message)) {
+                console.error('Firebase initialization error raised', error.stack)
+              }
+            });
+
           sql = `delete from reservation where id=${reservationArray[j]}`
           queryResult = await dbQuery(sql);
         }

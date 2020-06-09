@@ -59,9 +59,44 @@
     //]]>
   </script>
 
+
+    <script>
+        var orgBColor = '#ffffff';
+        var orgTColor = '#000000';
+        var color = orgBColor;
+        function HighLightTR(target, backColor,textColor) {
+
+            var tbody = target.parentNode;
+            var tds = tbody.getElementsByTagName('td');
+            for ( var i = 0; i < tds.length; i++ ) {
+                if ( tds[i] != target ) {
+//                    tds[i].style.backgroundColor = orgBColor;
+//                    tds[i].style.color = orgTColor;
+                }
+                else {
+                    if(tds[i].childNodes[0].nodeValue==" " || tds[i].childNodes[0].nodeValue=="R"
+                       || tds[i].childNodes[0].nodeValue=="M"){
+                        if(color == backColor){
+                            tds[i].style.backgroundColor = orgBColor;
+                            tds[i].style.color = orgTColor;
+                            color = orgBColor;
+                        }
+                        else{
+                            tds[i].style.backgroundColor = backColor;
+                            tds[i].style.color = textColor;
+                            color = backColor;
+                        }
+                    }
+                }
+
+            } // endfor i
+        }
+    </script>
+
 </head>
 
 <body id="page-top">
+
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -69,17 +104,19 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-     <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="http://localhost:5010/classRegister">
-          <img src="/images/asmr.png" width="160" height="50">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/admin">
+        <img src="/images/asmr.png" width="160" height="50">
       </a>
+
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
+
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/classRegister">
-          <i class="fas fa-fw fa-user-tie"></i>
-          <span>교직원</span></a>
+        <a class="nav-link" href="http://localhost:5010/admin" id='admin'>
+          <i class="fas fa-fw fa-user-cog"></i>
+          <span>관리자</span></a>
       </li>
 
       <!-- Divider -->
@@ -87,25 +124,46 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        교직원 모드
+        관리자 모드
       </div>
 
-
-<!-- Nav Item - Pages Collapse Menu -->
+      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/classRegister">
-          <i class="fas fa-fw fa-school"></i>
-          <span>수업 등록하기</span>
+        <a class="nav-link collapsed" href="http://localhost:5010/lectureroom">
+          <i class="fas fa-fw fa-building"></i>
+          <span>강의실 관리</span>
         </a>
 
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/prereserve">
+        <a class="nav-link collapsed" href="http://localhost:5010/reservation">
           <i class="fas fa-fw fa-clock"></i>
-          <span>강의실 우선예약</span>
+          <span>예약관리</span>
         </a>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="http://localhost:5010/student">
+          <i class="fas fa-fw fa-user"></i>
+          <span>학생관리</span>
+        </a>
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:5010/cafe">
+          <i class="fas fa-fw fa-coffee"></i>
+          <span>카페관리</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:5010/study">
+          <i class="fas fa-fw fa-user-friends"></i>
+          <span>스터디관리</span></a>
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -117,7 +175,6 @@
 
     </ul>
     <!-- End of Sidebar -->
-
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -139,15 +196,16 @@
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
 
+            <!-- Nav Item - Alerts -->
 
-            <!-- Nav Item - Messages -->
-
-            <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
-
+              <div class="topbar-divider d-none d-sm-block"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
           </ul>
 
         </nav>
@@ -157,7 +215,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">강의실 우선예약(예약불가 기간 설정)</h1>
+          <h1 class="h3 mb-2 text-gray-800">강의실 관리</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -172,142 +230,18 @@
                     <option selected="selected">성호관</option>
                     <option>팔달관</option>
                     <option>율곡관</option>
-                    <option>종합관</option>
+                    <option>연암관</option>
                     <option>동관</option>
                     <option>서관</option>
-                    <option>연암관</option>
-                    <option>다산관</option>
-                    <option>신학생회관</option>
-                    <option>원천관</option>
-                    <option>원천정보관</option>
-                    <option>종합설계동</option>
-                    <option>체육관</option>
-                    <option>강의실 없음</option>
                   </select>
                   <label for="date">날짜보기</label>
-                  <input type="text" name="date" id="date2" size="12"/>
+                  <input type="text" name="date" id="date2" size="12" />
                   <input type="button" value = "검색" onclick="dataPrint();" class="btn-blue"/>
                   <p></p>
-                <input type="button" onclick="sendData();" value = "예약불가 설정" class="btn-blue"/>
-                    <p></p>
-                    <script>
-        var date;
-        var lect;
-        var aaa = new Array();
-        var timelist = new Array();
-        var lectureroomnum = new Array();
-        async function dataPrint() {
-       var result = new Array();
 
-       var date2 =  document.getElementById("date2").value;
-       var lectureRoom =  document.getElementById("selectbox");
-        date = date2;
-
-       var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
-        lect = lectureRoom2;
-        await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{
-          params: {
-            id: date2, id2:lectureRoom2
-          }
-        }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
-        result = res.data;
-      });
-        aaa=[];
-        timelist=[];
-         $('#lectureTbody').empty();
-      for (var i = 0; i < result.length; i++) {
-        var rowItem = "<tr>"
-        rowItem += "<td>" + result[i].building + "</td>"
-        rowItem += "<td>" + result[i].lectureroom.substring(1) + "</td>"
-        rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
-        for(var j=0;j<28;j++){
-            if(result[i].stateList[j]=="A"){
-                rowItem += "<td id="+"\""+result[i].lectureroom.substring(1)+"-"+j+"\""+"onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">"+" "+"</td>"
-            }
-            else{
-                rowItem += "<td id="+"\""+result[i].lectureroom.substring(1)+"-"+j+"\""+"onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">" + result[i].stateList[j] + "</td>"
-            }
-        }
-        rowItem += "</tr>"
-        $('#lectureTbody').append(rowItem)
-      }
-
-        if(date2==""){
-            $('#lectureTbody').empty();
-        }
-    };
-    var orgBColor = '#ffffff';
-    var color = orgBColor;
-        function isNumber(s) {
-            s += ''; // 문자열로 변환
-            s = s.replace(/^\s*|\s*$/g, ''); // 좌우 공백 제거
-            if (s == '' || isNaN(s)) return false;
-            return true;
-        }
-        
-        function HighLightTD(target, backColor,textColor) {
-            var tbody = target.parentNode;
-            var tds  = tbody.getElementsByTagName('td');
-            var idx;
-            for (var i = 0; i < tds.length; i++) {
-                if ( tds[i] != target ) {
-//                    tds[i].style.backgroundColor = orgBColor;
-//                    tds[i].style.color = orgTColor;
-                }
-                else {
-                    console.log(tds[i].childNodes[0].nodeValue)
-                    console.log(isNaN(tds[i].childNodes[0].nodeValue))
-                    console.log(isNumber(tds[i].childNodes[0].nodeValue))
-                    
-                    if(tds[i].childNodes[0].nodeValue==" " || tds[i].childNodes[0].nodeValue=="R"
-                       || tds[i].childNodes[0].nodeValue=="M"||isNumber(tds[i].childNodes[0].nodeValue)===true){
-                        if(tds[i].style.background!=backColor){
-                            aaa = target.id.split("-");
-                            timelist.push(aaa[1]);
-                            lectureroomnum.push(aaa[0]);
-                        }
-                        tds[i].style.backgroundColor = backColor;
-                        color = backColor;
-                    }
-                }
-            }
-
-        } // endfor i
-        function sendData(){
-            console.log(lectureroomnum);
-            console.log(timelist);
-            console.log(date);
-            console.log(lect);
-            if(timelist.length==0||lectureroomnum.length==0){
-                alert("강의실과 시간대를 선택해주세요");
-                location.reload();
-            }
-            for(var i =0;i<lectureroomnum.length;i++){
-                if(lectureroomnum[0]!=lectureroomnum[i]){
-                    alert("강의실은 하나만 선택해주세요");
-                    location.reload();
-                }
-            }
-            timelist.sort();
-            var set = Array.from(new Set(timelist));
-            console.log(timelist);
-            console.log(set);
-            axios.post('http://localhost:5010/lectureRoom/prereserve',{lectureRoomNum:lectureroomnum[0],lectureRoom:lect,date:date,timeList:set}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
-                result = res.data.response;
-                console.log(result)
-                if(result == "success"){
-                    alert("우선예약이 성공하였습니다.")
-                    location.reload();
-                }
-                else{
-                    alert("우선예약이 실패하였습니다.")
-                    location.reload();
-                }
-            });
-        }
-
-  </script>
-           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
+                <input type="button" value="강의실 등록" onClick="location.href='http://localhost:5010/lectureRoomRegister'" class="btn btn-primary"/>
+                  <p></p>
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
                     <thead>
                       <tr>
                         <th>건물명</th>
@@ -327,11 +261,14 @@
                         <th colspan="2">18</th>
                         <th colspan="2">19</th>
                         <th colspan="2">20</th>
+                        <th colspan="2">21</th>
                       </tr>
                       <tr>
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th>00</th>
+                        <th>30</th>
                         <th>00</th>
                         <th>30</th>
                         <th>00</th>
@@ -381,6 +318,7 @@
                         <th colspan="2">18</th>
                         <th colspan="2">19</th>
                         <th colspan="2">20</th>
+                        <th colspan="2">21</th>
                       </tr>
                     </tfoot>
                     <tbody id="lectureTbody">
@@ -418,23 +356,24 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">정말 로그아웃하시겠습니까?</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-        <a class="btn btn-primary" href="http://localhost:5010">로그아웃</a>
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="http://localhost:5010/login">Logout</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <!-- Bootstrap core JavaScript-->
 
@@ -452,8 +391,52 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  <script>
+    async function dataPrint() {
+       var result = new Array();
+
+       var date2 =  document.getElementById("date2").value;
+       var lectureRoom =  document.getElementById("selectbox");
+       var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
+        if(date2.length==0){
+            alert("날짜를 입력해주세요")
+            location.reload();
+        }
+        else{
+            await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{
+          params: {
+            id: date2, id2:lectureRoom2
+          }
+        }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        result = res.data;
+      });
+         $('#lectureTbody').empty();
+      for (var i = 0; i < result.length; i++) {
+        var rowItem = "<tr>"
+        rowItem += "<td>" + result[i].building + "</td>"
+        rowItem += "<td>" + result[i].lectureroom.substring(1,4) + "</td>"
+        rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
+        for(var j=0;j<30;j++){
+            if(result[i].stateList[j]=="A"){
+                rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">"+" "+"</td>"
+            }
+            else{
+                rowItem += "<td onclick = \"HighLightTD(this, \'#c9cc99\',\'cc3333\')\">" + result[i].stateList[j] + "</td>"
+            }
+
+        }
+        rowItem += "</tr>"
+        $('#lectureTbody').append(rowItem)
+      }
+        if(date2==""){
+            $('#lectureTbody').empty();
+        }
+        }
 
 
+    };
+
+  </script>
 
 </body>
 

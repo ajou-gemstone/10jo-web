@@ -23,11 +23,11 @@
     <script>
     function changeTrColor(trObj, oldColor, newColor) {
         trObj.style.backgroundColor = newColor;
-        
+
         trObj.onmouseout = function(){
             trObj.style.backgroundColor = oldColor;
         }
-        
+
     }
     </script>
 
@@ -48,13 +48,13 @@
                 }
 //            var table = document.getElementId("tableId");
 //            var tr = table.getElementsByTagName("tr");
-//	       for(var i=0; i<tr.length; i++){
-//		      tr[i].style.background = "white";
-//	       }
-//	       obj.style.backgroundColor = "#FCE6E0";
+//          for(var i=0; i<tr.length; i++){
+//            tr[i].style.background = "white";
+//          }
+//          obj.style.backgroundColor = "#FCE6E0";
 
         } // endfor i
-        
+
     </script>
 
 </head>
@@ -71,7 +71,7 @@
       <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="http://localhost:5010/classRegister">
           <img src="/images/asmr.png" width="160" height="50">
       </a>
-      
+
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
@@ -143,17 +143,17 @@
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              
+
             </li>
 
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
-              
+
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
-            
+
 
           </ul>
 
@@ -513,8 +513,8 @@
       </div>
       <!-- End of Main Content -->
 
-        
-    <script>    
+
+    <script>
     function getPosition(time){
            switch (time){
                case "7:00": return "0"; case "7:30": return "1"; case "8:00": return "2"; case "8:30": return "3"; case "9:00": return "4"; case "9:30": return "5";
@@ -562,7 +562,7 @@
         var startingTime4 = st4.options[st4.selectedIndex].value;
         var en4 = document.getElementById("endingTime4");
         var endingTime4 = en4.options[en4.selectedIndex].value;
-//  [{day: 월, startTime: 0, lastTime: 1}, {day: 월, startTime: 0, lastTime: 1}]    
+//  [{day: 월, startTime: 0, lastTime: 1}, {day: 월, startTime: 0, lastTime: 1}]
         var timeList = [];
         var data = new Object();
         var data2 = new Object();
@@ -597,10 +597,11 @@
                 console.log(result);
                 location.reload();
             });
-    
+
     }
     }
-    
+    }
+
  </script>
       <!-- Footer -->
       <footer class="sticky-footer">
@@ -660,7 +661,7 @@
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    
+
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 

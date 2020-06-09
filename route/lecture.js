@@ -47,16 +47,34 @@ router.post('/create', async function(req, res, next) {
   recodes = recodes.rows;
   var lectureRoomId = recodes[0].id;
 
-  for(var i=0;i<timeList.length;i++){
-    for(var j=timeList[i].startTime;j<=timeList[i].lastTime;j++){
-      sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day, reservationId) values(${id}, '${lectureRoomId}', 0, '${j}', '2020-1', 'L', '${date}', '${timeList[i].day}', 0)`
-      recodes = await dbQuery(sql);
+  sql = `select * from lectureroomdescription where lectureId='${id}'`;
+  let query = await dbQuery(sql);
+  query = query.rows;
+
+  timeList[0].startTime = parseInt(timeList[0].startTime);
+  timeList[0].lastTime = parseInt(timeList[0].lastTime);
+
+  if(query.length==0){
+    for(var i=0;i<timeList.length;i++){
+      for(var j=timeList[i].startTime;j<timeList[i].lastTime;j++){
+        sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day, reservationId) values(${id}, '${lectureRoomId}', 0, '${j}', '2020-1', 'L', '${date}', '${timeList[i].day}', 0)`
+        recodes = await dbQuery(sql);
+      }
     }
+
+    console.log('success');
+    res.json({
+      response: 'success'
+    });
   }
 
-  res.json({
-    response: 'success'
-  });
+  else{
+    res.json({
+      response: '중복'
+    });
+  }
+
+
 });
 
 module.exports = router;
