@@ -59,9 +59,7 @@ router.post('/login', async function(req, res, next) {
     res.json({
       id: -1
     });
-  }
-
-  else {
+  } else {
     let hashPassword = crypto.createHash("sha512").update(password + recodes[0].salt).digest("hex");
 
     if (recodes[0].userType == '3') {
@@ -75,6 +73,9 @@ router.post('/login', async function(req, res, next) {
         });
       } else {
         if (hashPassword == recodes[0].userPassword) {
+          req.session.uid = recodes[0].id;
+          req.session.userType = recodes[0].userType;
+
           res.json({
             id: recodes[0].id,
             userType: recodes[0].userType
@@ -87,6 +88,9 @@ router.post('/login', async function(req, res, next) {
       }
     } else {
       if (hashPassword == recodes[0].userPassword) {
+        req.session.uid = recodes[0].id;
+        req.session.userType = recodes[0].userType;
+
         res.json({
           id: recodes[0].id,
           userType: recodes[0].userType
@@ -99,5 +103,11 @@ router.post('/login', async function(req, res, next) {
     }
   }
 });
+
+router.get('/logout', function(req, res, next){
+  delete req.session.id;
+  delete req.session.userType;
+  res.render('/');
+})
 
 module.exports = router;
