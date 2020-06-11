@@ -20,16 +20,34 @@
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script>
-    function changeTrColor(trObj, oldColor, newColor) {
-        trObj.style.backgroundColor = newColor;
-
-        trObj.onmouseout = function(){
-            trObj.style.backgroundColor = oldColor;
+    <style>
+        .filebox label { 
+            display: inline-block; 
+            padding: .5em .75em; 
+            color: #999; 
+            font-size: inherit; 
+            line-height: normal; 
+            vertical-align: middle; 
+            background-color: #fdfdfd; 
+            cursor: pointer; 
+            border: 1px solid #ebebeb; 
+            border-bottom-color: #e2e2e2; 
+            border-radius: .25em;
+        } 
+        .filebox input[type="file"] { /* 파일 필드 숨기기 */ 
+            position: absolute; 
+            width: 1px; 
+            height: 1px; 
+            padding: 0; 
+            margin: -1px; 
+            overflow: hidden; 
+            clip:rect(0,0,0,0);
+            border: 0; 
         }
 
-    }
-    </script>
+    </style>
+    
+
 
     <script>
         var orgBColor = '#ffffff';
@@ -168,6 +186,14 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
+                <h3>한번에 등록(엑셀파일)</h3>
+                <div class="filebox bs3-primary preview-image">
+                            <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
+
+                            <label for="input_file">업로드</label> 
+                          <input type="file" id="input_file" class="upload-hidden"> 
+                        </div>
+                <h3>하나씩 등록</h3>
                 <label for = "lectureName">수업이름 : </label>
                 <input type="text" id = "lectureName" name = "lectureName"/>
                 <label for = "buildingName">건물명 : </label>
@@ -600,7 +626,7 @@
 
     }
     }
-    }
+    
 
  </script>
       <!-- Footer -->
@@ -664,6 +690,25 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
+<script>
+    $(document).ready(function(){
+        var fileTarget = $('.filebox .upload-hidden');
+        fileTarget.on('change', function(){
+            if(window.FileReader){
+                // 파일명 추출
+                var filename = $(this)[0].files[0].name;
+            } 
+            else {
+                // Old IE 파일명 추출
+                var filename = $(this).val().split('/').pop().split('\\').pop();
+            };
+
+            $(this).siblings('.upload-name').val(filename);
+        });
+    });
+
+</script>
 
 </body>
 
