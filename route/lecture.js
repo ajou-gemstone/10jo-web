@@ -3,6 +3,39 @@ var router = express.Router();
 var dbQuery = require("../database/promiseQuery.js");
 var calculateTime = require('../utils/calculateTime');
 
+router.get('/list', async function(req, res, next) {
+  var timeList = new Array();
+
+  let sql = 'select * from lecture where id!=0';
+  var queryResult = await dbQuery(sql);
+  queryResult = queryResult.rows;
+
+  for(var i=0;i<queryResult.length;i++){
+    sql = `select lectureroom.lectureRoomId, lectureroomdescription.time, lectureroomdescription.day from lectureroom, lectureroomdescription where lectureroom.id=lectureroomdescription.lectureRoomId and lectureroomdescription.lectureId=${queryResult[i].id}`;
+    var query = await dbQuery(sql);
+    query = query.rows;
+
+    if(query.length!=0){
+      for(var j=0;j<query.length;j++){
+        timeList.push(query[j].day+query[j].time);
+      }
+
+      queryResult[i].timeList=timeList;
+      queryResult[i].lectureRoomId=query[0].lectureRoomId;
+    }
+    else{
+      queryResult[i].timeList=[];
+      queryResult[i].lectureRoomId="";
+    }
+
+    timeList = [];
+
+    delete queryResult[i].taName;
+  }
+
+  res.json(queryResult);
+});
+
 router.post('/create', async function(req, res, next) {
   var timeList = req.body.timeList;
   var buildingName = req.body.buildingName;
