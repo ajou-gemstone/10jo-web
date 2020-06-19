@@ -206,7 +206,8 @@
        var date2 =  document.getElementById("date2").value;
        var lectureRoom =  document.getElementById("selectbox");
         date = date2;
-
+            timelist = new Array();
+            lectureroomnum = new Array();
        var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
         lect = lectureRoom2;
         await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{

@@ -173,7 +173,7 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="cafeTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
+                    <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')" >
                       <th>카페이름</th>
                       <th>전화번호</th>
                       <th>현재상태</th>
@@ -218,7 +218,7 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="cafeWaitTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
+                    <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
                       <th>카페이름</th>
                       <th>전화번호</th>
                       <th>주소</th>
@@ -226,7 +226,7 @@
                     </tr>
                   </thead>
                   <tfoot>
-                    <tr>
+                    <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
                       <th>카페이름</th>
                       <th>전화번호</th>
                       <th>주소</th>
@@ -288,7 +288,17 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-
+<script>
+    function changeTrColor(trObj, oldColor, newColor) {
+        trObj.style.backgroundColor = newColor;
+        
+        trObj.onmouseout = function(){
+            trObj.style.backgroundColor = oldColor;
+        }
+        
+    }
+    </script>
+    
 <script>
     var result = new Array();
 
@@ -297,7 +307,7 @@
         result = res.data;
       });
       for (var i = 0; i < result.length; i++) {
-        var rowItem = "<tr>"
+        var rowItem = "<tr onmouseover=\"javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')\">"
         rowItem += "<td>" + result[i].name + "</td>"
         rowItem += "<td>" + result[i].phoneNumber + "</td>"
         if(result[i].congestion == null){

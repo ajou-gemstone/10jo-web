@@ -253,7 +253,7 @@
         result = res.data;
       });
       for (var i = 0; i < result.length; i++) {
-        var rowItem = "<tr>"
+        var rowItem = "<tr onmouseover=\"javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')\">"
         rowItem += "<td>" + result[i].category + "</td>"
         rowItem += "<td>" + result[i].title + "</td>"
         rowItem += "<td>" + result[i].studyGroupNumCurrent + "</td>"
@@ -267,6 +267,16 @@
     
 
   </script>
+    <script>
+    function changeTrColor(trObj, oldColor, newColor) {
+        trObj.style.backgroundColor = newColor;
+        
+        trObj.onmouseout = function(){
+            trObj.style.backgroundColor = oldColor;
+        }
+        
+    }
+    </script>
 </body>
 
 </html>

@@ -189,14 +189,18 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
+                <h1></h1>
+            <button onclick = "window.open('http://localhost:5010/download.html')" class="btn btn-primary">수업 목록 보기</button>
+                <h1></h1>
                 <h3>한번에 등록(엑셀파일)</h3>
                 <div class="filebox bs3-primary preview-image">
-                            <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
+                            <input class="upload-name"  value="파일선택" disabled="disabled" style="width: 200px;">
+                            <label for="input_file">업로드</label>
+                    <input type="file" name="input_file" id="input_file"  class="upload-hidden"> 
+                    </div>
+                <button class = "btn btn-primary" onclick = "registerClass();">파일 보내기</button>
+                <h1></h1>
 
-                            <label for="input_file">업로드</label> 
-                          <input type="file" id="input_file" class="upload-hidden"> 
-                        </div>
-                <button onclick = "window.open('http://localhost:5010/download.html')" class="btn btn-primary">수업 목록 보기</button>
                 <h1></h1>
                 <h3>하나씩 등록</h3>
                 <label for = "lectureName">수업이름 : </label>
@@ -696,6 +700,7 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
+    
 <script>
     $(document).ready(function(){
         var fileTarget = $('.filebox .upload-hidden');
@@ -713,8 +718,57 @@
         });
     });
 
+    async function registerClass(){
+        const formData = new FormData();
+        var file = document.getElementById("input_file");
+        formData.append('input_file', file.files[0]);
+        console.log(file.files[0]);
+    await axios({
+      method: 'post',
+      url: 'http://localhost:5010/lecture/excelSave',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(function(response) {
+      //handle success
+      console.log(response.data);
+    }).catch(function(response) {
+      //handle error
+      console.log(response);
+    });
+//        await axios.post('http://localhost:5010/lecture/excelSave',formData,{
+//            headers: {
+//                'Content-Type': 'multipart/form-data'
+//            }
+//            }).then(function(response) {
+//            //handle success
+//            console.log(response.data);
+//            }).catch(function(response) {
+//            //handle error
+//            console.log(response);
+//            });
+//        await axios.post('http://localhost:5010/lecture/excel').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+//                result = res.data.response;
+//                console.log(result)
+//                if(result == 'success'){
+//                    alert("강의실이 추가되었습니다");
+//                    location.reload();
+//                }
+//                else{
+//                    alert("강의실 추가가 실패하였습니다");
+//                    location.reload();
+//                }
+//            });
+    }
+
 </script>
 
 </body>
 
+    <script>
+    
+    
+    </script>
+    
 </html>

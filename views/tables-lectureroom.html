@@ -251,7 +251,7 @@
                   <p></p>
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
                     <thead>
-                      <tr>
+                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')">
                         <th>건물명</th>
                         <th>호수</th>
                         <th>수용인원</th>
@@ -305,7 +305,7 @@
                       </tr>
                     </thead>
                     <tfoot>
-                      <tr>
+                      <tr onmouseover="javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')" >
                         <th>건물명</th>
                         <th>호수</th>
                         <th>수용인원</th>
@@ -397,7 +397,6 @@
   <script>
     async function dataPrint() {
        var result = new Array();
-
        var date2 =  document.getElementById("date2").value;
        var lectureRoom =  document.getElementById("selectbox");
        var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
@@ -420,7 +419,7 @@
                 // 13, 21, 25, 44
             });
       for (var i = 0; i < result.length; i++) {
-        var rowItem = "<tr>"
+        var rowItem = "<tr onmouseover=\"javascript:changeTrColor(this, '#FFFFFF', '#F4FFFD')\">"
         rowItem += "<td>" + result[i].building + "</td>"
         rowItem += "<td>" + result[i].lectureroom.substring(1) + "</td>"
         rowItem += "<td>" + result[i].lectureRoomNum + "</td>"
