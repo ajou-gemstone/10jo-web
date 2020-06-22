@@ -105,7 +105,7 @@
             <div class="topbar-divider d-none d-sm-block"></div>
 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="http://localhost:5010" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="http://15.164.94.153:5010/" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   로그아웃
                 </a>
@@ -177,7 +177,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-        <a class="btn btn-primary" href="http://localhost:5010">로그아웃</a>
+        <a class="btn btn-primary" href="http://15.164.94.153:5010/">로그아웃</a>
       </div>
     </div>
   </div>
@@ -219,7 +219,7 @@
       var text4 = document.getElementById("telephoneNumber");
       var text5 = document.getElementById("welcome2");
       var text6 = document.getElementById("cafeBody");
-      await axios.get('http://localhost:5010/cafe/info',{
+      await axios.get('http://15.164.94.153:5010/cafe/info',{
           params: {
             id: atob(params.id)
           }
@@ -235,12 +235,12 @@
     })(2);
     function cafeEdit(){
         var params = getUrlParams();
-        location.href='http://localhost:5010/cafeedit?id='+params.id;
+        location.href='http://15.164.94.153:5010/cafeedit?id='+params.id;
     }
     
     function cafeMain(){
         var params = getUrlParams();
-        location.href="http://localhost:5010/cafestaff?id="+params.id;
+        location.href="http://15.164.94.153:5010/cafestaff?id="+params.id;
     }
   </script>
 </body>

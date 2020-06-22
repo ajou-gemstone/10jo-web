@@ -102,7 +102,7 @@
 //    과목명	수강번호	교수명	강의시간	강의실
     (async function dataPrint() {
       
-      await axios.get('http://localhost:5010/lecture/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+      await axios.get('http://15.164.94.153:5010/lecture/list').then(res => { // 불러온 값을 Console에 뿌려줍니다.
         result = res.data;
       });
       for (var i = 0; i < result.length; i++) {

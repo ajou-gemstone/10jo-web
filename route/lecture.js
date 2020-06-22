@@ -113,17 +113,14 @@ router.post('/create', async function(req, res, next) {
   recodes = recodes.rows;
   var lectureRoomId = recodes[0].id;
 
-  sql = `select * from lectureroomdescription where lectureId='${id}'`;
+  sql = `select * from lectureroomdescription where lectureId='${num}'`;
   let query = await dbQuery(sql);
   query = query.rows;
 
-  timeList[0].startTime = parseInt(timeList[0].startTime);
-  timeList[0].lastTime = parseInt(timeList[0].lastTime);
-
   if (query.length == 0) {
     for (var i = 0; i < timeList.length; i++) {
-      for (var j = timeList[i].startTime; j < timeList[i].lastTime; j++) {
-        sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day, reservationId) values(${id}, '${lectureRoomId}', 0, '${j}', '2020-1', 'L', '${date}', '${timeList[i].day}', 0)`
+      for (var j = parseInt(timeList[i].startTime); j < parseInt(timeList[i].lastTime); j++) {
+        sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day, reservationId) values(${num}, '${lectureRoomId}', 0, '${j}', '2020-1', 'L', '${date}', '${timeList[i].day}', 0)`
         recodes = await dbQuery(sql);
       }
     }
@@ -163,7 +160,7 @@ const upload = multer({
 });
 // 이미지 업로드를 위한 API
 // upload의 single 메서드는 하나의 이미지를 업로드할 때 사용
-router.post('/excelSave', upload.single('input_file'), async function(req, res) {
+router.post('/excelSave', upload.single('file'), async function(req, res) {
   console.log(req.file);
   res.send('Success');
 })
@@ -270,8 +267,8 @@ router.post("/excel", async function(req, res, next) {
         }
       }
 
-      for (var j = 0; j < timeArray.length; j++) {
-        sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day, reservationId) values(${num}, '${lectureRoomId}', 0, '${timeArray[j]}', '2020-1', 'L', '${date}', '${tmp[l]}', 0)`
+      for (var j = parseInt(timeArray[0]); j < parseInt(timeArray[timeArray.length-1]); j++) {
+        sql = `insert into lectureroomdescription(lectureId, lectureRoomId, lectureTime, time, semester, roomStatus, date, day, reservationId) values(${num}, '${lectureRoomId}', 0, '${j}', '2020-1', 'L', '${date}', '${tmp[l]}', 0)`
         recodes = await dbQuery(sql);
       }
 

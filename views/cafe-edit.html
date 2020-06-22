@@ -189,7 +189,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-        <a class="btn btn-primary" href="http://localhost:5010">로그아웃</a>
+        <a class="btn btn-primary" href="http://15.164.94.153:5010">로그아웃</a>
       </div>
     </div>
   </div>
@@ -231,7 +231,7 @@
       var text2 = document.getElementById("cafeName");
       var text3 = document.getElementById("telephoneNumber");
       var text4 = document.getElementById("cafeBody");
-      await axios.get('http://localhost:5010/cafe/info',{
+      await axios.get('http://15.164.94.153:5010/cafe/info',{
           params: {
             id: atob(params.id)
           }
@@ -246,12 +246,12 @@
 
     function cafeEdit(){
         var params = getUrlParams();
-        location.href='http://localhost:5010/cafeedit?id='+params.id;
+        location.href='http://15.164.94.153:5010/cafeedit?id='+params.id;
     }
     
     function cafeMain(){
         var params = getUrlParams();
-        location.href="http://localhost:5010/cafestaff?id="+params.id;
+        location.href="http://15.164.94.153:5010/cafestaff?id="+params.id;
     }
     function leadingZeros(n, digits) {
         var zero = '';
@@ -281,7 +281,7 @@
         console.log(text2);
         console.log(text3);
         console.log(congestion);
-        axios.post('http://localhost:5010/cafe/edit',{userId:atob(params.id),cafeName:text2, phoneNumber:text3,congestion:congestion,cafeBody:cafeBody,time:time }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+        axios.post('http://15.164.94.153:5010/cafe/edit',{userId:atob(params.id),cafeName:text2, phoneNumber:text3,congestion:congestion,cafeBody:cafeBody,time:time }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                 result = res.data.response;
                 if(result == "success"){
                     alert("업데이트를 성공하였습니다");

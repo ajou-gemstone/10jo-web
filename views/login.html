@@ -63,7 +63,7 @@
                     <p></p>
                     <input type="button" value="로그인" onclick="login();" class="btn btn-primary btn-user btn-block"/>
                   <hr>
-                  <a href="http://localhost:5010/register" class="btn btn-user btn-block" style="background-color: #702921; color:#ffffff;">
+                  <a href="http://15.164.94.153:5010/register" class="btn btn-user btn-block" style="background-color: #702921; color:#ffffff;">
                      카페 신청하기
                   </a>
 
@@ -109,21 +109,21 @@
         var id = document.getElementById("userId").value;
         var pw = document.getElementById("password").value;
         console.log("함수안에 들어왔습니다");
-            axios.post('http://localhost:5010/user/login',
+            axios.post('http://15.164.94.153:5010/user/login',
                 {
                     userId:id,
                     password:pw,
                 }).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                     result = res.data;
                 if(result.userType==3){
-                    location.replace('http://localhost:5010/cafestaff?id='+btoa(result.id));
+                    location.replace('http://15.164.94.153:5010/cafestaff?id='+btoa(result.id));
                 }
 
                 else if(result.userType==4){
-                    location.replace('http://localhost:5010/lectureRoom');
+                    location.replace('http://15.164.94.153:5010/lectureRoom');
                 }
                 else if(result.userType==1){
-                    location.replace('http://localhost:5010/classRegister');
+                    location.replace('http://15.164.94.153:5010/classRegister');
                 }
                 else
                 {

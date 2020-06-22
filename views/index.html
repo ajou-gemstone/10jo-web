@@ -105,7 +105,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/admin">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://15.164.94.153:5010/admin">
         <img src="/images/asmr.png" width="160" height="50">
       </a>
 
@@ -114,7 +114,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/admin" id='admin'>
+        <a class="nav-link" href="http://15.164.94.153:5010/admin" id='admin'>
           <i class="fas fa-fw fa-user-cog"></i>
           <span>관리자</span></a>
       </li>
@@ -129,7 +129,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/lectureroom">
+        <a class="nav-link collapsed" href="http://15.164.94.153:5010/lectureroom">
           <i class="fas fa-fw fa-building"></i>
           <span>강의실 관리</span>
         </a>
@@ -138,7 +138,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/reservation">
+        <a class="nav-link collapsed" href="http://15.164.94.153:5010/reservation">
           <i class="fas fa-fw fa-clock"></i>
           <span>예약관리</span>
         </a>
@@ -146,7 +146,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/student">
+        <a class="nav-link collapsed" href="http://15.164.94.153:5010/student">
           <i class="fas fa-fw fa-user"></i>
           <span>학생관리</span>
         </a>
@@ -154,14 +154,14 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/cafe">
+        <a class="nav-link" href="http://15.164.94.153:5010/cafe">
           <i class="fas fa-fw fa-coffee"></i>
           <span>카페관리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/study">
+        <a class="nav-link" href="http://15.164.94.153:5010/study">
           <i class="fas fa-fw fa-user-friends"></i>
           <span>스터디관리</span></a>
       </li>
@@ -239,7 +239,7 @@
                   <input type="button" value = "검색" onclick="dataPrint();" class="btn-blue"/>
                   <p></p>
 
-                <input type="button" value="강의실 등록" onClick="location.href='http://localhost:5010/lectureRoomRegister'" class="btn btn-primary"/>
+                <input type="button" value="강의실 등록" onClick="location.href='http://15.164.94.153:5010/lectureRoomRegister'" class="btn btn-primary"/>
                   <p></p>
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" table-layout="fixed">
                     <thead>
@@ -369,7 +369,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="http://localhost:5010/login">Logout</a>
+          <a class="btn btn-primary" href="http://15.164.94.153:5010">Logout</a>
         </div>
       </div>
     </div>
@@ -403,7 +403,7 @@
             location.reload();
         }
         else{
-            await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{
+            await axios.get('http://15.164.94.153:5010/lectureRoom/lectureRoomSearch',{
           params: {
             id: date2, id2:lectureRoom2
           }

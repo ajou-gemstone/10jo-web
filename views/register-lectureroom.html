@@ -41,7 +41,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5010/admin">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://15.164.94.153:5010/admin">
         <img src="/images/asmr.png" width="160" height="50">              
       </a>
 
@@ -65,7 +65,7 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/lectureroom">
+        <a class="nav-link collapsed" href="http://15.164.94.153:5010/lectureroom">
           <i class="fas fa-fw fa-building"></i>
           <span>강의실 관리</span>
         </a>
@@ -73,7 +73,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/reservation">
+        <a class="nav-link collapsed" href="http://15.164.94.153:5010/reservation">
           <i class="fas fa-fw fa-clock"></i>
           <span>예약관리</span>
         </a>
@@ -81,7 +81,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/student">
+        <a class="nav-link collapsed" href="http://15.164.94.153:5010/student">
           <i class="fas fa-fw fa-user"></i>
           <span>학생관리</span>
         </a>
@@ -89,14 +89,14 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/cafe">
+        <a class="nav-link" href="http://15.164.94.153:5010/cafe">
           <i class="fas fa-fw fa-coffee"></i>
           <span>카페관리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/study">
+        <a class="nav-link" href="http://15.164.94.153:5010/study">
           <i class="fas fa-fw fa-user-friends"></i>
           <span>스터디관리</span></a>
       </li>
@@ -137,7 +137,7 @@
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
-                <a class="dropdown-item" href="http://localhost:5010" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="http://15.164.94.153:5010/" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   로그아웃
                 </a>
@@ -225,7 +225,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-        <a class="btn btn-primary" href="http://localhost:5010/">로그아웃</a>
+        <a class="btn btn-primary" href="http://15.164.94.153:5010/">로그아웃</a>
       </div>
     </div>
   </div>
@@ -253,7 +253,7 @@
     var building = document.getElementById("buildingName");
     var buildingName = building.options[building.selectedIndex].value;
     var lectureRoomId = document.getElementById("lectureRoomId").value;
-            axios.post('http://localhost:5010/lectureRoom/create',{lectureRoomNum:lectureRoomNum, lectureRoomId:lectureRoomId,buildingName:buildingName}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+            axios.post('http://15.164.94.153:5010/lectureRoom/create',{lectureRoomNum:lectureRoomNum, lectureRoomId:lectureRoomId,buildingName:buildingName}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                 result = res.data.response;
                 console.log(result)
                 if(result == 'success'){

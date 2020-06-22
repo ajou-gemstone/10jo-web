@@ -5,7 +5,7 @@ var moment = require('moment');
 var calculateTime = require('../utils/calculateTime');
 var timeTable = require('../utils/timeTable');
 var admin = require("firebase-admin");
-var serviceAccount = require("../asmr-799cf-firebase-adminsdk-57wam-7a9f28cc260.json");
+var serviceAccount = require("../asmr-799cf-firebase-adminsdk-57wam-7a9f28cc26.json");
 
 router.get('/lectureRoomSearch', async function(req, res) {
   var date;
@@ -196,14 +196,11 @@ router.post('/prereserve', async function(req, res) {
           //-----------
           //메세지 작성 부분
           var fcm_message = {
-
-            notification: {
-              title: '새 예약 알림이 있습니다.', //여기에 알림 목적을 작성
-              body: '현재 강의실을 사용하실 수 없습니다. 다시 예약해주십시오. 죄송합니다.'
-            },
             data: {
               fileno: '1',
-              style: 'good'
+              style: 'good',
+              title: '새 예약 알림이 있습니다.', //여기에 알림 목적을 작성
+              body: '현재 강의실을 사용하실 수 없습니다. 다시 예약해주십시오. 죄송합니다.'
             },
             token: fcm_target_token
           }

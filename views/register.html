@@ -44,7 +44,7 @@
             alert("아이디가 잘못 되었습니다")
         }
         else{
-            axios.post('http://localhost:5010/user/confirm',{userId:id}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+            axios.post('http://15.164.94.153:5010/user/confirm',{userId:id}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                 result = res.data.response;
                 console.log(result)
                 if(result == "success"){
@@ -84,7 +84,7 @@ await geocoder.addressSearch(add, async function(result, status) {
         else{
             if(idcheck==1){
                 console.log(lat);
-                await axios.post('http://localhost:5010/cafe/create',
+                await axios.post('http://15.164.94.153:5010/cafe/create',
                 {
                     userId:id, 
                     userPassword:pw, 
@@ -100,7 +100,7 @@ await geocoder.addressSearch(add, async function(result, status) {
             
                 if(result == "success"){
                     alert("카페신청이 완료 되었습니다. 간단한 인증 절차 후 승인됩니다.")
-                    location.replace("http://localhost:5010");
+                    location.replace("http://15.164.94.153:5010/");
                 }
                 else{
                     alert("회원가입이 실패 하였습니다")

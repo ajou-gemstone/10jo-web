@@ -70,14 +70,14 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="http://localhost:5010/classRegister">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="http://15.164.94.153:5010/classRegister">
           <img src="/images/asmr.png" width="160" height="50">
       </a>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/classRegister">
+        <a class="nav-link" href="http://15.164.94.153:5010/classRegister">
           <i class="fas fa-fw fa-user-tie"></i>
           <span>교직원</span></a>
       </li>
@@ -93,7 +93,7 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/classRegister">
+        <a class="nav-link collapsed" href="http://15.164.94.153:5010/classRegister">
           <i class="fas fa-fw fa-school"></i>
           <span>수업 등록하기</span>
         </a>
@@ -102,7 +102,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/prereserve">
+        <a class="nav-link collapsed" href="http://15.164.94.153:5010/prereserve">
           <i class="fas fa-fw fa-clock"></i>
           <span>강의실 우선예약</span>
         </a>
@@ -147,7 +147,7 @@
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
-            <a class="dropdown-item" href="http://localhost:5010" data-toggle="modal" data-target="#logoutModal">
+            <a class="dropdown-item" href="http://15.164.94.153:5010/" data-toggle="modal" data-target="#logoutModal">
               <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               로그아웃
             </a>
@@ -210,7 +210,7 @@
             lectureroomnum = new Array();
        var lectureRoom2 = lectureRoom.options[lectureRoom.selectedIndex].text;
         lect = lectureRoom2;
-        await axios.get('http://localhost:5010/lectureRoom/lectureRoomSearch',{
+        await axios.get('http://15.164.94.153:5010/lectureRoom/lectureRoomSearch',{
           params: {
             id: date2, id2:lectureRoom2
           }
@@ -297,7 +297,7 @@
             var set = Array.from(new Set(timelist));
             console.log(timelist);
             console.log(set);
-            axios.post('http://localhost:5010/lectureRoom/prereserve',{lectureRoomNum:lectureroomnum[0],lectureRoom:lect,date:date,timeList:set}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+            axios.post('http://15.164.94.153:5010/lectureRoom/prereserve',{lectureRoomNum:lectureroomnum[0],lectureRoom:lect,date:date,timeList:set}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                 result = res.data.response;
                 console.log(result)
                 if(result == "success"){
@@ -435,7 +435,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-        <a class="btn btn-primary" href="http://localhost:5010/">로그아웃</a>
+        <a class="btn btn-primary" href="http://15.164.94.153:5010/">로그아웃</a>
       </div>
     </div>
   </div>

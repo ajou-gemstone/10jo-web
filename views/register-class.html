@@ -86,7 +86,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
    <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="http://localhost:5010/classRegister">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="http://15.164.94.153:5010/classRegister">
           <img src="/images/asmr.png" width="160" height="50">
       </a>
 
@@ -94,7 +94,7 @@
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5010/classRegister">
+        <a class="nav-link" href="http://15.164.94.153:5010/classRegister">
           <i class="fas fa-fw fa-user-tie"></i>
           <span>교직원</span></a>
       </li>
@@ -110,7 +110,7 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/classRegister">
+        <a class="nav-link collapsed" href="http://15.164.94.153:5010/classRegister">
           <i class="fas fa-fw fa-school"></i>
           <span>수업 등록하기</span>
         </a>
@@ -119,7 +119,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="http://localhost:5010/prereserve">
+        <a class="nav-link collapsed" href="http://15.164.94.153:5010/prereserve">
           <i class="fas fa-fw fa-clock"></i>
           <span>강의실 우선예약</span>
         </a>
@@ -171,7 +171,7 @@
 
             <div class="topbar-divider d-none d-sm-block"></div>
             
-            <a class="dropdown-item" href="http://localhost:5010" data-toggle="modal" data-target="#logoutModal">
+            <a class="dropdown-item" href="http://15.164.94.153:5010/" data-toggle="modal" data-target="#logoutModal">
               <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               로그아웃
             </a>
@@ -190,7 +190,7 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h1></h1>
-            <button onclick = "window.open('http://localhost:5010/download.html')" class="btn btn-primary">수업 목록 보기</button>
+            <button onclick = "window.open('http://15.164.94.153:5010/download.html')" class="btn btn-primary">수업 목록 보기</button>
                 <h1></h1>
                 <h3>한번에 등록(엑셀파일)</h3>
                 <div class="filebox bs3-primary preview-image">
@@ -627,10 +627,12 @@
             }
         }
         console.log(timeList);
-    axios.post('http://localhost:5010/lecture/create',{buildingName:buildingName, professorName:professor, lectureRoomNum:lectureRoomNum, professorName:professor, lectureCode:lectureCode, timeList:timeList, lectureName:lectureName}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
+    axios.post('http://15.164.94.153:5010/lecture/create',{buildingName:buildingName, professorName:professor, lectureRoomNum:lectureRoomNum, professorName:professor, lectureCode:lectureCode, timeList:timeList, lectureName:lectureName}).then(res => { // 불러온 값을 Console에 뿌려줍니다.
                 result = res.data;
                 console.log(result);
-                location.reload();
+        if(result == 'success'){
+            location.reload();    
+        }
             });
 
     }
@@ -676,7 +678,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-        <a class="btn btn-primary" href="http://localhost:5010">로그아웃</a>
+        <a class="btn btn-primary" href="http://15.164.94.153:5010/">로그아웃</a>
       </div>
     </div>
   </div>
@@ -725,7 +727,7 @@
         console.log(file.files[0]);
     await axios({
       method: 'post',
-      url: 'http://localhost:5010/lecture/excelSave',
+      url: 'http://15.164.94.153:5010/lecture/excelSave',
       data: formData,
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -733,34 +735,22 @@
     }).then(function(response) {
       //handle success
       console.log(response.data);
+      axios.post('http://15.164.94.153:5010/lecture/excel').then(res => { // 불러온 값을 Console에 뿌려줍니다.
+                result = res.data;
+                console.log(result)
+                if(result == 'success'){
+                    alert("수업등록을 성공하였습니다")
+                }
+                else{
+                    alert("수업 등록이 실패하였습니다")
+                }
+            });
+
     }).catch(function(response) {
       //handle error
       console.log(response);
     });
-//        await axios.post('http://localhost:5010/lecture/excelSave',formData,{
-//            headers: {
-//                'Content-Type': 'multipart/form-data'
-//            }
-//            }).then(function(response) {
-//            //handle success
-//            console.log(response.data);
-//            }).catch(function(response) {
-//            //handle error
-//            console.log(response);
-//            });
-//        await axios.post('http://localhost:5010/lecture/excel').then(res => { // 불러온 값을 Console에 뿌려줍니다.
-//                result = res.data.response;
-//                console.log(result)
-//                if(result == 'success'){
-//                    alert("강의실이 추가되었습니다");
-//                    location.reload();
-//                }
-//                else{
-//                    alert("강의실 추가가 실패하였습니다");
-//                    location.reload();
-//                }
-//            });
-    }
+        }
 
 </script>
 
